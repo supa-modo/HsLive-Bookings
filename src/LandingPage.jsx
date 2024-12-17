@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Plane } from "lucide-react";
+import plane from "/plane.png";
 
 const LoadingSpinner = () => {
   return (
@@ -91,10 +91,9 @@ const LandingPage = () => {
             transition={{ duration: 0.6 }}
             className="mb-6 flex justify-center"
           >
-            <Plane
-              size={64}
-              className="text-blue-600 drop-shadow-lg"
-              strokeWidth={1.5}
+            <img
+              src={plane}
+              className="text-blue-600 drop-shadow-lg w-28" alt="planeLogo"
             />
           </motion.div>
 
