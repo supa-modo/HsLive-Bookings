@@ -4,9 +4,9 @@ import plane from "/plane.png";
 
 const LoadingSpinner = () => {
   return (
-    <div className="flex items-center justify-center space-x-2">
+    <div className="flex items-center justify-center space-x-1.5 sm:space-x-2">
       <motion.div
-        className="w-4 h-4 bg-blue-400 rounded-full"
+        className="w-3 h-3 sm:w-4 sm:h-4 bg-blue-400 rounded-full"
         animate={{
           scale: [1, 1.5, 1],
           opacity: [0.7, 1, 0.7],
@@ -18,7 +18,7 @@ const LoadingSpinner = () => {
         }}
       />
       <motion.div
-        className="w-4 h-4 bg-blue-300 rounded-full"
+        className="w-3 h-3 sm:w-4 sm:h-4 bg-blue-300 rounded-full"
         animate={{
           scale: [1, 1.5, 1],
           opacity: [0.7, 1, 0.7],
@@ -31,7 +31,7 @@ const LoadingSpinner = () => {
         }}
       />
       <motion.div
-        className="w-4 h-4 bg-blue-200 rounded-full"
+        className="w-3 h-3 sm:w-4 sm:h-4 bg-blue-200 rounded-full"
         animate={{
           scale: [1, 1.5, 1],
           opacity: [0.7, 1, 0.7],
@@ -83,24 +83,25 @@ const LandingPage = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="bg-white/90 backdrop-blur-lg rounded-2xl p-10 shadow-2xl max-w-xl mx-auto border border-blue-100/50"
+          className="bg-white/90 backdrop-blur-lg rounded-2xl p-6 sm:p-10 shadow-2xl max-w-xl mx-auto border border-blue-100/50"
         >
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.6 }}
-            className="mb-6 flex justify-center"
+            className="mb-4 sm:mb-6 flex justify-center"
           >
             <img
               src={plane}
-              className="text-blue-600 drop-shadow-lg w-28" alt="planeLogo"
+              className="text-blue-600 drop-shadow-lg w-20 sm:w-28"
+              alt="planeLogo"
             />
           </motion.div>
 
-          <h1 className="text-5xl font-extrabold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-900">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-2 sm:mb-3 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-900">
             Shine Luxury Private Jets
           </h1>
-          <h2 className="text-2xl font-semibold mb-6 text-blue-700 tracking-wide">
+          <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-blue-700 tracking-wide">
             Private Jet Consultancy
           </h2>
 
@@ -112,26 +113,28 @@ const LandingPage = () => {
               type: "spring",
               stiffness: 120,
             }}
-            className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-4 rounded-xl inline-block shadow-lg"
+            className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 sm:px-6 py-3 sm:py-4 rounded-xl inline-block shadow-lg"
           >
-            <div className="flex items-center justify-center space-x-3">
-              <p className="text-xl font-bold">Website In Development</p>
+            <div className="flex items-center justify-center space-x-2 sm:space-x-3">
+              <p className="text-base sm:text-xl font-bold">
+                Website In Development
+              </p>
               <LoadingSpinner />
             </div>
           </motion.div>
 
-          <div className="mt-8 text-gray-600 space-y-2">
-            <p className="text-sm font-medium">
+          <div className="mt-6 sm:mt-8 text-gray-600 space-y-2">
+            <p className="text-xs sm:text-sm font-medium">
               Coming Soon: Luxury Private Jet Charters
             </p>
-            <div className="flex items-center justify-center space-x-4 text-sm">
+            <div className="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-4 text-xs sm:text-sm">
               <a
                 href="tel:+255743060660"
                 className="hover:text-blue-600 transition-colors flex items-center space-x-1"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4"
+                  className="h-3 w-3 sm:h-4 sm:w-4"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -142,12 +145,12 @@ const LandingPage = () => {
                 <span>+255 743 060 660</span>
               </a>
               <a
-                href="mailto:joebiseko@gmail.com"
+                href="mailto:info@shineluxuryprivatejets.com"
                 className="hover:text-blue-600 transition-colors flex items-center space-x-1"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4"
+                  className="h-3 w-3 sm:h-4 sm:w-4"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
