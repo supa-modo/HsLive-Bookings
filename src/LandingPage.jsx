@@ -6,7 +6,7 @@ const LoadingSpinner = () => {
   return (
     <div className="flex items-center justify-center space-x-2">
       <motion.div
-        className="w-4 h-4 bg-blue-600 rounded-full"
+        className="w-4 h-4 bg-blue-400 rounded-full"
         animate={{
           scale: [1, 1.5, 1],
           opacity: [0.7, 1, 0.7],
@@ -18,7 +18,7 @@ const LoadingSpinner = () => {
         }}
       />
       <motion.div
-        className="w-4 h-4 bg-blue-500 rounded-full"
+        className="w-4 h-4 bg-blue-300 rounded-full"
         animate={{
           scale: [1, 1.5, 1],
           opacity: [0.7, 1, 0.7],
@@ -31,7 +31,7 @@ const LoadingSpinner = () => {
         }}
       />
       <motion.div
-        className="w-4 h-4 bg-blue-400 rounded-full"
+        className="w-4 h-4 bg-blue-200 rounded-full"
         animate={{
           scale: [1, 1.5, 1],
           opacity: [0.7, 1, 0.7],
@@ -99,7 +99,7 @@ const LandingPage = () => {
           </motion.div>
 
           <h1 className="text-5xl font-extrabold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-900">
-            HS Live
+            Shine Luxury Private Jets
           </h1>
           <h2 className="text-2xl font-semibold mb-6 text-blue-700 tracking-wide">
             Private Jet Consultancy
