@@ -4,9 +4,9 @@ import plane from "/plane.png";
 
 const LoadingSpinner = () => {
   return (
-    <div className="flex items-center justify-center space-x-1.5 sm:space-x-2">
+    <div className="flex items-center justify-center space-x-2 sm:space-x-2.5">
       <motion.div
-        className="w-3 h-3 sm:w-4 sm:h-4 bg-blue-400 rounded-full"
+        className="w-2 h-2 sm:w-3 sm:h-3 bg-blue-400 rounded-full"
         animate={{
           scale: [1, 1.5, 1],
           opacity: [0.7, 1, 0.7],
@@ -18,7 +18,7 @@ const LoadingSpinner = () => {
         }}
       />
       <motion.div
-        className="w-3 h-3 sm:w-4 sm:h-4 bg-blue-300 rounded-full"
+        className="w-2 h-2 sm:w-3 sm:h-3 bg-blue-300 rounded-full"
         animate={{
           scale: [1, 1.5, 1],
           opacity: [0.7, 1, 0.7],
@@ -31,7 +31,7 @@ const LoadingSpinner = () => {
         }}
       />
       <motion.div
-        className="w-3 h-3 sm:w-4 sm:h-4 bg-blue-200 rounded-full"
+        className="w-2 h-2 sm:w-3 sm:h-3 bg-blue-200 rounded-full"
         animate={{
           scale: [1, 1.5, 1],
           opacity: [0.7, 1, 0.7],
