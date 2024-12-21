@@ -16,55 +16,55 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-br from-gray-900 to-gray-800 text-white py-20">
-      <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-          <div>
-            <div className="flex items-center space-x-3 mb-8">
-              <Plane className="text-primary-500 h-10 w-10" />
-              <span className="text-3xl font-bold bg-gradient-to-r from-primary-500 to-primary-400 text-transparent bg-clip-text">
+    <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white pt-24 pb-8 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[url('/api/placeholder/400/400')] opacity-5 bg-repeat"></div>
+      
+      <div className="container mx-auto px-6 relative">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16">
+          <div className="relative">
+            <div className="flex items-center space-x-3 mb-8 group">
+              <div className="p-3 bg-white/10 rounded-xl backdrop-blur-sm group-hover:bg-primary-500/20 transition-all duration-500">
+                <Plane className="text-primary-400 h-8 w-8 group-hover:scale-110 transition-transform duration-500" />
+              </div>
+              <span className="text-3xl font-bold bg-gradient-to-r from-primary-400 to-primary-300 text-transparent bg-clip-text">
                 HS Live
               </span>
             </div>
-            <p className="text-gray-300 mb-8 leading-relaxed">
+            <p className="text-gray-400 mb-8 leading-relaxed">
               Your trusted partner in luxury private aviation, delivering
-              exceptional travel experiences worldwide. Experience the pinnacle of
-              private jet charter services.
+              exceptional travel experiences worldwide.
             </p>
-            <div className="flex space-x-5">
-              <a
-                href="#facebook"
-                className="p-3 rounded-full bg-[#1877F2] hover:bg-[#0d6efd] transition-all duration-300 hover:scale-110"
-                aria-label="Facebook"
-              >
-                <FontAwesomeIcon icon={faFacebookF} className="h-5 w-5 text-white" />
-              </a>
-              <a
-                href="#twitter"
-                className="p-3 rounded-full bg-[#1DA1F2] hover:bg-[#0c85d0] transition-all duration-300 hover:scale-110"
-                aria-label="Twitter"
-              >
-                <FontAwesomeIcon icon={faTwitter} className="h-5 w-5 text-white" />
-              </a>
-              <a
-                href="#instagram"
-                className="p-3 rounded-full bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#F77737] hover:from-[#6d2e94] hover:via-[#d41919] hover:to-[#cf6530] transition-all duration-300 hover:scale-110"
-                aria-label="Instagram"
-              >
-                <FontAwesomeIcon icon={faInstagram} className="h-5 w-5 text-white" />
-              </a>
-              <a
-                href="#linkedin"
-                className="p-3 rounded-full bg-[#0A66C2] hover:bg-[#084d93] transition-all duration-300 hover:scale-110"
-                aria-label="LinkedIn"
-              >
-                <FontAwesomeIcon icon={faLinkedinIn} className="h-5 w-5 text-white" />
-              </a>
+            <div className="flex space-x-6">
+              {[
+                { icon: faFacebookF, color: "#1877F2", label: "Facebook" },
+                { icon: faTwitter, color: "#1DA1F2", label: "Twitter" },
+                { icon: faInstagram, gradient: "from-[#833AB4] via-[#FD1D1D] to-[#F77737]", label: "Instagram" },
+                { icon: faLinkedinIn, color: "#0A66C2", label: "LinkedIn" }
+              ].map((social) => (
+                <a
+                  key={social.label}
+                  href={`#${social.label.toLowerCase()}`}
+                  className={`p-3 rounded-lg transform hover:-translate-y-1 transition-all duration-300 ${
+                    social.gradient 
+                      ? `bg-gradient-to-br ${social.gradient} hover:shadow-lg hover:shadow-pink-500/20` 
+                      : `bg-white/10 hover:bg-[${social.color}] hover:shadow-lg`
+                  } backdrop-blur-sm`}
+                  aria-label={social.label}
+                >
+                  <FontAwesomeIcon 
+                    icon={social.icon} 
+                    className="h-5 w-5 text-white hover:scale-110 transition-transform duration-300" 
+                  />
+                </a>
+              ))}
             </div>
           </div>
 
           <div>
-            <h4 className="text-xl font-bold mb-6 text-primary-400">Quick Links</h4>
+            <h4 className="text-xl font-bold mb-8 text-primary-400 relative">
+              Quick Links
+              <span className="absolute -bottom-2 left-0 w-12 h-1 bg-primary-500/30 rounded-full"></span>
+            </h4>
             <ul className="space-y-4">
               {[
                 ["Home", "#"],
@@ -77,10 +77,13 @@ const Footer = () => {
                 <li key={label}>
                   <a
                     href={href}
-                    className="text-gray-300 hover:text-primary-400 transition-all duration-300 flex items-center space-x-2 group"
+                    className="text-gray-400 hover:text-primary-400 transition-all duration-300 flex items-center space-x-3 group"
                   >
-                    <span className="w-2 h-2 bg-primary-500 rounded-full transform scale-0 group-hover:scale-100 transition-transform duration-300"></span>
-                    <span>{label}</span>
+                    <span className="w-2 h-2 bg-primary-500/50 rounded-full transform scale-0 group-hover:scale-100 transition-transform duration-300"></span>
+                    <span className="relative overflow-hidden">
+                      {label}
+                      <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary-500/30 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                    </span>
                   </a>
                 </li>
               ))}
@@ -88,7 +91,10 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="text-xl font-bold mb-6 text-primary-400">Our Services</h4>
+            <h4 className="text-xl font-bold mb-8 text-primary-400 relative">
+              Our Services
+              <span className="absolute -bottom-2 left-0 w-12 h-1 bg-primary-500/30 rounded-full"></span>
+            </h4>
             <ul className="space-y-4">
               {[
                 "Private Jet Charter",
@@ -101,10 +107,13 @@ const Footer = () => {
                 <li key={service}>
                   <a
                     href="#"
-                    className="text-gray-300 hover:text-primary-400 transition-all duration-300 flex items-center space-x-2 group"
+                    className="text-gray-400 hover:text-primary-400 transition-all duration-300 flex items-center space-x-3 group"
                   >
-                    <span className="w-2 h-2 bg-primary-500 rounded-full transform scale-0 group-hover:scale-100 transition-transform duration-300"></span>
-                    <span>{service}</span>
+                    <span className="w-2 h-2 bg-primary-500/50 rounded-full transform scale-0 group-hover:scale-100 transition-transform duration-300"></span>
+                    <span className="relative overflow-hidden">
+                      {service}
+                      <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary-500/30 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                    </span>
                   </a>
                 </li>
               ))}
@@ -112,59 +121,51 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="text-xl font-bold mb-6 text-primary-400">Contact Info</h4>
+            <h4 className="text-xl font-bold mb-8 text-primary-400 relative">
+              Contact Info
+              <span className="absolute -bottom-2 left-0 w-12 h-1 bg-primary-500/30 rounded-full"></span>
+            </h4>
             <ul className="space-y-6">
-              <li className="flex items-start space-x-4">
-                <FontAwesomeIcon
-                  icon={faMapMarkerAlt}
-                  className="text-primary-500 h-5 w-5 mt-1"
-                />
-                <span className="text-gray-300">
-                  Bondeni Street, Arusha,
-                  <br />
-                  Tanzania
-                </span>
-              </li>
-              <li className="flex items-center space-x-4">
-                <FontAwesomeIcon
-                  icon={faPhone}
-                  className="text-primary-500 h-5 w-5"
-                />
-                <span className="text-gray-300">+255 743 060 660</span>
-              </li>
-              <li className="flex items-center space-x-4">
-                <FontAwesomeIcon
-                  icon={faEnvelope}
-                  className="text-primary-500 h-5 w-5"
-                />
-                <span className="text-gray-300">joebiseko@gmail.com</span>
-              </li>
-              <li className="flex items-center space-x-4">
-                <FontAwesomeIcon
-                  icon={faClock}
-                  className="text-primary-500 h-5 w-5"
-                />
-                <span className="text-gray-300">24/7 Flight Support</span>
-              </li>
+              {[
+                { icon: faMapMarkerAlt, text: ["Bondeni Street, Arusha,", "Tanzania"] },
+                { icon: faPhone, text: ["+255 743 060 660"] },
+                { icon: faEnvelope, text: ["joebiseko@gmail.com"] },
+                { icon: faClock, text: ["24/7 Flight Support"] }
+              ].map((item, index) => (
+                <li key={index} className="flex items-start space-x-4 group">
+                  <div className="p-2 bg-white/10 rounded-lg group-hover:bg-primary-500/20 transition-all duration-300">
+                    <FontAwesomeIcon
+                      icon={item.icon}
+                      className="text-primary-400 h-5 w-5 group-hover:scale-110 transition-transform duration-300"
+                    />
+                  </div>
+                  <div className="text-gray-400">
+                    {item.text.map((line, i) => (
+                      <p key={i} className="hover:text-primary-400 transition-colors duration-300">{line}</p>
+                    ))}
+                  </div>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-gray-700/50 mt-16 pt-10">
+        <div className="border-t border-gray-700/30 mt-16 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-gray-400 text-sm">
-              {new Date().getFullYear()} HS Live Limited. All rights reserved.
+              © {new Date().getFullYear()} HS Live Limited. All rights reserved.
             </p>
             <div className="flex space-x-8">
-              <a href="#" className="text-gray-400 hover:text-primary-400 text-sm">
-                Privacy Policy
-              </a>
-              <a href="#" className="text-gray-400 hover:text-primary-400 text-sm">
-                Terms of Service
-              </a>
-              <a href="#" className="text-gray-400 hover:text-primary-400 text-sm">
-                Cookie Policy
-              </a>
+              {["Privacy Policy", "Terms of Service", "Cookie Policy"].map((item) => (
+                <a
+                  key={item}
+                  href="#"
+                  className="text-gray-400 hover:text-primary-400 text-sm relative group"
+                >
+                  {item}
+                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary-500/30 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                </a>
+              ))}
             </div>
           </div>
         </div>

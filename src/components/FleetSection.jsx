@@ -1,97 +1,140 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Users, Map, Clock } from "lucide-react";
+import { Users, ArrowRight } from "lucide-react";
+import FleetDetailsModal from "./FleetDetailsModal";
 
-const FleetCard = ({ image, name, passengers, range, speed }) => (
+import jet1 from "../assets/images/jet1.png";
+import jet2 from "../assets/images/jet2.jpg";
+import jet3 from "../assets/images/jet3.jpeg";
+import jet4 from "../assets/images/jet4.jpg";
+import jet5 from "../assets/images/jet5.jpg";
+import jet6 from "../assets/images/jet6.jpg";
+import jet7 from "../assets/images/jet7.jpg";
+import jet8 from "../assets/images/jet8.jpg";
+import jet9 from "../assets/images/jet9.jpg";
+
+const fleetData = [
+  {
+    id: 1,
+    name: "Midsize Jet",
+    category: "Standard Package",
+    image: jet5,
+    capacity: "7-8",
+    range: "Up to 5 hours flight time",
+    description: "Perfect for shorter trips and small groups, our Midsize Jet offers exceptional comfort and efficiency. Ideal for business executives and small groups seeking a premium travel experience.",
+    amenities: "Wi-Fi, Refreshments, Comfortable seating, Entertainment system",
+    additionalInfo: [
+      "Ideal for domestic and short international flights",
+      "Spacious cabin with standing room",
+      "Generous baggage capacity",
+      "Cost-effective for small groups"
+    ]
+  },
+  {
+    id: 2,
+    name: "Super Midsize Jet",
+    category: "Premium Package",
+    image: jet1,
+    capacity: "9-12",
+    range: "Up to 7 hours flight time",
+    description: "Experience superior comfort and range with our Super Midsize Jet. Perfect for larger groups and longer flights, offering enhanced amenities and more cabin space.",
+    amenities: "Full refreshment center, Enhanced entertainment, Premium catering, Satellite phone",
+    additionalInfo: [
+      "Suitable for transcontinental flights",
+      "Stand-up cabin with enhanced comfort",
+      "Large baggage compartment",
+      "Separate lavatory area"
+    ]
+  },
+  {
+    id: 3,
+    name: "Heavy Jet",
+    category: "Executive Package",
+    image: jet8,
+    capacity: "19",
+    range: "Up to 10 hours flight time",
+    description: "The ultimate in luxury air travel, our Heavy Jet provides unmatched comfort and capabilities. Perfect for large groups, long-distance flights, and those demanding the very best.",
+    amenities: "Master suite, Multiple living areas, Gourmet kitchen, Advanced entertainment systems",
+    additionalInfo: [
+      "Intercontinental flight capability",
+      "Multiple cabin zones",
+      "Full-service galley",
+      "Private bedroom available",
+      "Conference facilities"
+    ]
+  }
+];
+
+const FleetCard = ({ fleet, onViewDetails }) => (
   <motion.div
-    whileHover={{ y: -10 }}
-    className="group relative overflow-hidden rounded-2xl bg-white shadow-xl"
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    className="bg-white rounded-xl shadow-xl overflow-hidden group hover:shadow-2xl transition-all duration-300"
   >
-    <div className="aspect-[16/10] overflow-hidden">
+    <div className="relative h-64 overflow-hidden">
       <img
-        src={image}
-        alt={name}
-        className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+        src={fleet.image}
+        alt={fleet.name}
+        className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
       />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+      <div className="absolute bottom-0 left-0 p-6">
+        <h3 className="text-2xl font-bold text-white mb-2">{fleet.name}</h3>
+        <p className="text-gray-200">{fleet.category}</p>
+      </div>
     </div>
     <div className="p-6">
-      <h3 className="text-2xl font-bold text-gray-900 mb-4">{name}</h3>
-      <div className="space-y-3">
-        <div className="flex items-center text-gray-600">
-          <Users className="h-5 w-5 mr-3 text-primary-600" />
-          <span>{passengers} Passengers</span>
-        </div>
-        <div className="flex items-center text-gray-600">
-          <Map className="h-5 w-5 mr-3 text-primary-600" />
-          <span>{range} Range</span>
-        </div>
-        <div className="flex items-center text-gray-600">
-          <Clock className="h-5 w-5 mr-3 text-primary-600" />
-          <span>{speed} Cruise Speed</span>
-        </div>
+      <div className="flex items-center space-x-2 mb-4">
+        <Users className="text-primary-600" />
+        <span className="text-gray-600">Up to {fleet.capacity} passengers</span>
       </div>
-      <button className="mt-6 w-full bg-gray-100 text-gray-900 py-3 rounded-full font-medium hover:bg-primary-600 hover:text-white transition-colors duration-300">
-        View Details
-      </button>
+      <p className="text-gray-600 mb-6 line-clamp-2">{fleet.description}</p>
+      <div className="flex justify-between items-center">
+        <button
+          onClick={() => onViewDetails(fleet)}
+          className="flex items-center space-x-2 text-primary-600 hover:text-primary-700 font-medium transition-colors duration-300 group"
+        >
+          <span>View Details</span>
+          <ArrowRight className="h-5 w-5 transform group-hover:translate-x-1 transition-transform duration-300" />
+        </button>
+      </div>
     </div>
   </motion.div>
 );
 
 const FleetSection = () => {
-  const fleet = [
-    {
-      image: "/path/to/light-jet.jpg",
-      name: "Light Jet",
-      passengers: "6-8",
-      range: "2,000 nm",
-      speed: "440 kts",
-    },
-    {
-      image: "/path/to/midsize-jet.jpg",
-      name: "Midsize Jet",
-      passengers: "8-10",
-      range: "3,000 nm",
-      speed: "470 kts",
-    },
-    {
-      image: "/path/to/heavy-jet.jpg",
-      name: "Heavy Jet",
-      passengers: "10-16",
-      range: "4,000 nm",
-      speed: "500 kts",
-    },
-  ];
+  const [selectedFleet, setSelectedFleet] = useState(null);
 
   return (
-    <section id="fleet" className="py-20 bg-white">
+    <section id="fleet" className="py-20 bg-gray-50">
       <div className="container mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center max-w-3xl mx-auto mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">
             Our Premium Fleet
           </h2>
-          <p className="text-gray-600 text-lg">
-            Choose from our diverse fleet of meticulously maintained private jets,
-            each offering unique capabilities to match your travel requirements.
+          <p className="text-gray-600">
+            Experience luxury and comfort with our diverse fleet of private jets.
+            Each aircraft is maintained to the highest standards of safety and comfort.
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {fleet.map((aircraft, index) => (
-            <FleetCard key={index} {...aircraft} />
+          {fleetData.map((fleet) => (
+            <FleetCard
+              key={fleet.id}
+              fleet={fleet}
+              onViewDetails={(fleet) => setSelectedFleet(fleet)}
+            />
           ))}
         </div>
-
-        <div className="text-center mt-12">
-          <button className="bg-primary-600 text-white px-10 py-4 rounded-full text-lg font-medium hover:bg-primary-700 transition-all duration-300 shadow-lg hover:shadow-primary-500/20">
-            View Full Fleet
-          </button>
-        </div>
       </div>
+
+      <FleetDetailsModal
+        isOpen={!!selectedFleet}
+        onClose={() => setSelectedFleet(null)}
+        fleet={selectedFleet}
+      />
     </section>
   );
 };

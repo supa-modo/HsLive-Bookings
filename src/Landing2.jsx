@@ -107,7 +107,7 @@ const LuxuryJetLanding = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gray-100">
       <Navigation
         scrolled={scrolled}
         isMenuOpen={isMenuOpen}
