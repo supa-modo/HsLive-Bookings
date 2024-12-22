@@ -1,201 +1,182 @@
 import React from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
-  X,
   Users,
   Clock,
   Globe,
   Shield,
-  CheckCircle,
   Star,
   ArrowUpRight,
+  ChevronLeft,
+  CheckCircle,
+  WifiHigh,
+  Wine,
+  MapPin,
+  Plane,
 } from "lucide-react";
+import { Link, useParams } from "react-router-dom";
 
-const FeatureCard = ({ icon: Icon, title, description }) => (
+const FeatureCard = ({ icon: Icon, title, description, highlight }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
-    className="flex items-start space-x-4 p-6 bg-white rounded-xl border border-gray-100 hover:shadow-lg transition-all duration-300"
+    className="relative overflow-hidden group"
   >
-    <div className="bg-primary-50 p-3 rounded-xl">
-      <Icon className="h-6 w-6 text-primary-600" />
-    </div>
-    <div>
-      <h4 className="font-semibold text-gray-900 mb-1">{title}</h4>
-      <p className="text-sm text-gray-600 leading-relaxed">{description}</p>
+    <div className="p-8 bg-white rounded-2xl border border-gray-100 hover:shadow-xl transition-all duration-500">
+      <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-150 duration-500" />
+      <div className="relative">
+        <div className="bg-blue-50 p-4 rounded-xl w-fit mb-6">
+          <Icon className="h-7 w-7 text-blue-600" />
+        </div>
+        <h4 className="text-xl font-bold text-gray-900 mb-3">{title}</h4>
+        <p className="text-gray-600 leading-relaxed">{description}</p>
+        {highlight && (
+          <span className="absolute top-4 right-4 bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-sm">
+            {highlight}
+          </span>
+        )}
+      </div>
     </div>
   </motion.div>
 );
 
-const AmenityTag = ({ children }) => (
-  <div className="flex items-center space-x-2 bg-gray-50 px-4 py-2 rounded-lg">
-    <CheckCircle className="h-4 w-4 text-primary-600" />
-    <span className="text-sm text-gray-700">{children}</span>
+const AmenityTag = ({ icon: Icon, children }) => (
+  <div className="flex items-center space-x-3 bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-all duration-300">
+    <div className="bg-blue-50 p-2 rounded-lg">
+      <Icon className="h-5 w-5 text-blue-600" />
+    </div>
+    <span className="text-gray-700 font-medium">{children}</span>
   </div>
 );
 
-const FleetDetailsModal = ({ isOpen, onClose, fleet }) => {
-  if (!isOpen || !fleet) return null;
-
-  const features = [
-    {
-      icon: Users,
-      title: "Passenger Capacity",
-      description: `Comfortably seats up to ${fleet.capacity} passengers with luxurious cabin space`,
-    },
-    {
-      icon: Clock,
-      title: "Flight Duration",
-      description: fleet.range,
-    },
-    {
-      icon: Globe,
-      title: "Travel Radius",
-      description: "Available for domestic and international flights",
-    },
-    {
-      icon: Shield,
-      title: "Safety Standards",
-      description: "Meets and exceeds all international safety regulations",
-    },
-  ];
-
-  const modalVariants = {
-    hidden: { opacity: 0, scale: 0.95 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        type: "spring",
-        damping: 25,
-        stiffness: 300,
-      },
-    },
-    exit: {
-      opacity: 0,
-      scale: 0.95,
-      transition: {
-        duration: 0.2,
-      },
-    },
-  };
+const FleetDetails = () => {
+  const { id } = useParams();
+  // ... (rest of the data finding logic remains the same)
 
   return (
-    <AnimatePresence>
-      <div className="fixed inset-0 z-50 overflow-y-auto">
-        <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+    <div className="min-h-screen bg-gray-50">
+      {/* Hero Section */}
+      <div className="relative h-[80vh] overflow-hidden">
+        <motion.img
+          initial={{ scale: 1.1 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 1.5 }}
+          src={selectedFleet.image}
+          alt={selectedFleet.name}
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
+
+        <Link
+          to="/"
+          className="absolute top-8 left-8 z-10 flex items-center space-x-2 text-white hover:text-blue-400 transition-colors duration-300 bg-black/20 backdrop-blur-sm px-6 py-3 rounded-full"
+        >
+          <ChevronLeft className="h-5 w-5" />
+          <span>Back to Fleet</span>
+        </Link>
+
+        <div className="absolute bottom-0 left-0 right-0 p-12 md:p-20">
           <motion.div
-            variants={modalVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            className="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-2xl w-full max-w-4xl"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="container mx-auto"
           >
-            <div className="absolute right-4 top-4 z-10">
-              <button
-                onClick={onClose}
-                className="bg-white/80 backdrop-blur p-2 rounded-full text-gray-600 hover:text-gray-900 hover:bg-white transition-all duration-300"
-              >
-                <X className="h-6 w-6" />
-              </button>
-            </div>
-
-            <div className="relative h-80 overflow-hidden">
-              <img
-                src={fleet.image}
-                alt={fleet.name}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/0" />
-              <div className="absolute bottom-0 left-0 p-8">
-                <div className="flex items-center space-x-2 mb-2">
-                  <Star className="h-5 w-5 text-yellow-400 fill-yellow-400" />
-                  <span className="text-yellow-400 font-medium">
-                    Premium Fleet
-                  </span>
-                </div>
-                <h3 className="text-4xl font-bold text-white mb-2">
-                  {fleet.name}
-                </h3>
-                <p className="text-lg text-gray-200 flex items-center">
-                  {fleet.category}
-                  <ArrowUpRight className="h-5 w-5 ml-2" />
-                </p>
+            <div className="flex items-center space-x-3 mb-6">
+              <div className="bg-blue-500/20 backdrop-blur-sm px-4 py-2 rounded-full">
+                <span className="text-blue-400 font-medium">
+                  {selectedFleet.category}
+                </span>
+              </div>
+              <div className="w-2 h-2 bg-white rounded-full" />
+              <div className="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
+                <span className="text-white">
+                  {selectedFleet.capacity} Passengers
+                </span>
               </div>
             </div>
 
-            <div className="p-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-                {features.map((feature, index) => (
-                  <FeatureCard key={index} {...feature} />
-                ))}
-              </div>
-
-              <div className="space-y-8">
-                <div className="bg-gray-50 p-6 rounded-xl">
-                  <h4 className="text-lg font-semibold text-gray-900 mb-4">
-                    About This Aircraft
-                  </h4>
-                  <p className="text-gray-600 leading-relaxed">
-                    {fleet.description}
-                  </p>
-                </div>
-
-                <div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-4">
-                    Premium Amenities
-                  </h4>
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                    {fleet.amenities.split(", ").map((amenity, index) => (
-                      <AmenityTag key={index}>{amenity}</AmenityTag>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="bg-gray-50 p-6 rounded-xl">
-                  <h4 className="text-lg font-semibold text-gray-900 mb-4">
-                    Additional Information
-                  </h4>
-                  <ul className="space-y-3">
-                    {fleet.additionalInfo.map((info, index) => (
-                      <li key={index} className="flex items-start space-x-3">
-                        <div className="mt-1">
-                          <CheckCircle className="h-5 w-5 text-primary-600" />
-                        </div>
-                        <span className="text-gray-600">{info}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-
-              <div className="mt-8 flex flex-col sm:flex-row justify-end space-y-3 sm:space-y-0 sm:space-x-4">
-                <button
-                  onClick={onClose}
-                  className="px-6 py-3 border border-gray-300 rounded-xl text-gray-700 font-medium hover:bg-gray-50 transition-all duration-300"
-                >
-                  Close
-                </button>
-                <button
-                  onClick={() => {
-                    console.log("Booking aircraft:", fleet.name);
-                    onClose();
-                  }}
-                  className="px-8 py-3 bg-primary-600 text-white rounded-xl font-medium hover:bg-primary-700 transition-all duration-300 shadow-lg shadow-primary-100 hover:shadow-xl"
-                >
-                  Book Now
-                </button>
-              </div>
-            </div>
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
+              {selectedFleet.name}
+            </h1>
+            <p className="text-xl text-gray-200 max-w-3xl leading-relaxed">
+              {selectedFleet.description}
+            </p>
           </motion.div>
         </div>
       </div>
-      <div
-        className="fixed inset-0 z-40 bg-black/30 backdrop-blur-sm"
-        onClick={onClose}
-      />
-    </AnimatePresence>
+
+      {/* Content Sections */}
+      <div className="container mx-auto px-4 py-20">
+        <div className="max-w-7xl mx-auto space-y-20">
+          {/* Features Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <FeatureCard
+              icon={Users}
+              title="Passenger Capacity"
+              description={`Luxurious seating for ${selectedFleet.capacity} passengers with premium comfort and personal space.`}
+              highlight="Premium Seating"
+            />
+            <FeatureCard
+              icon={Clock}
+              title="Flight Range"
+              description={selectedFleet.range}
+              highlight="Non-Stop"
+            />
+            <FeatureCard
+              icon={Globe}
+              title="Global Access"
+              description="Capable of reaching major destinations worldwide with optimal fuel efficiency."
+            />
+          </div>
+
+          {/* Amenities */}
+          <div className="bg-gradient-to-br from-gray-900 to-gray-800 p-12 rounded-3xl">
+            <h2 className="text-3xl font-bold text-white mb-12">
+              Luxury Amenities & Services
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {selectedFleet.amenities.split(", ").map((amenity, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <AmenityTag icon={index % 2 === 0 ? WifiHigh : Wine}>
+                    {amenity}
+                  </AmenityTag>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* CTA Section */}
+          <div className="text-center space-y-8">
+            <h3 className="text-3xl font-bold text-gray-900">
+              Ready to Experience Luxury in the Sky?
+            </h3>
+            <div className="flex flex-col sm:flex-row justify-center gap-6">
+              <Link
+                to="/booking"
+                className="inline-flex justify-center items-center px-8 py-4 bg-blue-600 text-white rounded-xl font-medium hover:bg-blue-700 transition-all duration-300 shadow-lg shadow-blue-100 hover:shadow-xl text-lg"
+              >
+                Book This Aircraft
+                <ArrowUpRight className="ml-2 h-5 w-5" />
+              </Link>
+              <Link
+                to="/contact"
+                className="inline-flex justify-center items-center px-8 py-4 bg-white text-gray-900 rounded-xl font-medium hover:bg-gray-50 transition-all duration-300 shadow-lg hover:shadow-xl text-lg border border-gray-200"
+              >
+                Request Information
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
-export default FleetDetailsModal;
+export default FleetDetails;

@@ -8,7 +8,7 @@ import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
 
 // Import images
-import jet1 from "./assets/images/jet1.png";
+import jet1 from "./assets/images/jet1.jpg";
 import jet2 from "./assets/images/jet2.jpg";
 import jet3 from "./assets/images/jet3.jpeg";
 import jet4 from "./assets/images/jet4.jpg";

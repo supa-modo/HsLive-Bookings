@@ -6,6 +6,7 @@ import {
   faTwitter,
   faInstagram,
   faLinkedinIn,
+  faXTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 import {
   faPhone,
@@ -16,56 +17,74 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white pt-24 pb-8 relative overflow-hidden">
-      <div className="absolute inset-0 bg-[url('/api/placeholder/400/400')] opacity-5 bg-repeat"></div>
-      
+    <footer className="font-nunito-sans font-medium bg-gradient-to-br from-primary-800 via-gray-200 to-primary-400 text-gray-600 pt-16 pb-8 relative overflow-hidden">
+      {/* Subtle background pattern */}
+      <div className="absolute inset-0 bg-[url('/api/placeholder/400/400')] opacity-3 bg-repeat"></div>
+
       <div className="container mx-auto px-6 relative">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          {/* Company Info Section */}
           <div className="relative">
-            <div className="flex items-center space-x-3 mb-8 group">
-              <div className="p-3 bg-white/10 rounded-xl backdrop-blur-sm group-hover:bg-primary-500/20 transition-all duration-500">
-                <Plane className="text-primary-400 h-8 w-8 group-hover:scale-110 transition-transform duration-500" />
-              </div>
-              <span className="text-3xl font-bold bg-gradient-to-r from-primary-400 to-primary-300 text-transparent bg-clip-text">
-                HS Live
+            <div className="flex items-center space-x-3 mb-6">
+              <img
+                src="/logo.png"
+                alt="Luxury Private Jet"
+                className="h-20 w-20 transition-transform duration-500 hover:scale-105"
+              />
+              <span className="text-2xl font-extrabold bg-gradient-to-r from-blue-900 to-blue-800 text-transparent bg-clip-text">
+                Shine Luxury Private Jets
               </span>
             </div>
-            <p className="text-gray-400 mb-8 leading-relaxed">
+            <p className="text-gray-800 font-medium mb-8 leading-relaxed">
               Your trusted partner in luxury private aviation, delivering
               exceptional travel experiences worldwide.
             </p>
-            <div className="flex space-x-6">
-              {[
-                { icon: faFacebookF, color: "#1877F2", label: "Facebook" },
-                { icon: faTwitter, color: "#1DA1F2", label: "Twitter" },
-                { icon: faInstagram, gradient: "from-[#833AB4] via-[#FD1D1D] to-[#F77737]", label: "Instagram" },
-                { icon: faLinkedinIn, color: "#0A66C2", label: "LinkedIn" }
-              ].map((social) => (
-                <a
-                  key={social.label}
-                  href={`#${social.label.toLowerCase()}`}
-                  className={`p-3 rounded-lg transform hover:-translate-y-1 transition-all duration-300 ${
-                    social.gradient 
-                      ? `bg-gradient-to-br ${social.gradient} hover:shadow-lg hover:shadow-pink-500/20` 
-                      : `bg-white/10 hover:bg-[${social.color}] hover:shadow-lg`
-                  } backdrop-blur-sm`}
-                  aria-label={social.label}
-                >
-                  <FontAwesomeIcon 
-                    icon={social.icon} 
-                    className="h-5 w-5 text-white hover:scale-110 transition-transform duration-300" 
-                  />
-                </a>
-              ))}
+
+            <div>
+              <p className="text-gray-800 mb-3 leading-relaxed">
+                Find us on our social media.
+              </p>
+              <div className="flex space-x-4">
+                {[
+                  {
+                    icon: faFacebookF,
+                    bg: "bg-blue-600 hover:bg-blue-200",
+                    color: "hover:text-blue-600 text-white",
+                  },
+                  {
+                    icon: faXTwitter,
+                    bg: "bg-gray-800 hover:bg-gray-200",
+                    color: "hover:text-gray-600 text-white",
+                  },
+                  {
+                    icon: faInstagram,
+                    bg: "hover:bg-pink-100 bg-gradient-to-br from-pink-600 to-purple-600",
+                    color: "text-white",
+                  },
+                  {
+                    icon: faLinkedinIn,
+                    bg: "hover:bg-blue-500 bg-blue-700",
+                    color: "hovertext-blue-700 text-white",
+                  },
+                ].map((social, index) => (
+                  <a
+                    key={index}
+                    href="#"
+                    className={`${social.bg} ${social.color} p-2 rounded-xl transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1`}
+                  >
+                    <FontAwesomeIcon icon={social.icon} className="w-6 h-4" />
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
 
+          {/* Quick Links Section */}
           <div>
-            <h4 className="text-xl font-bold mb-8 text-primary-400 relative">
+            <h4 className="text-lg font-bold mb-6 text-gray-800">
               Quick Links
-              <span className="absolute -bottom-2 left-0 w-12 h-1 bg-primary-500/30 rounded-full"></span>
             </h4>
-            <ul className="space-y-4">
+            <ul className="space-y-3">
               {[
                 ["Home", "#"],
                 ["About Us", "#about"],
@@ -77,25 +96,22 @@ const Footer = () => {
                 <li key={label}>
                   <a
                     href={href}
-                    className="text-gray-400 hover:text-primary-400 transition-all duration-300 flex items-center space-x-3 group"
+                    className="text-gray-500 hover:text-blue-600 transition-colors duration-300 flex items-center space-x-2 group"
                   >
-                    <span className="w-2 h-2 bg-primary-500/50 rounded-full transform scale-0 group-hover:scale-100 transition-transform duration-300"></span>
-                    <span className="relative overflow-hidden">
-                      {label}
-                      <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary-500/30 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
-                    </span>
+                    <div className="h-1 w-1 rounded-full bg-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <span>{label}</span>
                   </a>
                 </li>
               ))}
             </ul>
           </div>
 
+          {/* Services Section */}
           <div>
-            <h4 className="text-xl font-bold mb-8 text-primary-400 relative">
+            <h4 className="text-lg font-bold mb-6 text-gray-800">
               Our Services
-              <span className="absolute -bottom-2 left-0 w-12 h-1 bg-primary-500/30 rounded-full"></span>
             </h4>
-            <ul className="space-y-4">
+            <ul className="space-y-3">
               {[
                 "Private Jet Charter",
                 "Group Charter",
@@ -107,41 +123,65 @@ const Footer = () => {
                 <li key={service}>
                   <a
                     href="#"
-                    className="text-gray-400 hover:text-primary-400 transition-all duration-300 flex items-center space-x-3 group"
+                    className="text-gray-500 hover:text-blue-600 transition-colors duration-300 flex items-center space-x-2 group"
                   >
-                    <span className="w-2 h-2 bg-primary-500/50 rounded-full transform scale-0 group-hover:scale-100 transition-transform duration-300"></span>
-                    <span className="relative overflow-hidden">
-                      {service}
-                      <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary-500/30 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
-                    </span>
+                    <div className="h-1 w-1 rounded-full bg-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <span>{service}</span>
                   </a>
                 </li>
               ))}
             </ul>
           </div>
 
+          {/* Contact Info Section */}
           <div>
-            <h4 className="text-xl font-bold mb-8 text-primary-400 relative">
+            <h4 className="text-lg font-bold mb-6 text-gray-800">
               Contact Info
-              <span className="absolute -bottom-2 left-0 w-12 h-1 bg-primary-500/30 rounded-full"></span>
             </h4>
-            <ul className="space-y-6">
+            <ul className="space-y-4">
               {[
-                { icon: faMapMarkerAlt, text: ["Bondeni Street, Arusha,", "Tanzania"] },
-                { icon: faPhone, text: ["+255 743 060 660"] },
-                { icon: faEnvelope, text: ["joebiseko@gmail.com"] },
-                { icon: faClock, text: ["24/7 Flight Support"] }
+                {
+                  icon: faMapMarkerAlt,
+                  text: ["Bondeni Street, Arusha,", "Tanzania"],
+                  // bg: "bg-blue-50",
+                  iconColor: "text-red-600",
+                },
+                {
+                  icon: faPhone,
+                  text: ["+255 743 060 660"],
+                  // bg: "bg-green-50",
+                  iconColor: "text-green-600",
+                },
+                {
+                  icon: faEnvelope,
+                  text: ["info@shineluxuryprivatejets.com"],
+                  // bg: "bg-purple-50",
+                  iconColor: "text-purple-600",
+                },
+                {
+                  icon: faClock,
+                  text: ["24/7 Flight Support"],
+                  // bg: "bg-orange-50",
+                  iconColor: "text-orange-600",
+                },
               ].map((item, index) => (
-                <li key={index} className="flex items-start space-x-4 group">
-                  <div className="p-2 bg-white/10 rounded-lg group-hover:bg-primary-500/20 transition-all duration-300">
+                <li key={index} className="flex items-start space-x-3 group">
+                  <div
+                    className={`p-2 ${item.bg} rounded-lg transition-all duration-300`}
+                  >
                     <FontAwesomeIcon
                       icon={item.icon}
-                      className="text-primary-400 h-5 w-5 group-hover:scale-110 transition-transform duration-300"
+                      className={`${item.iconColor} h-5 w-5`}
                     />
                   </div>
-                  <div className="text-gray-400">
+                  <div className="text-gray-500">
                     {item.text.map((line, i) => (
-                      <p key={i} className="hover:text-primary-400 transition-colors duration-300">{line}</p>
+                      <p
+                        key={i}
+                        className="hover:text-blue-600 transition-colors duration-300"
+                      >
+                        {line}
+                      </p>
                     ))}
                   </div>
                 </li>
@@ -150,22 +190,25 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-gray-700/30 mt-16 pt-8">
+        {/* Footer Bottom */}
+        <div className="border-t border-gray-400 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-gray-400 text-sm">
-              © {new Date().getFullYear()} HS Live Limited. All rights reserved.
+            <p className="text-gray-500 text-sm">
+              © {new Date().getFullYear()} HS Live Limited. All rights
+              reserved.
             </p>
             <div className="flex space-x-8">
-              {["Privacy Policy", "Terms of Service", "Cookie Policy"].map((item) => (
-                <a
-                  key={item}
-                  href="#"
-                  className="text-gray-400 hover:text-primary-400 text-sm relative group"
-                >
-                  {item}
-                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary-500/30 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
-                </a>
-              ))}
+              {["Privacy Policy", "Terms of Service", "Cookie Policy"].map(
+                (item) => (
+                  <a
+                    key={item}
+                    href="#"
+                    className="text-gray-500 hover:text-blue-600 text-sm transition-colors duration-300"
+                  >
+                    {item}
+                  </a>
+                )
+              )}
             </div>
           </div>
         </div>

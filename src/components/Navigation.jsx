@@ -44,12 +44,14 @@ const Navigation = ({ scrolled, isMenuOpen, setIsMenuOpen }) => {
               <NavLink href="#destinations">Destinations</NavLink>
               <NavLink href="#about">About</NavLink>
               <NavLink href="#contact">Contact</NavLink>
-              <button 
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => setIsBookingModalOpen(true)}
-                className="bg-primary-600 text-white px-8 py-2.5 rounded-full text-base font-medium hover:bg-primary-700 transition-all duration-300 shadow-lg hover:shadow-primary-500/20 transform hover:scale-105"
+                className="bg-primary-600 text-white px-8 py-2.5 rounded-full text-base font-medium hover:bg-primary-600 transition-colors duration-300 shadow-lg hover:shadow-primary-500/20 transform "
               >
                 Book Now
-              </button>
+              </motion.button>
             </div>
 
             <button
@@ -75,7 +77,7 @@ const Navigation = ({ scrolled, isMenuOpen, setIsMenuOpen }) => {
                 <NavLink href="#destinations">Destinations</NavLink>
                 <NavLink href="#about">About</NavLink>
                 <NavLink href="#contact">Contact</NavLink>
-                <button 
+                <button
                   onClick={() => {
                     setIsBookingModalOpen(true);
                     setIsMenuOpen(false);
@@ -90,9 +92,9 @@ const Navigation = ({ scrolled, isMenuOpen, setIsMenuOpen }) => {
         </AnimatePresence>
       </nav>
 
-      <BookingModal 
-        isOpen={isBookingModalOpen} 
-        onClose={() => setIsBookingModalOpen(false)} 
+      <BookingModal
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
       />
     </>
   );

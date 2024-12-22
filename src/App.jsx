@@ -1,12 +1,15 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LuxuryJetLanding from "./Landing2";
-import LandingPage from "./LandingPage";
+import FleetDetails from "./pages/FleetDetails";
 
 function App() {
   return (
-    <div className="">
-      {/* <LandingPage /> */}
-      <LuxuryJetLanding />
-      </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<LuxuryJetLanding />} />
+        <Route path="/fleet/:id" element={<FleetDetails />} />
+      </Routes>
+    </Router>
   );
 }
 

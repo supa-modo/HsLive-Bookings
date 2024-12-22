@@ -166,7 +166,7 @@ const HeroSection = ({ currentSlide, setCurrentSlide, heroImages }) => {
               </span>
             </motion.h1>
             <motion.p
-              className="text-white/90 text-xl mb-8 leading-relaxed"
+              className="text-gray-600 font-nunito-sans font-bold text-xl mb-8 leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               animate={{
                 opacity: 1,
@@ -204,7 +204,7 @@ const HeroSection = ({ currentSlide, setCurrentSlide, heroImages }) => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-white/10 backdrop-blur-md text-white border-2 border-white/20 px-10 py-4 rounded-full text-lg font-medium hover:bg-white/20 transition-colors duration-300"
+                className="bg-white/40 backdrop-blur-md text-gray-500 border-2 border-gray-300 px-10 py-4 rounded-full text-lg font-bold font-nunito-sans hover:bg-white/20 transition-colors duration-300"
               >
                 Explore Fleet
               </motion.button>
