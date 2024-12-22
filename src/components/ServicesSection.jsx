@@ -4,7 +4,7 @@ import { Shield, Globe, Clock, Users, Award } from "lucide-react";
 const ServiceCard = ({ icon: Icon, title, description, index }) => {
   return (
     <div className="group relative p-1 rounded-3xl bg-gradient-to-br from-white/20 to-white/0 backdrop-blur-sm">
-      <div className="relative h-full bg-white/80 backdrop-blur-md rounded-[22px] p-8 overflow-hidden transition-all duration-500 shadow-2xl hover:shadow-xl">
+      <div className="relative h-full bg-white/90 backdrop-blur-md rounded-[22px] p-8 overflow-hidden transition-all duration-500 shadow-2xl hover:shadow-xl">
         {/* Animated background gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary-100/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
@@ -23,10 +23,10 @@ const ServiceCard = ({ icon: Icon, title, description, index }) => {
 
         {/* Content */}
         <div className="relative z-10 mt-8">
-          <h3 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-4">
+          <h3 className="text-2xl font-extrabold bg-gradient-to-r from-primary-600 to-gray-500 bg-clip-text text-transparent mb-4">
             {title}
           </h3>
-          <p className="text-gray-600 leading-relaxed font-medium">
+          <p className="text-gray-600 leading-relaxed font-semibold">
             {description}
           </p>
         </div>
@@ -87,7 +87,7 @@ const ServicesSection = () => {
           <h2 className="text-4xl sm:text-5xl font-extrabold mb-6 bg-gradient-to-r from-gray-900 via-primary-800 to-gray-700 bg-clip-text text-transparent">
             Exceptional Private Aviation
           </h2>
-          <p className="text-xl sm:text-2xl text-gray-600 leading-relaxed font-semibold">
+          <p className="text-xl sm:text-2xl text-gray-500 leading-relaxed font-semibold">
             Experience the pinnacle of luxury travel with our comprehensive
             suite of private aviation services tailored to your needs.
           </p>

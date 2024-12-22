@@ -148,7 +148,7 @@ const HeroSection = ({ currentSlide, setCurrentSlide, heroImages }) => {
             className="max-w-3xl"
           >
             <motion.h1
-              className="text-6xl md:text-8xl font-bold text-white mb-6"
+              className="text-6xl md:text-8xl font-extrabold font-open-sans text-primary-600/70 mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{
                 opacity: 1,
@@ -161,7 +161,7 @@ const HeroSection = ({ currentSlide, setCurrentSlide, heroImages }) => {
               }}
             >
               {heroImages[currentSlide].title}
-              <span className="block text-primary-400">
+              <span className="block text-red-500/80  pt-3">
                 {heroImages[currentSlide].subtitle}
               </span>
             </motion.h1>

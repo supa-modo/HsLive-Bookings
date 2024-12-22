@@ -27,7 +27,7 @@ const fleetData = [
     id: 1,
     name: "Midsize Jet",
     category: "Standard Package",
-    image: jet5,
+    image: jet2,
     capacity: "7-8",
     range: "Up to 5 hours flight time",
     description:
@@ -44,13 +44,13 @@ const fleetData = [
     id: 2,
     name: "Super Midsize Jet",
     category: "Premium Package",
-    image: jet1,
+    image: jet8,
     capacity: "9-12",
     range: "Up to 7 hours flight time",
     description:
       "Experience superior comfort and range with our Super Midsize Jet. Perfect for larger groups and longer flights, offering enhanced amenities and more cabin space.",
     amenities:
-      "Full refreshment center, Enhanced entertainment, Premium catering, Satellite phone",
+      "Full refreshment center, Enhanced entertainment, Premium catering, Satellite phone, Wifi",
     additionalInfo: [
       "Suitable for transcontinental flights",
       "Stand-up cabin with enhanced comfort",
@@ -62,13 +62,13 @@ const fleetData = [
     id: 3,
     name: "Heavy Jet",
     category: "Executive Package",
-    image: jet8,
+    image: jet6,
     capacity: "19",
     range: "Up to 10 hours flight time",
     description:
       "The ultimate in luxury air travel, our Heavy Jet provides unmatched comfort and capabilities. Perfect for large groups, long-distance flights, and those demanding the very best.",
     amenities:
-      "Master suite, Multiple living areas, Gourmet kitchen, Advanced entertainment systems",
+      "Master suite, Multiple living areas, Gourmet kitchen, Advanced entertainment systems, Wifi, Luxurious seats",
     additionalInfo: [
       "Intercontinental flight capability",
       "Multiple cabin zones",
@@ -99,11 +99,11 @@ const FleetCard = ({ fleet }) => {
           animate={{ scale: isHovered ? 1.1 : 1 }}
           transition={{ duration: 0.6 }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent" />
 
         {/* Category Badge */}
         <div className="absolute top-4 right-4 bg-white/10 backdrop-blur-md px-4 py-1 rounded-full">
-          <span className="text-white text-sm font-medium">
+          <span className="text-white text-lg font-extrabold">
             {fleet.category}
           </span>
         </div>
@@ -111,38 +111,38 @@ const FleetCard = ({ fleet }) => {
 
       <div className="p-8">
         <div className="mb-6">
-          <h3 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">
+          <h3 className="text-2xl font-extrabold bg-gradient-to-r from-primary-700 to-gray-700 bg-clip-text text-transparent mb-3 group-hover:text-blue-600 transition-colors duration-300">
             {fleet.name}
           </h3>
-          <p className="text-gray-600 line-clamp-2">{fleet.description}</p>
+          <p className="text-gray-500 font-open-sans font-semibold line-clamp-2">{fleet.description}</p>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 mb-6">
+        <div className="grid grid-cols-2 gap-4 mb-4">
           <div className="flex items-center space-x-2 text-gray-700">
-            <Users className="h-5 w-5 text-blue-600" />
-            <span>{fleet.capacity} Passengers</span>
+            <Users className="h-5 w-5 text-primary-600" />
+            <span className="font-semibold text-gray-500">{fleet.capacity} Passengers</span>
           </div>
           <div className="flex items-center space-x-2 text-gray-700">
-            <Clock className="h-5 w-5 text-blue-600" />
-            <span>{fleet.range.replace("Up to ", "")}</span>
+            <Clock className="h-5 w-5 text-primary-600" />
+            <span className="font-semibold text-gray-500">{fleet.range.replace("Up to ", "")}</span>
           </div>
         </div>
 
-        <div className="flex flex-wrap gap-2 mb-6">
+        <div className="flex flex-wrap gap-2 mb-5 font-nunito-sans text-gray-500">
           {fleet.amenities
             .split(", ")
-            .slice(0, 3)
+            .slice(0, 4)
             .map((amenity, index) => (
               <span
                 key={index}
-                className="bg-gray-50 text-gray-600 px-3 py-1 rounded-full text-sm"
+                className="bg-gray-200 text-gray-400 px-3 py-1 rounded-full text-sm"
               >
                 {amenity}
               </span>
             ))}
           {fleet.amenities.split(", ").length > 3 && (
-            <span className="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-sm">
-              +{fleet.amenities.split(", ").length - 3} more
+            <span className="bg-blue-50 text-primary-600 px-2 py-1 rounded-full text-sm">
+              +{fleet.amenities.split(", ").length - 4} more
             </span>
           )}
         </div>
@@ -150,13 +150,13 @@ const FleetCard = ({ fleet }) => {
         <div className="flex justify-between items-center border-t border-gray-100 pt-6">
           <div className="flex items-center space-x-2">
             <Shield className="h-5 w-5 text-green-600" />
-            <span className="text-green-600 text-sm font-medium">
+            <span className="text-green-600 text-sm font-bold"> 
               Safety Certified
             </span>
           </div>
           <motion.button
             whileHover={{ x: 5 }}
-            className="flex items-center space-x-2 text-blue-600 font-medium"
+            className="flex items-center space-x-2 text-primary-600 font-bold"
           >
             <span>Explore Details</span>
             <ArrowRight className="h-5 w-5" />
@@ -171,11 +171,11 @@ const FleetSection = () => {
   return (
     <section className="py-24 bg-gradient-to-br from-gray-50 to-gray-100">
       <div className="container mx-auto px-4 sm:px-6">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
+        <div className="text-center max-w-5xl mx-auto mb-16">
+          <h2 className="text-4xl sm:text-5xl font-extrabold mb-6 bg-gradient-to-r from-gray-900 via-primary-800 to-gray-700 bg-clip-text text-transparent">
             Experience Luxury in the Sky
           </h2>
-          <p className="text-xl text-gray-600 leading-relaxed">
+          <p className="text-xl sm:text-2xl text-gray-500 leading-relaxed font-semibold">
             Discover our meticulously maintained fleet of private jets, each
             offering unparalleled comfort and sophistication for your journey.
           </p>
