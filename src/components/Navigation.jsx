@@ -43,7 +43,7 @@ const Navigation = ({ scrolled, isMenuOpen, setIsMenuOpen }) => {
                 alt="Luxury Private Jet"
                 className="text-primary-600 h-24 w-24"
               />
-              <span className="text-gray-800 text-2xl font-bold">
+              <span className="bg-gradient-to-r from-primary-900 via-primary-700 to-primary-900 bg-clip-text text-transparent text-2xl font-bold">
                 Shine Luxury Private Jets
               </span>
             </div>
