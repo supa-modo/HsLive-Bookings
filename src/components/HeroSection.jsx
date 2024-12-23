@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import BookingModal from "./BookingModal";
 
 const HeroSection = ({ currentSlide, setCurrentSlide, heroImages }) => {
+  const navigate = useNavigate();
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % heroImages.length);
   };
@@ -12,6 +15,8 @@ const HeroSection = ({ currentSlide, setCurrentSlide, heroImages }) => {
       (prev) => (prev - 1 + heroImages.length) % heroImages.length
     );
   };
+
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
 
   // Preload images for smoother transitions
   React.useEffect(() => {
@@ -123,7 +128,7 @@ const HeroSection = ({ currentSlide, setCurrentSlide, heroImages }) => {
       </div>
 
       {/* Content */}
-      <div className="relative container mx-auto px-6 h-full flex items-center z-20">
+      <div className="relative container mt-14 mx-auto px-6 h-full flex items-center z-20">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
@@ -194,6 +199,7 @@ const HeroSection = ({ currentSlide, setCurrentSlide, heroImages }) => {
               }}
             >
               <motion.button
+                onClick={() => setIsBookingModalOpen(true)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="bg-primary-500 text-white px-10 py-4 rounded-full text-lg font-medium hover:bg-primary-600 transition-colors duration-300 flex items-center space-x-2 shadow-lg shadow-primary-500/20"
@@ -204,6 +210,7 @@ const HeroSection = ({ currentSlide, setCurrentSlide, heroImages }) => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => navigate("/fleet")}
                 className="bg-white/40 backdrop-blur-md text-gray-500 border-2 border-gray-300 px-10 py-4 rounded-full text-lg font-bold font-nunito-sans hover:bg-white/20 transition-colors duration-300"
               >
                 Explore Fleet
@@ -212,6 +219,10 @@ const HeroSection = ({ currentSlide, setCurrentSlide, heroImages }) => {
           </motion.div>
         </AnimatePresence>
       </div>
+      <BookingModal
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+      />
     </div>
   );
 };

@@ -1,274 +1,314 @@
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useParams, Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import {
   Users,
   Clock,
-  Globe,
   Shield,
   Star,
-  ArrowUpRight,
-  ChevronLeft,
-  CheckCircle,
-  ChevronRight,
+  Plane,
+  Coffee,
+  Wifi,
+  Tv,
   Phone,
-  Calendar,
-  Plus,
-  Minus,
+  Map,
+  ChevronRight,
+  ChevronLeft,
+  Mail,
 } from "lucide-react";
-import { Link, useParams } from "react-router-dom";
 
-const FeatureCard = ({ icon: Icon, title, description, onClick, isActive }) => (
-  <motion.div
-    whileHover={{ scale: 1.02 }}
-    whileTap={{ scale: 0.98 }}
-    onClick={onClick}
-    className={`flex flex-col cursor-pointer ${
-      isActive ? "bg-primary-50 border-primary-200" : "bg-white border-gray-100"
-    } rounded-xl border p-6 backdrop-blur-sm transition-all duration-300`}
-  >
-    <div
-      className={`${
-        isActive ? "bg-primary-100" : "bg-gray-50"
-      } p-3 rounded-xl w-fit mb-4`}
-    >
-      <Icon
-        className={`h-6 w-6 ${isActive ? "text-primary-600" : "text-gray-600"}`}
-      />
-    </div>
-    <h4 className="font-semibold text-gray-900 mb-2">{title}</h4>
-    <p className="text-sm text-gray-600 leading-relaxed">{description}</p>
-  </motion.div>
-);
+// Import images
+import jet1 from "../assets/images/jet1.jpg";
+import jet2 from "../assets/images/jet2.jpg";
+import jet3 from "../assets/images/jet3.jpeg";
+import jet4 from "../assets/images/jet4.jpg";
+import jet5 from "../assets/images/jet5.jpg";
+import jet6 from "../assets/images/jet6.jpg";
+import jet7 from "../assets/images/jet7.jpg";
+import jet8 from "../assets/images/jet8.jpg";
+import jet9 from "../assets/images/jet9.jpg";
 
-const ImageGallery = ({ images }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+const fleetData = [
+  {
+    id: 1,
+    name: "Midsize Jet",
+    category: "Standard Package",
+    images: [jet2, jet4, jet7],
+    capacity: "7-8",
+    range: "Up to 5 hours flight time",
+    description:
+      "Perfect for shorter trips and small groups, our Midsize Jet offers exceptional comfort and efficiency. Ideal for business executives and small groups seeking a premium travel experience.",
+    amenities: [
+      "Wi-Fi Connectivity",
+      "Refreshment Center",
+      "Comfortable Seating",
+      "Entertainment System",
+      "Workspace",
+      "Climate Control",
+      "Restroom",
+      "Baggage Space"
+    ],
+    specifications: {
+      "Cabin Height": "5.8 ft",
+      "Cabin Width": "5.5 ft",
+      "Cabin Length": "17.5 ft",
+      "Maximum Speed": "534 mph",
+      "Maximum Range": "2,000 nm",
+      "Maximum Altitude": "45,000 ft"
+    },
+    features: [
+      {
+        icon: Users,
+        title: "Passenger Capacity",
+        description: "Comfortably seats 7-8 passengers"
+      },
+      {
+        icon: Clock,
+        title: "Flight Range",
+        description: "Up to 5 hours non-stop flight"
+      },
+      {
+        icon: Shield,
+        title: "Safety Features",
+        description: "Advanced safety systems and experienced crew"
+      },
+      {
+        icon: Star,
+        title: "Luxury Experience",
+        description: "Premium comfort and personalized service"
+      }
+    ],
+    price: "Starting from $4,500/hour",
+  },
+  // ... (other fleet data)
+];
+
+const FleetDetails = () => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const { id } = useParams();
+  const selectedFleet = fleetData.find((item) => item.id === parseInt(id));
+
+  if (!selectedFleet) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+            Fleet Not Found
+          </h2>
+          <Link to="/fleet" className="text-primary-600 hover:text-primary-700">
+            Return to Fleet Overview
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   const nextImage = () => {
-    setCurrentIndex((prev) => (prev + 1) % images.length);
+    setCurrentImageIndex((prev) =>
+      prev === selectedFleet.images.length - 1 ? 0 : prev + 1
+    );
   };
 
   const prevImage = () => {
-    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+    setCurrentImageIndex((prev) =>
+      prev === 0 ? selectedFleet.images.length - 1 : prev - 1
+    );
   };
 
   return (
-    <div className="relative h-full w-full">
-      <AnimatePresence mode="wait">
-        <motion.img
-          key={currentIndex}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.5 }}
-          src={images[currentIndex]}
-          alt="Aircraft"
-          className="w-full h-full object-cover"
-        />
-      </AnimatePresence>
-      <div className="absolute bottom-8 right-8 flex space-x-4">
-        <button
-          onClick={prevImage}
-          className="p-3 bg-black/30 backdrop-blur-sm rounded-full text-white hover:bg-black/50 transition-all"
-        >
-          <ChevronLeft className="h-6 w-6" />
-        </button>
-        <button
-          onClick={nextImage}
-          className="p-3 bg-black/30 backdrop-blur-sm rounded-full text-white hover:bg-black/50 transition-all"
-        >
-          <ChevronRight className="h-6 w-6" />
-        </button>
-      </div>
-      <div className="absolute bottom-8 left-8 bg-black/30 backdrop-blur-sm px-4 py-2 rounded-full">
-        <p className="text-white text-sm">
-          {currentIndex + 1} / {images.length}
-        </p>
-      </div>
-    </div>
-  );
-};
-
-const AmenityTag = ({ children, isExpanded }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    className="group cursor-pointer"
-  >
-    <div className="flex items-center space-x-3 bg-white/80 backdrop-blur-sm px-6 py-4 rounded-xl shadow-sm hover:shadow-md transition-all duration-300">
-      <CheckCircle className="h-5 w-5 text-primary-600 group-hover:scale-110 transition-transform duration-300" />
-      <span className="text-gray-800 font-medium">{children}</span>
-    </div>
-  </motion.div>
-);
-
-const QuickAction = ({ icon: Icon, label }) => (
-  <motion.div
-    whileHover={{ y: -5 }}
-    className="flex flex-col items-center space-y-2 p-4 bg-white/80 backdrop-blur-sm rounded-xl cursor-pointer hover:shadow-lg transition-all duration-300"
-  >
-    <div className="p-3 bg-primary-50 rounded-full">
-      <Icon className="h-6 w-6 text-primary-600" />
-    </div>
-    <span className="text-sm font-medium text-gray-700">{label}</span>
-  </motion.div>
-);
-
-const FleetDetails = () => {
-  const [activeFeature, setActiveFeature] = useState(null);
-  const [isAmenitiesExpanded, setIsAmenitiesExpanded] = useState(false);
-  const { id } = useParams();
-
-  // Fleet data remains the same as your original component
-  const fleet = [
-    /* ... your existing fleet data ... */
-  ];
-  const selectedFleet = fleet.find((item) => item.id === parseInt(id));
-
-  const features = [
-    /* ... your existing features data ... */
-  ];
-
-  const quickActions = [
-    { icon: Calendar, label: "Schedule Viewing" },
-    { icon: Phone, label: "Request Callback" },
-    { icon: Star, label: "Save to Favorites" },
-  ];
-
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      {/* Hero Section with Image Gallery */}
-      <div className="relative h-[80vh]">
-        <ImageGallery images={[selectedFleet.image /* add more images */]} />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-
+    <div className="min-h-screen bg-gray-50 py-12">
+      <div className="container mx-auto px-4">
         {/* Navigation */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="absolute top-0 left-0 right-0 p-6"
-        >
-          <div className="container mx-auto flex justify-between items-center">
-            <Link
-              to="/"
-              className="flex items-center space-x-2 text-white hover:text-primary-400 transition-all duration-300 bg-black/20 backdrop-blur-sm px-4 py-2 rounded-full"
-            >
-              <ChevronLeft className="h-5 w-5" />
-              <span>Back to Fleet</span>
-            </Link>
+        <div className="mb-8">
+          <Link
+            to="/fleet"
+            className="inline-flex items-center text-gray-600 hover:text-primary-600"
+          >
+            <ChevronLeft className="h-5 w-5 mr-1" />
+            Back to Fleet
+          </Link>
+        </div>
 
-            <div className="flex space-x-4">
-              {quickActions.map((action, index) => (
-                <QuickAction key={index} {...action} />
+        {/* Hero Section */}
+        <div className="bg-white rounded-2xl shadow-xl overflow-hidden mb-12">
+          <div className="relative h-[60vh]">
+            <motion.img
+              key={currentImageIndex}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              src={selectedFleet.images[currentImageIndex]}
+              alt={selectedFleet.name}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
+            
+            {/* Image Navigation */}
+            <button
+              onClick={prevImage}
+              className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-md p-2 rounded-full"
+            >
+              <ChevronLeft className="h-6 w-6 text-white" />
+            </button>
+            <button
+              onClick={nextImage}
+              className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-md p-2 rounded-full"
+            >
+              <ChevronRight className="h-6 w-6 text-white" />
+            </button>
+
+            {/* Image Indicators */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+              {selectedFleet.images.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentImageIndex(index)}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    index === currentImageIndex
+                      ? "bg-white w-6"
+                      : "bg-white/50"
+                  }`}
+                />
               ))}
             </div>
-          </div>
-        </motion.div>
 
-        {/* Hero Content */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="absolute bottom-0 left-0 right-0 p-12"
-        >
-          <div className="container mx-auto">
-            <div className="max-w-4xl">
-              <div className="flex items-center space-x-3 mb-6">
-                <div className="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
-                  <Star className="h-5 w-5 text-yellow-400 fill-yellow-400" />
-                </div>
-                <span className="text-yellow-400 font-medium">
-                  {selectedFleet.category}
-                </span>
+            {/* Content Overlay */}
+            <div className="absolute bottom-0 left-0 right-0 p-8">
+              <div className="max-w-4xl">
+                <div className="text-white/80 mb-2">{selectedFleet.category}</div>
+                <h1 className="text-4xl font-bold text-white mb-4">
+                  {selectedFleet.name}
+                </h1>
+                <p className="text-white/90 text-lg max-w-2xl">
+                  {selectedFleet.description}
+                </p>
               </div>
-              <h1 className="text-6xl font-bold text-white mb-6 leading-tight">
-                {selectedFleet.name}
-              </h1>
-              <p className="text-xl text-gray-200 max-w-2xl leading-relaxed">
-                {selectedFleet.description}
-              </p>
             </div>
           </div>
-        </motion.div>
-      </div>
+        </div>
 
-      {/* Main Content */}
-      <div className="container mx-auto px-4 -mt-20 relative z-10">
-        <div className="max-w-7xl mx-auto space-y-24">
-          {/* Features Grid */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-6"
-          >
-            {features.map((feature, index) => (
-              <FeatureCard
-                key={index}
-                {...feature}
-                isActive={activeFeature === index}
-                onClick={() =>
-                  setActiveFeature(index === activeFeature ? null : index)
-                }
-              />
-            ))}
-          </motion.div>
-
-          {/* Amenities */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="bg-gray-50/50 backdrop-blur-sm rounded-2xl p-12"
-          >
-            <div className="flex justify-between items-center mb-8">
-              <h2 className="text-3xl font-bold text-gray-900">
-                Premium Amenities
-              </h2>
-              <button
-                onClick={() => setIsAmenitiesExpanded(!isAmenitiesExpanded)}
-                className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-              >
-                {isAmenitiesExpanded ? (
-                  <Minus className="h-6 w-6 text-gray-600" />
-                ) : (
-                  <Plus className="h-6 w-6 text-gray-600" />
-                )}
-              </button>
+        {/* Main Content */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Features */}
+          <div className="lg:col-span-2 space-y-8">
+            <div className="bg-white rounded-xl shadow-lg p-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">Key Features</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {selectedFleet.features.map((feature, index) => (
+                  <div
+                    key={index}
+                    className="flex items-start space-x-4 p-4 rounded-lg bg-gray-50"
+                  >
+                    <feature.icon className="h-6 w-6 text-primary-600" />
+                    <div>
+                      <h3 className="font-semibold text-gray-900">
+                        {feature.title}
+                      </h3>
+                      <p className="text-gray-600">{feature.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-            <motion.div
-              layout
-              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"
-            >
-              {selectedFleet.amenities.split(", ").map((amenity, index) => (
-                <AmenityTag key={index} isExpanded={isAmenitiesExpanded}>
-                  {amenity}
-                </AmenityTag>
-              ))}
-            </motion.div>
-          </motion.div>
 
-          {/* CTA Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="flex flex-col sm:flex-row justify-center gap-6 py-12"
-          >
-            <Link
-              to="/booking"
-              className="group inline-flex justify-center items-center px-8 py-4 bg-primary-600 text-white rounded-xl font-medium hover:bg-primary-700 transition-all duration-300 shadow-lg shadow-primary-100 hover:shadow-xl"
-            >
-              <span className="text-lg">Book This Aircraft</span>
-              <ArrowUpRight className="h-5 w-5 ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-            </Link>
-            <Link
-              to="/contact"
-              className="inline-flex justify-center items-center px-8 py-4 border-2 border-gray-300 text-gray-700 rounded-xl font-medium hover:bg-gray-50 transition-all duration-300"
-            >
-              <Phone className="h-5 w-5 mr-2" />
-              <span className="text-lg">Contact Us</span>
-            </Link>
-          </motion.div>
+            {/* Specifications */}
+            <div className="bg-white rounded-xl shadow-lg p-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                Technical Specifications
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {Object.entries(selectedFleet.specifications).map(([key, value]) => (
+                  <div
+                    key={key}
+                    className="flex justify-between p-3 bg-gray-50 rounded-lg"
+                  >
+                    <span className="text-gray-600">{key}</span>
+                    <span className="font-semibold text-gray-900">{value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Amenities */}
+            <div className="bg-white rounded-xl shadow-lg p-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                Onboard Amenities
+              </h2>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                {selectedFleet.amenities.map((amenity, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center space-x-2 p-3 bg-gray-50 rounded-lg"
+                  >
+                    <Star className="h-5 w-5 text-primary-600" />
+                    <span className="text-gray-700">{amenity}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Booking Section */}
+          <div className="lg:col-span-1">
+            <div className="sticky top-8">
+              <div className="bg-white rounded-xl shadow-lg p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-4">
+                  Book This Aircraft
+                </h2>
+                <div className="space-y-4 mb-6">
+                  <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                    <span className="text-gray-600">Starting Price</span>
+                    <span className="font-semibold text-primary-600">
+                      {selectedFleet.price}
+                    </span>
+                  </div>
+                  <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                    <span className="text-gray-600">Capacity</span>
+                    <span className="font-semibold">
+                      {selectedFleet.capacity} Passengers
+                    </span>
+                  </div>
+                  <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                    <span className="text-gray-600">Flight Range</span>
+                    <span className="font-semibold">{selectedFleet.range}</span>
+                  </div>
+                </div>
+                <button
+                  onClick={() => {
+                    // Handle booking
+                  }}
+                  className="w-full bg-primary-600 text-white py-4 rounded-xl font-medium hover:bg-primary-700 transition-colors duration-300"
+                >
+                  Book Now
+                </button>
+                <div className="mt-6">
+                  <h3 className="font-semibold text-gray-900 mb-2">
+                    Need assistance?
+                  </h3>
+                  <p className="text-gray-600 text-sm">
+                    Contact our team for personalized booking support and additional
+                    information.
+                  </p>
+                  <div className="mt-4 space-y-2">
+                    <a
+                      href="tel:+255743060660"
+                      className="flex items-center space-x-2 text-primary-600 hover:text-primary-700"
+                    >
+                      <Phone className="h-4 w-4" />
+                      <span>+255 743 060 660</span>
+                    </a>
+                    <a
+                      href="mailto:info@shineluxuryprivatejets.com"
+                      className="flex items-center space-x-2 text-primary-600 hover:text-primary-700"
+                    >
+                      <Mail className="h-4 w-4" />
+                      <span>info@shineluxuryprivatejets.com</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

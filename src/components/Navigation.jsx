@@ -2,15 +2,25 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plane, X, Menu } from "lucide-react";
 import BookingModal from "./BookingModal";
+import { Link } from "react-router-dom";
 
 const NavLink = ({ href, children }) => (
   <a
     href={href}
-    className="text-gray-800 hover:text-primary-600 transition-colors duration-300 text-base font-semibold tracking-wide relative group font-poppins"
+    className="text-gray-700 hover:text-primary-600 transition-colors duration-300 text-[17px] font-semibold relative group font-poppins"
   >
     {children}
     <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full" />
   </a>
+);
+const PageLink = ({ to, children }) => (
+  <Link
+    to={to}
+    className="text-gray-700 hover:text-primary-600 transition-colors duration-300 text-[16px] font-semibold relative group font-open-sans"
+  >
+    {children}
+    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full" />
+  </Link>
 );
 
 const Navigation = ({ scrolled, isMenuOpen, setIsMenuOpen }) => {
@@ -39,11 +49,11 @@ const Navigation = ({ scrolled, isMenuOpen, setIsMenuOpen }) => {
             </div>
 
             <div className="hidden md:flex items-center space-x-10">
-              <NavLink href="#services">Services</NavLink>
-              <NavLink href="#fleet">Fleet</NavLink>
-              <NavLink href="#destinations">Destinations</NavLink>
-              <NavLink href="#about">About</NavLink>
-              <NavLink href="#contact">Contact</NavLink>
+              <NavLink href="/">Home</NavLink>
+              <NavLink href="/#services">Services</NavLink>
+              <NavLink href="/#destinations">Destinations</NavLink>
+              <PageLink to={"/fleet"}>Fleet</PageLink>
+              <NavLink href="/#contact">Contact</NavLink>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -72,11 +82,15 @@ const Navigation = ({ scrolled, isMenuOpen, setIsMenuOpen }) => {
               className="md:hidden bg-white/95 backdrop-blur-md border-t border-gray-200 mt-4"
             >
               <div className="container mx-auto px-6 py-6 space-y-6">
-                <NavLink href="#services">Services</NavLink>
-                <NavLink href="#fleet">Fleet</NavLink>
-                <NavLink href="#destinations">Destinations</NavLink>
-                <NavLink href="#about">About</NavLink>
-                <NavLink href="#contact">Contact</NavLink>
+                <NavLink href="/#services">Services</NavLink>
+                <NavLink href="/#destinations">Destinations</NavLink>
+                <Link
+                  to="/fleet"
+                  className="text-gray-700 hover:text-primary-600 transition-colors duration-300"
+                >
+                  Fleet
+                </Link>
+                <NavLink href="/#contact">Contact</NavLink>
                 <button
                   onClick={() => {
                     setIsBookingModalOpen(true);
