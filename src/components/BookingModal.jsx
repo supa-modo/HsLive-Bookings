@@ -16,6 +16,7 @@ import {
   TicketsPlane,
 } from "lucide-react";
 import formatDateShort from "../utils/dateTimeFunctions";
+import { JetSelection } from "./JetSelection";
 
 const StepIndicator = ({ currentStep, totalSteps }) => (
   <div className="flex items-center justify-center space-x-2 mb-8">
@@ -45,6 +46,7 @@ const BookingModal = ({ isOpen, onClose }) => {
     departureDate: "",
     returnDate: "",
     fleetType: "",
+    selectedJet: null,
   });
 
   const handleInputChange = (e) => {
@@ -222,8 +224,8 @@ const BookingModal = ({ isOpen, onClose }) => {
                     className="space-y-6"
                   >
                     {/* Date Selection */}
-                    <div className="space-y-4">
-                      <div>
+                    <div className=" flex items-center space-x-4">
+                      <div className="w-full">
                         <label className="block text-sm font-medium text-gray-700 mb-2">
                           Departure Date
                         </label>
@@ -239,7 +241,7 @@ const BookingModal = ({ isOpen, onClose }) => {
                         </div>
                       </div>
                       {formData.tripType === "roundTrip" && (
-                        <div>
+                        <div className="w-full">
                           <label className="block text-sm font-medium text-gray-700 mb-2">
                             Return Date
                           </label>
@@ -258,7 +260,7 @@ const BookingModal = ({ isOpen, onClose }) => {
                     </div>
 
                     {/* Fleet Selection */}
-                    <div>
+                    {/* <div>
                       <label className="block text-sm font-medium text-gray-700 mb-4">
                         Select Aircraft Type
                       </label>
@@ -298,7 +300,13 @@ const BookingModal = ({ isOpen, onClose }) => {
                           </button>
                         ))}
                       </div>
-                    </div>
+                    </div> */}
+
+                    {/* Jet Selection */}
+                    <JetSelection
+                      formData={formData}
+                      handleInputChange={handleInputChange}
+                    />
                   </motion.div>
                 )}
 
@@ -394,13 +402,15 @@ const BookingModal = ({ isOpen, onClose }) => {
                         <div className="flex items-center space-x-4">
                           <PhoneCall className="text-blue-500 h-6 w-6" />
                           <p className="text-sm text-gray-500">
-                            We'll contact you within 2 hours with a quote based on your preferences.
+                            We'll contact you within 2 hours with a quote based
+                            on your preferences.
                           </p>
                         </div>
                         <div className="flex items-center space-x-4">
                           <TicketsPlane className="text-purple-500 h-6 w-6" />
                           <p className="text-sm text-gray-500">
-                            Finalize your booking and payment with our customer service representative.
+                            Finalize your booking and payment with our customer
+                            service representative.
                           </p>
                         </div>
                       </div>
