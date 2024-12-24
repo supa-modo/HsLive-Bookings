@@ -153,13 +153,13 @@ const FleetCard = ({ fleet }) => {
         <div className="flex items-center justify-between pt-6 border-t border-gray-100">
           <div className="text-primary-600 font-bold">{fleet.price}</div>
           <div className="flex items-center space-x-4">
-            <button
+            {/* <button
               onClick={() => setIsBookingModalOpen(true)}
               className="inline-flex items-center space-x-2 text-primary-600 font-medium hover:text-primary-700 transition-colors duration-300"
             >
               <span>Book Now</span>
               <Plane className="h-5 w-5" />
-            </button>
+            </button> */}
             <Link
               to={`/fleet/${fleet.id}`}
               className="inline-flex items-center space-x-2 text-primary-600 font-medium hover:text-primary-700 transition-colors duration-300"

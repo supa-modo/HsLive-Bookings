@@ -92,23 +92,23 @@ const aircraftOptions = {
       capacity: "10 passengers",
     },
     {
-        id: 54,
-        name: "Citation Sovereign+",
-        image: jet6,
-        capacity: "9 passengers",
-      },
-      {
-        id: 18,
-        name: "Challenger 350",
-        image: jet8,
-        capacity: "10 passengers",
-      },
-      {
-        id: 89,
-        name: "Citation Longitude",
-        image: jet9,
-        capacity: "10 passengers",
-      },
+      id: 54,
+      name: "Citation Sovereign+",
+      image: jet6,
+      capacity: "9 passengers",
+    },
+    {
+      id: 18,
+      name: "Challenger 350",
+      image: jet8,
+      capacity: "10 passengers",
+    },
+    {
+      id: 89,
+      name: "Citation Longitude",
+      image: jet9,
+      capacity: "10 passengers",
+    },
   ],
   "Heavy Jet": [
     {
@@ -300,7 +300,9 @@ const JetSelection = ({ formData, handleInputChange }) => {
             disabled={!formData.fleetType}
             className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center space-x-2 px-4 py-2 bg-primary-600 text-white rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-primary-700 transition-colors"
           >
-            <span className="font-semibold font-nunito-sans text-sm">Select Aircraft</span>
+            <span className="font-semibold font-nunito-sans text-sm">
+              Select Aircraft
+            </span>
             <ChevronRight className="h-4 w-4" />
           </button>
         </div>

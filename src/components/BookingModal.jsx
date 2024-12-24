@@ -86,7 +86,7 @@ const BookingModal = ({ isOpen, onClose }) => {
             <div className="p-8 md:p-12">
               {/* Header */}
               <div className="text-center mb-8">
-                <h2 className="text-3xl font-extrabold text-gray-500 mb-2">
+                <h2 className="text-3xl font-extrabold bg-gradient-to-r from-gray-900 via-primary-800 to-gray-700 bg-clip-text text-transparent mb-2">
                   Book Your Private Jet
                 </h2>
                 <p className="text-gray-500 font-semibold">
@@ -259,49 +259,6 @@ const BookingModal = ({ isOpen, onClose }) => {
                       )}
                     </div>
 
-                    {/* Fleet Selection */}
-                    {/* <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-4">
-                        Select Aircraft Type
-                      </label>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {[
-                          "Light Jet",
-                          "Midsize Jet",
-                          "Super Midsize Jet",
-                          "Heavy Jet",
-                        ].map((type) => (
-                          <button
-                            key={type}
-                            className={`p-4 rounded-xl font-semibold border-2 transition-all duration-300 text-left ${
-                              formData.fleetType === type
-                                ? "border-primary-600 bg-primary-50 text-primary-700"
-                                : "text-gray-500 border-gray-300 hover:border-primary-200"
-                            }`}
-                            onClick={() =>
-                              handleInputChange({
-                                target: { name: "fleetType", value: type },
-                              })
-                            }
-                          >
-                            <Plane className="h-7 w-7 mb-2" />
-                            <span className="block">{type}</span>
-                            <span className="font-medium  text-sm text-gray-500">
-                              Perfect for{" "}
-                              {type === "Light Jet"
-                                ? "4-6"
-                                : type === "Midsize Jet"
-                                  ? "7-8"
-                                  : type === "Super Midsize Jet"
-                                    ? "9-10"
-                                    : "11-19"}{" "}
-                              passengers
-                            </span>
-                          </button>
-                        ))}
-                      </div>
-                    </div> */}
-
                     {/* Jet Selection */}
                     <JetSelection
                       formData={formData}
@@ -319,7 +276,7 @@ const BookingModal = ({ isOpen, onClose }) => {
                   >
                     {/* Booking Summary  */}
                     <div className="relative bg-gradient-to-br from-gray-100 to-gray-50 shadow-lg rounded-2xl overflow-hidden border border-gray-300">
-                      <div className="flex justify-between items-center py-5 px-6 bg-primary-600 text-white">
+                      <div className="flex justify-between items-center py-4 px-6 bg-primary-600 text-white">
                         <div>
                           <h3 className="text-lg font-bold">
                             Your Booking Summary
@@ -376,12 +333,33 @@ const BookingModal = ({ isOpen, onClose }) => {
                             </p>
                           </div>
                           <div>
-                            <p className="text-gray-500 font-semibold">
-                              Aircraft Type
-                            </p>
-                            <p className="font-bold text-gray-700">
-                              {formData.fleetType}
-                            </p>
+                            {formData.selectedAircraft && (
+                              <div className="">
+                                <p className="text-gray-500 font-semibold mb-2">
+                                  Selected Jet:{" "}
+                                  <span className="text-red-500 font-extrabold">
+                                    {formData.fleetType}
+                                  </span>
+                                </p>
+                                <div className="flex items-center space-x-4">
+                                  <div className="w-20 h-12 rounded-lg overflow-hidden">
+                                    <img
+                                      src={formData.selectedAircraft.image}
+                                      alt={formData.selectedAircraft.name}
+                                      className="w-full h-full object-cover"
+                                    />
+                                  </div>
+                                  <div>
+                                    <p className="font-bold text-gray-700">
+                                      {formData.selectedAircraft.name}
+                                    </p>
+                                    <p className="text-sm text-gray-500">
+                                      {formData.selectedAircraft.capacity}
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            )}
                           </div>
                         </div>
                       </div>
@@ -414,15 +392,6 @@ const BookingModal = ({ isOpen, onClose }) => {
                           </p>
                         </div>
                       </div>
-                      {/* <div className="mt-6 text-right">
-                        <button
-                          onClick={nextStep}
-                          className="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-xl shadow-md font-semibold transition-all duration-300"
-                        >
-                          Proceed to Payment{" "}
-                          <ArrowRight className="inline-block ml-2" />
-                        </button>
-                      </div> */}
                     </div>
                   </motion.div>
                 )}
@@ -438,7 +407,24 @@ const BookingModal = ({ isOpen, onClose }) => {
                     </button>
                   )}
                   <button
-                    onClick={step === 3 ? onClose : nextStep}
+                    onClick={() => {
+                      if (step === 3) {
+                        console.log("Booking Details:", {
+                          tripType: formData.tripType,
+                          passengers: formData.passengers,
+                          contactInfo: formData.contactInfo,
+                          departure: formData.departureLocation,
+                          arrival: formData.arrivalLocation,
+                          departureDate: formData.departureDate,
+                          returnDate: formData.returnDate,
+                          fleetType: formData.fleetType,
+                          aircraft: formData.selectedAircraft,
+                        });
+                        onClose();
+                      } else {
+                        nextStep();
+                      }
+                    }}
                     className="ml-auto flex items-center space-x-2 px-10 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors duration-300"
                   >
                     <span className="font-semibold">

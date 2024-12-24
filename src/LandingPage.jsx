@@ -120,8 +120,8 @@ const LuxuryJetLanding = () => {
         heroImages={heroImages}
       />
       <ServicesSection />
-      <DestinationsSection />
       <FleetSection />
+      <DestinationsSection />
       <ContactSection />
     </div>
   );
