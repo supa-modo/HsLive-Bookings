@@ -150,7 +150,7 @@ const HeroSection = ({ currentSlide, setCurrentSlide, heroImages }) => {
                 ease: [0.22, 1, 0.36, 1],
               },
             }}
-            className="max-w-3xl"
+            className="max-w-[52rem]"
           >
             <motion.h1
               className="text-6xl md:text-8xl font-extrabold font-open-sans text-primary-600/70 mb-6"

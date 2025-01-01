@@ -51,7 +51,6 @@ const AmenityTag = ({ icon: Icon, children }) => (
 
 const FleetDetails = () => {
   const { id } = useParams();
-  // ... (rest of the data finding logic remains the same)
 
   return (
     <div className="min-h-screen bg-gray-50">

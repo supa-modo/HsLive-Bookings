@@ -203,7 +203,8 @@ const Footer = () => {
         <div className="border-t border-gray-300/30 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-gray-400 text-sm">
-              {new Date().getFullYear()} HS Live Limited. All rights reserved.
+              <span className="text-[16px] mr-1">©</span> {new Date().getFullYear()} HS Live Limited. All
+              rights reserved.
             </p>
             <div className="flex space-x-8">
               {["Privacy Policy", "Terms of Service", "Cookie Policy"].map(

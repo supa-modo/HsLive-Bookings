@@ -86,7 +86,7 @@ const ServicesSection = () => {
 
       <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Section */}
-        <div className="max-w-4xl mx-auto text-center mb-24">
+        <div className="max-w-4xl mx-auto text-center mb-14">
           <h2 className="text-4xl sm:text-5xl font-extrabold mb-6 bg-gradient-to-r from-gray-900 via-primary-800 to-gray-700 bg-clip-text text-transparent">
             Exceptional Private Aviation
           </h2>
@@ -97,7 +97,7 @@ const ServicesSection = () => {
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-screen-xl mx-auto">
           {services.map((service, index) => (
             <ServiceCard key={index} {...service} index={index} />
           ))}

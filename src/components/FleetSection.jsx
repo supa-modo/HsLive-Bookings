@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowRight, Clock, Plane, Users } from "lucide-react";
+import {
+  ArrowRight,
+  Clock,
+  Plane,
+  SquareArrowOutUpLeft,
+  SquareArrowOutUpRight,
+  Users,
+} from "lucide-react";
 import BookingModal from "./BookingModal";
 
 // Import all fleet images
@@ -75,7 +82,7 @@ const fleetData = [
   },
 ];
 
-const FleetCard = ({ fleet }) => {
+export const FleetCard = ({ fleet }) => {
   const navigate = useNavigate();
 
   return (
@@ -110,7 +117,7 @@ const FleetCard = ({ fleet }) => {
           <p className="text-gray-500 line-clamp-2">{fleet.description}</p>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 mb-4">
+        <div className="flex space-x-5 md:space-x-10 mb-6">
           <div className="flex items-center space-x-2">
             <Users className="h-5 w-5 text-primary-600" />
             <span className="font-semibold text-gray-600">
@@ -120,7 +127,8 @@ const FleetCard = ({ fleet }) => {
           <div className="flex items-center space-x-2">
             <Clock className="h-5 w-5 text-primary-600" />
             <span className="font-semibold text-gray-500">
-              {fleet.range.replace("Up to ", "")}
+              {/* {fleet.range.replace("Up to ", "")} */}
+              {fleet.range}
             </span>
           </div>
         </div>
@@ -145,14 +153,14 @@ const FleetCard = ({ fleet }) => {
         </div>
 
         <div className="flex items-center justify-between pt-6 border-t border-gray-100">
-          <div className="text-primary-600 font-extrabold">{fleet.price}</div>
+          <div className="text-red-600 font-bold">{fleet.price}</div>
           <div className="flex items-center space-x-4">
             <Link
               to={`/fleet/${fleet.id}`}
-              className="inline-flex items-center space-x-2 text-primary-600 font-medium hover:text-primary-700 transition-colors duration-300"
+              className="inline-flex items-center font-nunito-sans space-x-2 text-primary-600 font-bold hover:text-primary-700 transition-colors duration-300"
             >
               <span>View Details</span>
-              <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+              <SquareArrowOutUpRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
             </Link>
           </div>
         </div>
@@ -174,16 +182,14 @@ const FleetSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              Our Luxury Fleet
-              <span className="block text-primary-600 text-xl mt-2">
-                Experience Unparalleled Comfort
-              </span>
+            <h2 className=" p-2 text-4xl sm:text-5xl font-extrabold mb-6 bg-gradient-to-r from-gray-900 via-primary-800 to-gray-700 bg-clip-text text-transparent">
+              Our Luxury Fleet Packages
             </h2>
-            <p className="text-lg text-gray-600 leading-relaxed">
-              Choose from our diverse range of meticulously maintained private
-              jets, each offering unique features and capabilities to match your
-              specific needs.
+
+            <p className="text-lg sm:text-xl text-gray-500 leading-relaxed font-semibold">
+              Choose from our diverse range of packages with meticulously
+              maintained private jets, each offering unique features and
+              capabilities to match your specific needs and budget.
             </p>
           </motion.div>
         </div>
