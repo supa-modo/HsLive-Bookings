@@ -21,42 +21,28 @@ const ContactCard = ({ icon: Icon, title, content }) => (
 
 const ContactSection = () => {
   return (
-    <section
-      id="contact"
-      className="relative py-24 bg-gradient-to-b from-gray-50 to-white overflow-hidden"
-    >
-      {/* Decorative Elements */}
-      <div className="absolute inset-0 bg-[url('/api/placeholder/400/400')] opacity-5"></div>
-      <div className="absolute top-0 left-0 w-96 h-96 bg-primary-100 rounded-full filter blur-3xl opacity-30 -translate-x-1/2 -translate-y-1/2"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary-200 rounded-full filter blur-3xl opacity-30 translate-x-1/2 translate-y-1/2"></div>
-
-      <div className="container mx-auto px-6 relative">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="max-w-7xl mx-auto"
-        >
-          <div className="text-center mb-20">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-            >
-              <h2 className="text-5xl font-bold text-gray-900 mb-6">
-                Get in Touch
-                <span className="block text-primary-600 text-2xl mt-2">
+    <section id="destinations" className="py-24 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <div className="text-center mx-auto mb-10">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+              >
+                <h2 className=" p-2 text-2xl sm:text-5xl font-extrabold mb-2 md:mb-4 bg-gradient-to-r from-gray-900 via-primary-800 to-gray-700 bg-clip-text text-transparent">
+                  Get in Touch
+                  <span className="block text-primary-600 font-nunito-sans text-2xl mt-3">
                   We're Here to Serve You
                 </span>
-              </h2>
-              <p className="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">
+                </h2>
+    
+                <p className="text-base sm:text-lg text-gray-500 leading-relaxed font-semibold">
                 Experience luxury private jet travel with HS Live. Our dedicated
                 team is available 24/7 to assist you with your premium aviation
                 needs.
-              </p>
-            </motion.div>
-          </div>
+                </p>
+              </motion.div>
+            </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
             <motion.div
@@ -235,7 +221,7 @@ const ContactSection = () => {
               </div>
             </motion.div>
           </motion.div>
-        </motion.div>
+        {/* </motion.div> */}
       </div>
     </section>
   );

@@ -1,12 +1,19 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import dubai from "../assets/images/dubai.jpeg";
+import maldives from "../assets/images/maldives.jpeg";
+import capetown from "../assets/images/capetown.jpeg";
+import paris from "../assets/images/paris.jpeg";
+import singapore from "../assets/images/singapore.jpeg";
+import zanzibar from "../assets/images/zanzibar.jpeg";
+import nairobi from "../assets/images/nairobi.jpeg";
 
 const destinations = [
   {
     id: 1,
     name: "Dubai, UAE",
-    image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c",
+    image: dubai,
     price: "$1,200",
     featured: true,
     gridArea: "span 1 / span 2",
@@ -14,7 +21,7 @@ const destinations = [
   {
     id: 2,
     name: "Maldives",
-    image: "https://images.unsplash.com/photo-1514282401047-d79a71a590e8",
+    image: maldives,
     price: "$1,050",
     featured: true,
     gridArea: "span 1 / span 1",
@@ -23,30 +30,39 @@ const destinations = [
     id: 3,
     name: "Singapore",
     featured: true,
-    image: "https://images.unsplash.com/photo-1525625293386-3f8f99389edd",
+    image: singapore,
     price: "$1,800",
   },
   {
     id: 4,
-    name: "Zanzibar",
-    image: "https://images.unsplash.com/photo-1586861635167-e5223aadc9fe",
-    price: "$3,050",
+    name: "Zanzibar, Tanzania",
+    image: zanzibar,
+    price: "$650",
     featured: true,
     gridArea: "span 1 / span 1",
   },
   {
     id: 5,
-    name: "Paris, France",
-    image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34",
+    name: "Nairobi, Kenya",
+    image: nairobi,
 
-    price: "$1,050",
+    price: "$550",
     featured: true,
     gridArea: "span 1 / span 1",
   },
+  // {
+  //   id: 5,
+  //   name: "Paris, France",
+  //   image: paris,
+
+  //   price: "$1,050",
+  //   featured: true,
+  //   gridArea: "span 1 / span 1",
+  // },
   {
     id: 6,
     name: "Cape Town, South Africa",
-    image: "https://images.unsplash.com/photo-1580060839134-75a5edca2e99",
+    image: capetown,
     price: "$1,100",
     featured: true,
     gridArea: "span 1 / span 2",
@@ -111,12 +127,12 @@ const DestinationCard = ({ destination, className = "" }) => {
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 p-6">
-          <h3 className="text-white text-2xl font-semibold mb-2">
+        <div className="absolute bottom-0 left-0 right-0 p-6 font-nunito-sans font-bold">
+          <h3 className="text-white text-2xl font-extrabold mb-2">
             {destination.name}
           </h3>
           <p className="text-white/90">
-            from <span className="font-semibold">{destination.price}</span>
+            from <span className="font-extrabold">{destination.price}</span>
           </p>
         </div>
       </div>
