@@ -75,7 +75,7 @@ const ServicesSection = () => {
   return (
     <section
       id="services"
-      className="relative py-20 bg-gradient-to-b from-gray-50 via-white to-gray-50 overflow-hidden"
+      className="relative py-24 bg-gradient-to-b from-gray-50 via-white to-gray-50 overflow-hidden"
     >
       {/* Background decorative elements */}
       <div className="absolute inset-0">
