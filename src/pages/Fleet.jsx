@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import { Users, Clock, ArrowRight, Shield, Star, Plane } from "lucide-react";
 import BookingModal from "../components/BookingModal";
+import Navigation from "../components/Navigation";
 
 import jet1 from "../assets/images/jet1.jpg";
 import jet2 from "../assets/images/jet2.jpg";
@@ -97,58 +98,75 @@ const fleetData = [
 const Fleet = () => {
   const navigate = useNavigate();
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-24">
-      <div className="container mx-auto px-4">
-        <div className="text-center max-w-4xl mx-auto mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <h1 className="text-5xl font-bold text-gray-900 mb-6">
-              Our Luxury Fleet
-              <span className="block text-primary-600 text-2xl mt-2">
-                Experience Unparalleled Comfort
-              </span>
-            </h1>
-            <p className="text-xl text-gray-600 leading-relaxed">
-              Choose from our diverse range of meticulously maintained private
-              jets, each offering unique features and capabilities to match your
-              specific needs.
-            </p>
-          </motion.div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {fleetData.map((fleet) => (
-            <FleetCard key={fleet.id} fleet={fleet} />
-          ))}
-        </div>
-
-        <div className="mt-16 text-center">
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <button
-              onClick={() => setIsBookingModalOpen(true)}
-              className="inline-flex items-center justify-center px-8 py-4 bg-primary-600 text-white rounded-xl font-medium hover:bg-primary-700 transition-all duration-300"
+    <div className="min-h-screen bg-gray-50">
+      <Navigation 
+        scrolled={scrolled}
+        isMenuOpen={isMenuOpen}
+        setIsMenuOpen={setIsMenuOpen}
+      />
+      <div className="pt-32 pb-16">
+        <div className="container mx-auto px-4">
+          <div className="text-center max-w-4xl mx-auto mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
             >
-              Book Now
-            </button>
-            <button
-              onClick={() => {
-                navigate("/#contact");
-              }}
-              className="inline-flex items-center justify-center px-8 py-4 bg-white text-primary-600 border-2 border-primary-600 rounded-xl font-medium hover:bg-primary-50 transition-all duration-300"
-            >
-              Contact Us
-            </button>
+              <h1 className="text-5xl font-bold text-gray-900 mb-6">
+                Our Luxury Fleet
+                <span className="block text-primary-600 text-2xl mt-2">
+                  Experience Unparalleled Comfort
+                </span>
+              </h1>
+              <p className="text-xl text-gray-600 leading-relaxed">
+                Choose from our diverse range of meticulously maintained private
+                jets, each offering unique features and capabilities to match your
+                specific needs.
+              </p>
+            </motion.div>
           </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            {fleetData.map((fleet) => (
+              <FleetCard key={fleet.id} fleet={fleet} />
+            ))}
+          </div>
+
+          <div className="mt-16 text-center">
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <button
+                onClick={() => setIsBookingModalOpen(true)}
+                className="inline-flex items-center justify-center px-8 py-4 bg-primary-600 text-white rounded-xl font-medium hover:bg-primary-700 transition-all duration-300"
+              >
+                Book Now
+              </button>
+              <button
+                onClick={() => {
+                  navigate("/#contact");
+                }}
+                className="inline-flex items-center justify-center px-8 py-4 bg-white text-primary-600 border-2 border-primary-600 rounded-xl font-medium hover:bg-primary-50 transition-all duration-300"
+              >
+                Contact Us
+              </button>
+            </div>
+          </div>
+          <BookingModal
+            isOpen={isBookingModalOpen}
+            onClose={() => setIsBookingModalOpen(false)}
+          />
         </div>
-        <BookingModal
-          isOpen={isBookingModalOpen}
-          setIsOpen={setIsBookingModalOpen}
-        />
       </div>
     </div>
   );

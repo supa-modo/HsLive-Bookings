@@ -22,7 +22,7 @@ const ContactCard = ({ icon: Icon, title, content }) => (
 
 const ContactSection = () => {
   return (
-    <section id="destinations" className="py-24 bg-gray-50">
+    <section id="contact" className="py-24 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mx-auto mb-10">
           <motion.div

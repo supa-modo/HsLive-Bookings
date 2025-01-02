@@ -42,7 +42,7 @@ const Footer = () => {
 
             <div>
               <p className="text-gray-400 mb-3 leading-relaxed">
-                Find us on our social media.
+                Find us on our social media accounts.
               </p>
               <div className="flex space-x-4">
                 {[
@@ -70,9 +70,9 @@ const Footer = () => {
                   <a
                     key={index}
                     href="#"
-                    className={`${social.bg} ${social.color} p-2 rounded-xl transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1`}
+                    className={`${social.bg} ${social.color} px-[5px] py-1 rounded-lg transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1`}
                   >
-                    <FontAwesomeIcon icon={social.icon} className="w-6 h-4" />
+                    <FontAwesomeIcon icon={social.icon} className="w-5 h-[14px]" />
                   </a>
                 ))}
               </div>
