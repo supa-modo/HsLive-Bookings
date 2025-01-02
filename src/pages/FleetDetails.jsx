@@ -29,6 +29,7 @@ import jet6 from "../assets/images/jet6.jpg";
 import jet7 from "../assets/images/jet7.jpg";
 import jet8 from "../assets/images/jet8.jpg";
 import jet9 from "../assets/images/jet9.jpg";
+import BookingModal from "../components/BookingModal";
 
 const fleetData = [
   {
@@ -244,6 +245,7 @@ const FleetDetails = () => {
   const [scrolled, setScrolled] = useState(false);
   const { id } = useParams();
   const selectedFleet = fleetData.find((item) => item.id === parseInt(id));
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -481,9 +483,7 @@ const FleetDetails = () => {
                 </div>
               </div>
               <button
-                onClick={() => {
-                  // Handle booking
-                }}
+                onClick={() => setIsBookingModalOpen(true)}
                 className="w-full bg-primary-600 text-white py-4 rounded-xl font-medium hover:bg-primary-700 transition-colors duration-300"
               >
                 Book Now
@@ -516,6 +516,10 @@ const FleetDetails = () => {
             </div>
           </div>
         </div>
+        <BookingModal
+          isOpen={isBookingModalOpen}
+          onClose={() => setIsBookingModalOpen(false)}
+        />
       </div>
     </div>
   );
