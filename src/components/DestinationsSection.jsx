@@ -157,7 +157,7 @@ const DestinationsSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className=" p-2 text-2xl sm:text-5xl font-extrabold mb-2 md:mb-4 bg-gradient-to-r from-gray-900 via-primary-800 to-gray-700 bg-clip-text text-transparent">
+            <h2 className=" p-2 text-2xl sm:text-5xl font-extrabold mb-2 md:mb-4 bg-gradient-to-r from-gray-600 via-primary-800 to-gray-700 bg-clip-text text-transparent">
               Popular Featured Destinations
             </h2>
 
