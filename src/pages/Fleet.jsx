@@ -111,30 +111,54 @@ const Fleet = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Navigation 
+      <Navigation
         scrolled={scrolled}
         isMenuOpen={isMenuOpen}
         setIsMenuOpen={setIsMenuOpen}
       />
       <div className="pt-32 pb-16">
         <div className="container mx-auto px-4">
-          <div className="text-center max-w-4xl mx-auto mb-16">
+          <div className="text-center max-w-5xl mx-auto mb-16">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <h1 className="text-5xl font-bold text-gray-900 mb-6">
-                Our Luxury Fleet
-                <span className="block text-primary-600 text-2xl mt-2">
+              <motion.h1
+                className="text-3xl md:text-5xl font-extrabold font-sans bg-gradient-to-r from-gray-700 via-primary-700 to-gray-600 bg-clip-text text-transparent mb-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    duration: 0.8,
+                    delay: 0.5,
+                    ease: "easeOut",
+                  },
+                }}
+              >
+                Explore Our Luxury Fleet
+                <span className="block text-2xl font-sans text-red-500  pt-3">
                   Experience Unparalleled Comfort
                 </span>
-              </h1>
-              <p className="text-xl text-gray-600 leading-relaxed">
+              </motion.h1>
+              <motion.p
+                className="text-gray-600 font-nunito-sans font-bold text-xl mb-8 leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    duration: 0.8,
+                    delay: 0.7,
+                    ease: "easeOut",
+                  },
+                }}
+              >
                 Choose from our diverse range of meticulously maintained private
-                jets, each offering unique features and capabilities to match your
-                specific needs.
-              </p>
+                jets, each offering unique features and capabilities to match
+                your specific needs.
+              </motion.p>
             </motion.div>
           </div>
 

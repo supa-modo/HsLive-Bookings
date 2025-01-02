@@ -15,6 +15,7 @@ import {
   ChevronRight,
   ChevronLeft,
   Mail,
+  SquareArrowOutUpRight,
 } from "lucide-react";
 import Navigation from "../components/Navigation";
 
@@ -34,7 +35,160 @@ const fleetData = [
     id: 1,
     name: "Midsize Jet",
     category: "Standard Package",
-    images: [jet2, jet4, jet7],
+    images: [jet9, jet3, jet7],
+    capacity: "7-8",
+    range: "Up to 5 hours flight time",
+    description:
+      "Perfect for shorter trips and small groups, our Midsize Jet offers exceptional comfort and efficiency. Ideal for business executives and small groups seeking a premium travel experience.",
+    amenities: [
+      "Wi-Fi Connectivity",
+      "Refreshment Center",
+      "Comfortable Seating",
+      "Entertainment System",
+      "Workspace",
+      "Climate Control",
+      "Restroom",
+      "Baggage Space",
+    ],
+    specifications: {
+      "Cabin Height": "5.8 ft",
+      "Cabin Width": "5.5 ft",
+      "Cabin Length": "17.5 ft",
+      "Maximum Speed": "534 mph",
+      "Maximum Range": "2,000 nm",
+      "Maximum Altitude": "45,000 ft",
+    },
+    features: [
+      {
+        icon: Users,
+        title: "Passenger Capacity",
+        description: "Comfortably seats 7-8 passengers",
+      },
+      {
+        icon: Clock,
+        title: "Flight Range",
+        description: "Up to 5 hours non-stop flight",
+      },
+      {
+        icon: Shield,
+        title: "Safety Features",
+        description: "Advanced safety systems and experienced crew",
+      },
+      {
+        icon: Star,
+        title: "Luxury Experience",
+        description: "Premium comfort and personalized service",
+      },
+    ],
+    price: "Starting from $4,500/hour",
+  },
+  {
+    id: 2,
+    name: "Super Midsize Jet",
+    category: "Standard Package",
+    images: [jet6, jet4, jet7],
+    capacity: "7-8",
+    range: "Up to 5 hours flight time",
+    description:
+      "Perfect for shorter trips and small groups, our Midsize Jet offers exceptional comfort and efficiency. Ideal for business executives and small groups seeking a premium travel experience.",
+    amenities: [
+      "Wi-Fi Connectivity",
+      "Refreshment Center",
+      "Comfortable Seating",
+      "Entertainment System",
+      "Workspace",
+      "Climate Control",
+      "Restroom",
+      "Baggage Space",
+    ],
+    specifications: {
+      "Cabin Height": "5.8 ft",
+      "Cabin Width": "5.5 ft",
+      "Cabin Length": "17.5 ft",
+      "Maximum Speed": "534 mph",
+      "Maximum Range": "2,000 nm",
+      "Maximum Altitude": "45,000 ft",
+    },
+    features: [
+      {
+        icon: Users,
+        title: "Passenger Capacity",
+        description: "Comfortably seats 7-8 passengers",
+      },
+      {
+        icon: Clock,
+        title: "Flight Range",
+        description: "Up to 5 hours non-stop flight",
+      },
+      {
+        icon: Shield,
+        title: "Safety Features",
+        description: "Advanced safety systems and experienced crew",
+      },
+      {
+        icon: Star,
+        title: "Luxury Experience",
+        description: "Premium comfort and personalized service",
+      },
+    ],
+    price: "Starting from $4,500/hour",
+  },
+  {
+    id: 3,
+    name: "Heavy Jet",
+    category: "Standard Package",
+    images: [jet6, jet4, jet7],
+    capacity: "7-8",
+    range: "Up to 5 hours flight time",
+    description:
+      "Perfect for shorter trips and small groups, our Midsize Jet offers exceptional comfort and efficiency. Ideal for business executives and small groups seeking a premium travel experience.",
+    amenities: [
+      "Wi-Fi Connectivity",
+      "Refreshment Center",
+      "Comfortable Seating",
+      "Entertainment System",
+      "Workspace",
+      "Climate Control",
+      "Restroom",
+      "Baggage Space",
+    ],
+    specifications: {
+      "Cabin Height": "5.8 ft",
+      "Cabin Width": "5.5 ft",
+      "Cabin Length": "17.5 ft",
+      "Maximum Speed": "534 mph",
+      "Maximum Range": "2,000 nm",
+      "Maximum Altitude": "45,000 ft",
+    },
+    features: [
+      {
+        icon: Users,
+        title: "Passenger Capacity",
+        description: "Comfortably seats 7-8 passengers",
+      },
+      {
+        icon: Clock,
+        title: "Flight Range",
+        description: "Up to 5 hours non-stop flight",
+      },
+      {
+        icon: Shield,
+        title: "Safety Features",
+        description: "Advanced safety systems and experienced crew",
+      },
+      {
+        icon: Star,
+        title: "Luxury Experience",
+        description: "Premium comfort and personalized service",
+      },
+    ],
+    price: "Starting from $4,500/hour",
+  },
+  {
+    id: 4,
+    name: "Light Jet",
+    category: "Standard Package",
+    images: [jet2, jet8, jet5],
     capacity: "7-8",
     range: "Up to 5 hours flight time",
     description:
@@ -101,19 +255,25 @@ const FleetDetails = () => {
 
   if (!selectedFleet) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex flex-col">
         <Navigation
           scrolled={scrolled}
           isMenuOpen={isMenuOpen}
           setIsMenuOpen={setIsMenuOpen}
         />
-        <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">
-            Fleet Not Found
-          </h2>
-          <Link to="/fleet" className="text-primary-600 hover:text-primary-700">
-            Return to Fleet Overview
-          </Link>
+        <div className="flex-grow flex items-center justify-center">
+          <div className="text-center">
+            <h2 className="text-2xl font-extrabold text-red-600 mb-6">
+              Selected Fleet Not Found!!
+            </h2>
+            <Link
+              to="/fleet"
+              className="inline-flex items-center  space-x-2 text-primary-600 font-semibold underline hover:text-primary-700 transition-colors duration-300"
+            >
+              <span>Return to Fleet Overview</span>
+              <SquareArrowOutUpRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+            </Link>
+          </div>
         </div>
       </div>
     );
@@ -234,7 +394,7 @@ const FleetDetails = () => {
             <h2 className=" p-2 text-xl sm:text-2xl font-extrabold mb-2 md:mb-4 bg-gradient-to-r from-gray-600 via-primary-500 to-gray-600 bg-clip-text text-transparent">
               Key Features
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {selectedFleet.features.map((feature, index) => (
                 <div
                   key={index}
@@ -242,9 +402,7 @@ const FleetDetails = () => {
                 >
                   <feature.icon className="h-6 w-6 text-primary-600" />
                   <div>
-                    <h3 className="font-semibold text-gray-900">
-                      {feature.title}
-                    </h3>
+                    <h3 className="font-bold text-gray-600">{feature.title}</h3>
                     <p className="text-gray-600">{feature.description}</p>
                   </div>
                 </div>
@@ -254,18 +412,20 @@ const FleetDetails = () => {
 
           {/* Specifications */}
           <div className="bg-white rounded-xl shadow-lg p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+            <h2 className=" p-2 text-xl sm:text-2xl font-extrabold mb-2 md:mb-4 bg-gradient-to-r from-gray-600 via-primary-500 to-gray-600 bg-clip-text text-transparent">
               Technical Specifications
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               {Object.entries(selectedFleet.specifications).map(
                 ([key, value]) => (
                   <div
                     key={key}
                     className="flex justify-between p-3 bg-gray-50 rounded-lg"
                   >
-                    <span className="text-gray-600">{key}</span>
-                    <span className="font-semibold text-gray-900">{value}</span>
+                    <span className="text-gray-600 font-semibold">{key}</span>
+                    <span className="font-semibold text-primary-600">
+                      {value}
+                    </span>
                   </div>
                 )
               )}
@@ -274,17 +434,17 @@ const FleetDetails = () => {
 
           {/* Amenities */}
           <div className="bg-white rounded-xl shadow-lg p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+            <h2 className=" p-2 text-xl sm:text-2xl font-extrabold mb-2 md:mb-4 bg-gradient-to-r from-gray-600 via-primary-500 to-gray-600 bg-clip-text text-transparent">
               Onboard Amenities
             </h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
               {selectedFleet.amenities.map((amenity, index) => (
                 <div
                   key={index}
                   className="flex items-center space-x-2 p-3 bg-gray-50 rounded-lg"
                 >
                   <Star className="h-5 w-5 text-primary-600" />
-                  <span className="text-gray-700">{amenity}</span>
+                  <span className="text-gray-600 font-semibold">{amenity}</span>
                 </div>
               ))}
             </div>
@@ -295,24 +455,28 @@ const FleetDetails = () => {
         <div className="lg:col-span-1">
           <div className="sticky top-8">
             <div className="bg-white rounded-xl shadow-lg p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              <h2 className=" p-2 text-xl sm:text-2xl font-extrabold mb-2 md:mb-4 bg-gradient-to-r from-gray-600 via-primary-500 to-gray-600 bg-clip-text text-transparent">
                 Book This Aircraft
               </h2>
               <div className="space-y-4 mb-6">
                 <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                  <span className="text-gray-600">Starting Price</span>
-                  <span className="font-semibold text-primary-600">
+                  <span className="text-gray-500 font-extrabold">
+                    Starting Price
+                  </span>
+                  <span className="font-bold text-red-600">
                     {selectedFleet.price}
                   </span>
                 </div>
                 <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                  <span className="text-gray-600">Capacity</span>
+                  <span className="text-gray-500 font-extrabold">Capacity</span>
                   <span className="font-semibold">
                     {selectedFleet.capacity} Passengers
                   </span>
                 </div>
                 <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                  <span className="text-gray-600">Flight Range</span>
+                  <span className="text-gray-500 font-extrabold">
+                    Flight Range
+                  </span>
                   <span className="font-semibold">{selectedFleet.range}</span>
                 </div>
               </div>
@@ -325,7 +489,7 @@ const FleetDetails = () => {
                 Book Now
               </button>
               <div className="mt-6">
-                <h3 className="font-semibold text-gray-900 mb-2">
+                <h3 className="font-bold text-gray-600 mb-2">
                   Need assistance?
                 </h3>
                 <p className="text-gray-600 text-sm">
@@ -335,14 +499,14 @@ const FleetDetails = () => {
                 <div className="mt-4 space-y-2">
                   <a
                     href="tel:+255743060660"
-                    className="flex items-center space-x-2 text-primary-600 hover:text-primary-700"
+                    className="flex items-center space-x-4 font-bold text-primary-600 hover:underline hover:text-primary-700"
                   >
                     <Phone className="h-4 w-4" />
                     <span>+255 743 060 660</span>
                   </a>
                   <a
                     href="mailto:info@shineluxuryprivatejets.com"
-                    className="flex items-center space-x-2 text-primary-600 hover:text-primary-700"
+                    className="flex items-center space-x-4 font-semibold text-primary-600 hover:underline hover:text-primary-700"
                   >
                     <Mail className="h-4 w-4" />
                     <span>info@shineluxuryprivatejets.com</span>
