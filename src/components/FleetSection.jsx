@@ -25,33 +25,35 @@ import jet9 from "../assets/images/jet9.jpg";
 const fleetData = [
   {
     id: 1,
-    name: "Midsize Jet",
-    category: "Standard Package",
+    name: "Executive Business Escape",
+    category: "Premium Business Travel",
     image: jet2,
-    capacity: "7-8",
-    range: "Up to 5 hours flight time",
+    aircraft: "Embraer Praetor 600",
+    capacity: "Up to 12",
+    range: "4,000 nautical miles",
     description:
-      "Perfect for shorter trips and small groups, our Midsize Jet offers exceptional comfort and efficiency. Ideal for business executives and small groups seeking a premium travel experience.",
-    amenities: "Wi-Fi, Refreshments, Comfortable seating, Entertainment system",
+      "Tailored for executives and corporate teams, offering seamless business travel with in-flight productivity features and maximum privacy.",
+    amenities:
+      "In-flight Wi-Fi, Concierge services, Private meeting areas, Catered Meals & Refreshments,",
     price: "Starting from $3,500/hour",
     additionalInfo: [
-      "Ideal for domestic and short international flights",
+      "High levels of privacy for confidential discussions or strategic planning sessions.",
       "Spacious cabin with standing room",
       "Generous baggage capacity",
-      "Cost-effective for small groups",
+      "Arrange transportation to and from the airport",
     ],
   },
   {
     id: 2,
-    name: "Super Midsize Jet",
-    category: "Premium Package",
+    name: "Elite Leisure Escape",
+    category: "Luxury Leisure",
     image: jet8,
-    capacity: "9-12",
-    range: "Up to 7 hours flight time",
+    capacity: "Up to 18",
+    range: "7,500 nautical miles",
     description:
-      "Experience superior comfort and range with our Super Midsize Jet. Perfect for larger groups and longer flights, offering enhanced amenities and more cabin space.",
+      "Ultimate luxury travel experience for high-net-worth individuals and families, featuring personalized service and premium amenities.",
     amenities:
-      "Full refreshment center, Enhanced entertainment, Premium catering, Satellite phone, Wifi",
+      "Gourmet dining, Premium entertainment, Customizable itineraries, Luxury concierge services",
     price: "Starting from $4,500/hour",
     additionalInfo: [
       "Suitable for transcontinental flights",
@@ -61,16 +63,16 @@ const fleetData = [
     ],
   },
   {
-    id: 3,
-    name: "Heavy Jet",
-    category: "Executive Package",
+    name: "Dignitary Prestige Transfer",
+    category: "VIP Transport",
     image: jet6,
-    capacity: "19",
-    range: "Up to 10 hours flight time",
+    aircraft: "Bombardier Global 7500",
+    capacity: "Up to 19",
+    range: "7,700 nautical miles",
     description:
-      "The ultimate in luxury air travel, our Heavy Jet provides unmatched comfort and capabilities. Perfect for large groups, long-distance flights, and those demanding the very best.",
+      "Exclusive transportation solution for dignitaries and VIPs, ensuring privacy, security, and world-class comfort.",
     amenities:
-      "Master suite, Multiple living areas, Gourmet kitchen, Advanced entertainment systems, Wifi, Luxurious seats",
+      "Enhanced security measures, Diplomatic handling, Private suites, 24/7 dedicated support, Gourmet kitchen, Advanced entertainment systems, Luxurious seats",
     price: "Starting from $7,500/hour",
     additionalInfo: [
       "Intercontinental flight capability",
@@ -174,19 +176,19 @@ const FleetSection = () => {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
 
   return (
-    <section id="fleet" className="py-24 bg-gray-50">
+    <section id="fleet" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="mx-auto mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className=" p-2 text-4xl sm:text-5xl font-extrabold mb-6 bg-gradient-to-r from-gray-900 via-primary-800 to-gray-700 bg-clip-text text-transparent">
-              Our Luxury Fleet Packages
+            <h2 className=" p-2 text-3xl sm:text-4xl font-extrabold mb-4 bg-gradient-to-r from-gray-700 via-primary-600 to-gray-600 bg-clip-text text-transparent">
+              Private Jet Charter Services
             </h2>
 
-            <p className="text-lg sm:text-xl text-gray-500 leading-relaxed font-semibold">
+            <p className="text-base sm:text-lg text-gray-500 leading-relaxed font-semibold">
               Choose from our diverse range of packages with meticulously
               maintained private jets, each offering unique features and
               capabilities to match your specific needs and budget.
@@ -211,7 +213,7 @@ const FleetSection = () => {
               onClick={() => setIsBookingModalOpen(true)}
               className="inline-flex items-center justify-center px-8 py-4 bg-primary-600 text-white rounded-xl font-medium hover:bg-primary-700 transition-all duration-300"
             >
-              Book Now
+              Book a Service Now
             </button>
             <button
               onClick={() => {

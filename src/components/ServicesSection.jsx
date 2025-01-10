@@ -1,105 +1,132 @@
 import React from "react";
-import { Shield, Globe, Clock, Users, Award } from "lucide-react";
+import { motion } from "framer-motion";
+import {
+  Plane,
+  Users,
+  Map,
+  Shield,
+  Clock,
+  Award,
+  Sparkles,
+} from "lucide-react";
 
-const ServiceCard = ({ icon: Icon, title, description, index }) => {
+const ServiceCard = ({ service }) => {
   return (
-    <div className="group relative p-1 rounded-3xl bg-gradient-to-br from-white/20 to-white/0 backdrop-blur-sm">
-      <div className="relative h-full bg-white/90 backdrop-blur-md rounded-[22px] p-8 overflow-hidden transition-all duration-500 shadow-2xl hover:shadow-xl">
-        {/* Animated background gradient */}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      whileHover={{ y: -10 }}
+      className="group relative p-1 rounded-3xl bg-gradient-to-br  from-white/20 to-white/0 backdrop-blur-sm"
+    >
+      <div className="relative h-full bg-white/90 backdrop-blur-md hover:shadow-xl shadow-lg border border-gray-100 rounded-[22px] p-8 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary-100/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-        {/* Floating dots decoration */}
-        <div className="absolute -right-4 -top-4 w-24 h-24 bg-gradient-to-br from-primary-200/20 to-transparent rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700" />
-
-        {/* Icon container */}
         <div className="relative mb-6">
-          <div className="w-20 h-20 bg-gradient-to-br from-primary-50 to-white rounded-2xl shadow-lg flex items-center justify-center transform transition-all duration-500 group-hover:scale-110 group-hover:shadow-xl">
-            <Icon
-              className="w-10 h-10 text-primary-600 transform transition-transform duration-500 group-hover:rotate-12"
+          <div className="w-20 h-20 bg-gradient-to-br from-primary-50 to-white rounded-2xl shadow-lg flex items-center justify-center group-hover:scale-110 transition-all duration-500">
+            <service.icon
+              className="w-10 h-10 text-primary-600 group-hover:rotate-12 transition-transform duration-500"
               strokeWidth={1.5}
             />
           </div>
         </div>
 
-        {/* Content */}
-        <div className="relative z-10 mt-8">
-          <h3 className="text-2xl font-extrabold bg-gradient-to-r from-primary-600 to-gray-500 bg-clip-text text-transparent mb-4">
-            {title}
+        <div className="relative z-10">
+          <h3 className="text-2xl font-extrabold bg-gradient-to-r from-primary-600 to-gray-500 bg-clip-text text-transparent mb-3">
+            {service.title}
           </h3>
-          <p className="text-gray-600 leading-relaxed font-semibold">
-            {description}
+          <p className="text-gray-600 leading-relaxed mb-4">
+            {service.description}
           </p>
-        </div>
 
-        {/* Hover state indicator */}
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-500 to-primary-300 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+          <div className="space-y-3">
+            {service.packages.map((pkg, index) => (
+              <div
+                key={index}
+                className="flex items-center space-x-3 text-gray-600"
+              >
+                <Sparkles className="w-5 h-5 text-primary-500" />
+                <span className="font-semibold">{pkg}</span>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
 const ServicesSection = () => {
   const services = [
     {
-      icon: Globe,
-      title: "Global Accessibility",
+      icon: Plane,
+      title: "Private Jet Charters",
       description:
-        "Access to over 5,000 airports worldwide with our extensive network of private jets and dedicated terminals departuring from anywhere within the United Republic of Tanzania or East African Countries.",
+        "Experience unparalleled luxury and convenience with with the world's most reputable international jet charters for both business and leisure travel with us as your trusted brokers ensuring a hassle-free experience for you.",
+      packages: [
+        "Executive Business Escape",
+        "Elite Escape: Luxury Leisure",
+        "Dignitary Prestige Transfer",
+      ],
     },
     {
       icon: Shield,
-      title: "Safety First",
+      title: "Logistics & Operations",
       description:
-        "Industry-leading safety standards with rigorous maintenance protocols and experienced flight crews.",
+        "Comprehensive support services ensuring seamless travel experiences with meticulous attention to every detail.",
+      packages: [
+        "24/7 Dedicated Support",
+        "Complete Flight Planning",
+        "VIP Ground Handling",
+      ],
     },
     {
-      icon: Clock,
-      title: "24/7 Concierge",
+      icon: Map,
+      title: "Private Aircraft Safaris",
       description:
-        "Round-the-clock personal concierge service for seamless travel arrangements and special requests.",
-    },
-    {
-      icon: Users,
-      title: "Tailored Experience",
-      description:
-        "Customized flight experiences with personalized catering, ground transportation, and cabin configurations.",
-    },
-    {
-      icon: Award,
-      title: "Premium Service",
-      description:
-        "Unmatched luxury service with attention to every detail of your journey from takeoff to landing.",
+        "Discover Tanzania's breathtaking national parks from above with our exclusive safari flight experiences.",
+      packages: [
+        "Serengeti Luxury Safari",
+        "Ngorongoro Crater Adventure",
+        "Grand Tanzania Circuit",
+      ],
     },
   ];
 
   return (
-    <section
-      id="services"
-      className="relative py-24 bg-gradient-to-b from-gray-50 via-white to-gray-50 overflow-hidden"
-    >
-      {/* Background decorative elements */}
+    <section className="relative py-20 bg-gradient-to-b from-gray-50 via-white to-gray-50 overflow-hidden">
       <div className="absolute inset-0">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob" />
         <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000" />
         <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-violet-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000" />
       </div>
 
-      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header Section */}
-        <div className="max-w-4xl mx-auto text-center mb-14">
-          <h2 className="text-4xl sm:text-5xl font-extrabold mb-6 bg-gradient-to-r from-gray-900 via-primary-800 to-gray-700 bg-clip-text text-transparent">
-            Exceptional Private Aviation
-          </h2>
-          <p className="text-xl sm:text-2xl text-gray-500 leading-relaxed font-semibold">
-            Experience the pinnacle of luxury travel with our comprehensive
-            suite of private aviation services tailored to your needs.
-          </p>
+      <div className="relative  mx-auto px-4">
+        <div className="max-w-7xl mx-auto text-center mb-16">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl sm:text-5xl font-extrabold mb-4 bg-gradient-to-r from-gray-700 via-primary-700 to-gray-600 bg-clip-text text-transparent"
+          >
+            Our Premium Aviation Services
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-xl text-gray-600 font-semibold leading-relaxed"
+          >
+            Experience the epitome of luxury travel with our comprehensive suite
+            of private aviation services
+          </motion.p>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-screen-xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-screen-2xl mx-auto">
           {services.map((service, index) => (
-            <ServiceCard key={index} {...service} index={index} />
+            <ServiceCard key={index} service={service} />
           ))}
         </div>
       </div>

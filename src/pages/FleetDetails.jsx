@@ -2,18 +2,20 @@ import React, { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
+  Star,
+  ChevronRight,
+  ChevronLeft,
+  Check,
+  Globe,
   Users,
   Clock,
   Shield,
-  Star,
   Plane,
   Coffee,
   Wifi,
   Tv,
   Phone,
   Map,
-  ChevronRight,
-  ChevronLeft,
   Mail,
   SquareArrowOutUpRight,
 } from "lucide-react";
@@ -31,54 +33,64 @@ import jet8 from "../assets/images/jet8.jpg";
 import jet9 from "../assets/images/jet9.jpg";
 import BookingModal from "../components/BookingModal";
 
-const fleetData = [
+const serviceData = [
   {
     id: 1,
-    name: "Midsize Jet",
-    category: "Standard Package",
+    name: "Executive Business Escape",
+    category: "Business Travel",
     images: [jet9, jet3, jet7],
-    capacity: "7-8",
-    range: "Up to 5 hours flight time",
+    aircraft: "Embraer Praetor 600",
+    capacity: "Up to 12",
+    range: "4,000 nautical miles",
     description:
-      "Perfect for shorter trips and small groups, our Midsize Jet offers exceptional comfort and efficiency. Ideal for business executives and small groups seeking a premium travel experience.",
+      "Tailored for executives and corporate teams, offering seamless business travel with in-flight productivity features and maximum privacy.",
+    highlights: [
+      "Direct flights to meeting destinations",
+      "Fully equipped business suite",
+      "High-speed Wi-Fi connectivity",
+      "Private meeting areas",
+      "Dedicated concierge service",
+      "Premium catering options",
+    ],
     amenities: [
-      "Wi-Fi Connectivity",
-      "Refreshment Center",
-      "Comfortable Seating",
-      "Entertainment System",
-      "Workspace",
-      "Climate Control",
-      "Restroom",
-      "Baggage Space",
+      "High-speed Wi-Fi",
+      "Conference facilities",
+      "Power outlets",
+      "Satellite phone",
+      "Premium catering",
+      "Entertainment system",
+      "Private workspaces",
+      "Fully reclining seats",
     ],
     specifications: {
-      "Cabin Height": "5.8 ft",
-      "Cabin Width": "5.5 ft",
-      "Cabin Length": "17.5 ft",
-      "Maximum Speed": "534 mph",
-      "Maximum Range": "2,000 nm",
-      "Maximum Altitude": "45,000 ft",
+      "Aircraft Type": "Embraer Praetor 600",
+      "Passenger Capacity": "Up to 12",
+      Range: "4,000 nautical miles",
+      "Cruise Speed": "466 knots",
+      "Cabin Height": "6 feet",
+      "Cabin Width": "6.8 feet",
+      "Baggage Capacity": "150 cubic feet",
     },
     features: [
       {
         icon: Users,
-        title: "Passenger Capacity",
-        description: "Comfortably seats 7-8 passengers",
+        title: "Corporate Groups",
+        description: "Ideal for executive teams up to 12 passengers",
       },
       {
         icon: Clock,
-        title: "Flight Range",
-        description: "Up to 5 hours non-stop flight",
+        title: "Time Efficiency",
+        description: "Direct flights to your business destination",
       },
       {
         icon: Shield,
-        title: "Safety Features",
-        description: "Advanced safety systems and experienced crew",
+        title: "Privacy Assured",
+        description: "Confidential environment for meetings",
       },
       {
-        icon: Star,
-        title: "Luxury Experience",
-        description: "Premium comfort and personalized service",
+        icon: Globe,
+        title: "Global Access",
+        description: "Reach any business destination worldwide",
       },
     ],
     price: "Starting from $4,500/hour",
@@ -244,7 +256,7 @@ const FleetDetails = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { id } = useParams();
-  const selectedFleet = fleetData.find((item) => item.id === parseInt(id));
+  const selectedFleet = serviceData.find((item) => item.id === parseInt(id));
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
 
   React.useEffect(() => {

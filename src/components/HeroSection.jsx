@@ -213,7 +213,7 @@ const HeroSection = ({ currentSlide, setCurrentSlide, heroImages }) => {
                 onClick={() => navigate("/fleet")}
                 className="bg-white/40 backdrop-blur-md text-gray-500 border-2 border-gray-300 px-10 py-4 rounded-full text-lg font-bold font-nunito-sans hover:bg-white/20 transition-colors duration-300"
               >
-                Explore Fleet
+                Explore Services
               </motion.button>
             </motion.div>
           </motion.div>
