@@ -52,7 +52,7 @@ const Navigation = ({ scrolled, isMenuOpen, setIsMenuOpen }) => {
               <NavLink href="/">Home</NavLink>
               <NavLink href="/#services">Services</NavLink>
               <NavLink href="/#destinations">Destinations</NavLink>
-              <PageLink to={"/fleet"}>Jet Fleet</PageLink>
+              {/* <PageLink to={"/fleet"}>Jet Fleet</PageLink> */}
               <NavLink href="/#contact">Contact Us</NavLink>
               <motion.button
                 whileHover={{ scale: 1.05 }}

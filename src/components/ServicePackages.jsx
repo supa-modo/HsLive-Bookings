@@ -96,7 +96,7 @@ export const FleetCard = ({ fleet }) => {
       whileHover={{ y: -10 }}
       className="group bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden"
     >
-      <div className="relative h-64 overflow-hidden">
+      <div className="relative h-48 sm:h-64 overflow-hidden">
         <motion.img
           whileHover={{ scale: 1.1 }}
           transition={{ duration: 0.6 }}
@@ -106,64 +106,67 @@ export const FleetCard = ({ fleet }) => {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
         <div className="absolute top-4 right-4">
-          <div className="bg-white/10 backdrop-blur-md px-4 py-1 rounded-full">
-            <span className="text-white font-bold">{fleet.category}</span>
+          <div className="bg-white/10 backdrop-blur-md px-3 sm:px-4 py-1 rounded-full">
+            <span className="text-sm text-white font-bold">
+              {fleet.category}
+            </span>
           </div>
         </div>
       </div>
 
-      <div className="p-8">
-        <div className="mb-6">
-          <h3 className="text-2xl font-extrabold bg-gradient-to-r from-primary-900 to-gray-500 bg-clip-text text-transparent mb-3 group-hover:text-primary-600 transition-colors duration-300">
+      <div className="p-6 sm:p-8">
+        <div className="mb-4 sm:mb-6">
+          <h3 className="text-xl sm:text-2xl font-extrabold bg-gradient-to-r font-open-sans sm:font-sans from-primary-800 to-gray-500 bg-clip-text text-transparent mb-2 sm:mb-3 group-hover:text-primary-700 transition-colors duration-300">
             {fleet.name}
           </h3>
-          <p className="text-gray-500 line-clamp-2">{fleet.description}</p>
+          <p className="text-sm sm:text-base text-gray-500 line-clamp-2">
+            {fleet.description}
+          </p>
         </div>
 
-        <div className="flex space-x-5 md:space-x-10 mb-6">
+        <div className="flex space-x-4 sm:space-x-6 mb-4 sm:mb-6">
           <div className="flex items-center space-x-2">
-            <Users className="h-5 w-5 text-primary-600" />
-            <span className="font-semibold text-gray-600">
+            <Users className="h-4 w-4 sm:h-5 sm:w-5 text-primary-600" />
+            <span className="text-xs sm:text-sm font-semibold text-gray-600">
               {fleet.capacity} Passengers
             </span>
           </div>
           <div className="flex items-center space-x-2">
-            <Clock className="h-5 w-5 text-primary-600" />
-            <span className="font-semibold text-gray-500">
-              {/* {fleet.range.replace("Up to ", "")} */}
+            <Clock className="h-4 w-4 sm:h-5 sm:w-5 text-primary-600" />
+            <span className="text-xs sm:text-sm font-semibold text-gray-500">
               {fleet.range}
             </span>
           </div>
         </div>
 
-        <div className="flex flex-wrap gap-2 mb-5 font-open-sans text-gray-500">
+        <div className="flex flex-wrap gap-2 mb-4 sm:mb-5 font-open-sans text-gray-500">
           {fleet.amenities
             .split(", ")
             .slice(0, 4)
             .map((amenity, index) => (
               <span
                 key={index}
-                className="bg-gray-200 text-gray-500 px-3 py-1 rounded-full text-[12px]"
+                className="bg-gray-200 text-gray-500 px-2 sm:px-3 py-1 rounded-full text-[11px] sm:text-[12px]"
               >
                 {amenity}
               </span>
             ))}
           {fleet.amenities.split(", ").length > 3 && (
-            <span className="bg-blue-50 text-primary-600 px-2 py-1 rounded-full text-[12px]">
+            <span className="bg-blue-50 text-primary-600 px-2 py-1 rounded-full text-[11px] sm:text-[12px]">
               +{fleet.amenities.split(", ").length - 4} more
             </span>
           )}
         </div>
 
-        <div className="flex items-center justify-between pt-6 border-t border-gray-100">
-          <div className="text-red-600 font-bold">{fleet.price}</div>
+        <div className="flex items-center justify-between pt-4 sm:pt-6 border-t border-gray-100">
+          <div className="text-sm text-red-600 font-bold">{fleet.price}</div>
           <div className="flex items-center space-x-4">
             <Link
-              to={`/fleet/${fleet.id}`}
+              to={`/service/${fleet.id}`}
               className="inline-flex items-center font-nunito-sans space-x-2 text-primary-600 font-bold hover:text-primary-700 transition-colors duration-300"
             >
-              <span>View Details</span>
-              <SquareArrowOutUpRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+              <span className="text-sm">View Details</span>
+              <SquareArrowOutUpRight className="h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform duration-300" />
             </Link>
           </div>
         </div>
@@ -172,24 +175,24 @@ export const FleetCard = ({ fleet }) => {
   );
 };
 
-const FleetSection = () => {
+const ServicePackages = () => {
   const navigate = useNavigate();
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
 
   return (
-    <section id="fleet" className="py-20 bg-gray-50">
-      <div className="container mx-auto px-4">
-        <div className="mx-auto mb-16">
+    <section id="fleet" className="py-16 sm:py-20 bg-gray-50">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="mx-auto mb-12 sm:mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className=" p-2 text-3xl sm:text-4xl font-extrabold mb-4 bg-gradient-to-r from-gray-700 via-primary-600 to-gray-600 bg-clip-text text-transparent">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-4 bg-gradient-to-r from-gray-700 via-primary-600 to-gray-600 bg-clip-text text-transparent">
               Jet Charter Packages
             </h2>
 
-            <p className="text-base sm:text-lg text-gray-500 leading-relaxed font-semibold">
+            <p className="text-base sm:text-lg text-gray-500 font-nunito-sans sm:font-sans leading-relaxed font-semibold">
               Choose from our diverse range of packages with meticulously
               maintained private jets, each offering unique features and
               capabilities to match your specific needs and budget.
@@ -197,7 +200,7 @@ const FleetSection = () => {
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {fleetData.map((fleet) => (
             <FleetCard key={fleet.id} fleet={fleet} />
           ))}
@@ -207,12 +210,12 @@ const FleetSection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-16 text-center"
+          className="mt-12 sm:mt-16 text-center"
         >
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <button
               onClick={() => setIsBookingModalOpen(true)}
-              className="inline-flex items-center justify-center px-8 py-4 bg-primary-600 text-white rounded-xl font-medium hover:bg-primary-700 transition-all duration-300"
+              className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-primary-600 text-white rounded-xl text-sm sm:text-base font-medium hover:bg-primary-700 transition-all duration-300"
             >
               Book a Service Now
             </button>
@@ -220,7 +223,7 @@ const FleetSection = () => {
               onClick={() => {
                 navigate("/#contact");
               }}
-              className="inline-flex items-center justify-center px-8 py-4 bg-white text-primary-600 border-2 border-primary-600 rounded-xl font-medium hover:bg-primary-50 transition-all duration-300"
+              className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-white text-primary-600 border-2 border-primary-600 rounded-xl text-sm sm:text-base font-medium hover:bg-primary-50 transition-all duration-300"
             >
               Contact Us Today
             </button>
@@ -235,4 +238,4 @@ const FleetSection = () => {
   );
 };
 
-export default FleetSection;
+export default ServicePackages;

@@ -119,7 +119,7 @@ const DestinationCard = ({ destination, className = "" }) => {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 p-6 font-nunito-sans font-bold">
-          <h3 className="text-white text-2xl font-extrabold mb-2">
+          <h3 className="text-white sm:text-2xl font-extrabold sm:mb-1">
             {destination.name}
           </h3>
           <p className="text-white/90">

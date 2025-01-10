@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
@@ -225,6 +225,11 @@ const FleetDetails = () => {
   const selectedFleet = serviceData.find((item) => item.id === parseInt(id));
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
 
+  // Scroll to top on component mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   React.useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -248,7 +253,7 @@ const FleetDetails = () => {
             </h2>
             <Link
               to="/fleet"
-              className="inline-flex items-center  space-x-2 text-primary-600 font-semibold underline hover:text-primary-700 transition-colors duration-300"
+              className="inline-flex items-center space-x-2 text-primary-600 font-semibold underline hover:text-primary-700 transition-colors duration-300"
             >
               <span>Return to Fleet Overview</span>
               <SquareArrowOutUpRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
@@ -280,7 +285,7 @@ const FleetDetails = () => {
       />
 
       {/* Hero Image Section */}
-      <div className="relative h-[80vh] w-full">
+      <div className="relative h-[50vh] sm:h-[80vh] w-full">
         <div className="absolute inset-0">
           <img
             src={selectedFleet.images[currentImageIndex]}
@@ -320,7 +325,7 @@ const FleetDetails = () => {
         </div>
 
         {/* Hero Content */}
-        <div className="absolute bottom-32 left-0 w-full">
+        <div className="absolute bottom-10 sm:bottom-32 left-0 w-full">
           <div className="container mx-auto px-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -329,7 +334,7 @@ const FleetDetails = () => {
               className="max-w-4xl"
             >
               <motion.h1
-                className="text-4xl md:text-6xl font-extrabold font-sans text-primary-800 mb-4"
+                className="text-3xl sm:text-4xl md:text-6xl font-extrabold font-sans text-primary-800 mb-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{
                   opacity: 1,
@@ -342,12 +347,12 @@ const FleetDetails = () => {
                 }}
               >
                 {selectedFleet.name}
-                <span className="block text-3xl font-sans text-amber-500  pt-3">
+                <span className="block text-xl sm:text-3xl font-sans text-amber-600 pt-2 sm:pt-3 mt-2">
                   {selectedFleet.category}
                 </span>
               </motion.h1>
               <motion.p
-                className="text-gray-600 font-nunito-sans font-bold text-xl mb-8 leading-relaxed"
+                className="backdrop-blur-sm rounded-2xl text-base md:text-xl text-gray-700 font-nunito-sans font-bold mb-4 sm:mb-8 leading-relaxed"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{
                   opacity: 1,
@@ -367,14 +372,14 @@ const FleetDetails = () => {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-screen-2xl mx-auto py-10 pb-24 grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="max-w-screen-2xl mx-auto py-8 sm:py-10 pb-16 sm:pb-24 px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
         {/* Features */}
-        <div className="lg:col-span-2 space-y-8">
-          <div className="bg-white rounded-xl shadow-lg p-8">
-            <h2 className=" p-2 text-xl sm:text-2xl font-extrabold mb-2 md:mb-4 bg-gradient-to-r from-gray-600 via-primary-500 to-gray-600 bg-clip-text text-transparent">
+        <div className="lg:col-span-2 space-y-6 sm:space-y-8">
+          <div className="bg-white rounded-xl shadow-lg p-6 sm:p-8">
+            <h2 className="text-xl sm:text-2xl font-extrabold mb-4 bg-gradient-to-r from-gray-600 via-primary-500 to-gray-600 bg-clip-text text-transparent">
               Key Features
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {selectedFleet.features.map((feature, index) => (
                 <div
                   key={index}
@@ -383,7 +388,9 @@ const FleetDetails = () => {
                   <feature.icon className="h-6 w-6 text-primary-600" />
                   <div>
                     <h3 className="font-bold text-gray-600">{feature.title}</h3>
-                    <p className="text-gray-600">{feature.description}</p>
+                    <p className="text-sm sm:text-base text-gray-600">
+                      {feature.description}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -391,19 +398,21 @@ const FleetDetails = () => {
           </div>
 
           {/* Specifications */}
-          <div className="bg-white rounded-xl shadow-lg p-8">
-            <h2 className=" p-2 text-xl sm:text-2xl font-extrabold mb-2 md:mb-4 bg-gradient-to-r from-gray-600 via-primary-500 to-gray-600 bg-clip-text text-transparent">
+          <div className="bg-white rounded-xl shadow-lg p-6 sm:p-8">
+            <h2 className="text-xl sm:text-2xl font-extrabold mb-4 bg-gradient-to-r from-gray-600 via-primary-500 to-gray-600 bg-clip-text text-transparent">
               Aircraft Technical Specifications
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {Object.entries(selectedFleet.specifications).map(
                 ([key, value]) => (
                   <div
                     key={key}
                     className="flex justify-between p-3 bg-gray-50 rounded-lg"
                   >
-                    <span className="text-gray-600 font-semibold">{key}</span>
-                    <span className="font-semibold text-primary-600">
+                    <span className="text-sm sm:text-base text-gray-600 font-semibold">
+                      {key}
+                    </span>
+                    <span className="text-sm sm:text-base font-semibold text-primary-600">
                       {value}
                     </span>
                   </div>
@@ -413,40 +422,40 @@ const FleetDetails = () => {
           </div>
 
           {/* Package Highlights */}
-          <div className="mt-8">
-            <div className="bg-white rounded-xl shadow-lg p-8">
-              <h2 className=" p-2 text-xl sm:text-2xl font-extrabold mb-2 md:mb-4 bg-gradient-to-r from-gray-600 via-primary-500 to-gray-600 bg-clip-text text-transparent">
-                Package Highlights
-              </h2>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-                {selectedFleet.highlights.map((highlight, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg"
-                  >
-                    <Check className="h-5 w-5 text-primary-600 flex-shrink-0" />
-                    <span className="text-gray-600 font-semibold">
-                      {highlight}
-                    </span>
-                  </div>
-                ))}
-              </div>
+          <div className="bg-white rounded-xl shadow-lg p-6 sm:p-8">
+            <h2 className="text-xl sm:text-2xl font-extrabold mb-4 bg-gradient-to-r from-gray-600 via-primary-500 to-gray-600 bg-clip-text text-transparent">
+              Package Highlights
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+              {selectedFleet.highlights.map((highlight, index) => (
+                <div
+                  key={index}
+                  className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg"
+                >
+                  <Check className="h-5 w-5 text-primary-600 flex-shrink-0" />
+                  <span className="text-sm sm:text-base text-gray-600 font-semibold">
+                    {highlight}
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
 
           {/* Amenities */}
-          <div className="bg-white rounded-xl shadow-lg p-8">
-            <h2 className=" p-2 text-xl sm:text-2xl font-extrabold mb-2 md:mb-4 bg-gradient-to-r from-gray-600 via-primary-500 to-gray-600 bg-clip-text text-transparent">
+          <div className="bg-white rounded-xl shadow-lg p-6 sm:p-8">
+            <h2 className="text-xl sm:text-2xl font-extrabold mb-4 bg-gradient-to-r from-gray-600 via-primary-500 to-gray-600 bg-clip-text text-transparent">
               Onboard Amenities
             </h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
               {selectedFleet.amenities.map((amenity, index) => (
                 <div
                   key={index}
                   className="flex items-center space-x-2 p-3 bg-gray-50 rounded-lg"
                 >
                   <Star className="h-5 w-5 text-primary-600" />
-                  <span className="text-gray-600 font-semibold">{amenity}</span>
+                  <span className="text-sm sm:text-base text-gray-600 font-semibold">
+                    {amenity}
+                  </span>
                 </div>
               ))}
             </div>
@@ -456,55 +465,61 @@ const FleetDetails = () => {
         {/* Booking Section */}
         <div className="lg:col-span-1">
           <div className="sticky top-8">
-            <div className="bg-white rounded-xl shadow-lg p-8">
-              <h2 className=" p-2 text-xl sm:text-2xl font-extrabold mb-2 md:mb-4 bg-gradient-to-r from-gray-600 via-primary-500 to-gray-600 bg-clip-text text-transparent">
+            <div className="bg-white rounded-xl shadow-lg p-6 sm:p-8">
+              <h2 className="text-xl sm:text-2xl font-extrabold mb-4 bg-gradient-to-r from-gray-600 via-primary-500 to-gray-600 bg-clip-text text-transparent">
                 Book This Aircraft
               </h2>
               <div className="space-y-4 mb-6">
                 <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                  <span className="text-gray-500 font-bold">
+                  <span className="text-sm sm:text-base text-gray-500 font-bold">
                     Starting Price
                   </span>
-                  <span className="font-bold text-red-600">
+                  <span className="text-sm sm:text-base font-bold text-red-600">
                     {selectedFleet.price}
                   </span>
                 </div>
                 <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                  <span className="text-gray-500 font-bold">Capacity</span>
-                  <span className="font-semibold">
+                  <span className="text-sm sm:text-base text-gray-500 font-bold">
+                    Capacity
+                  </span>
+                  <span className="text-sm sm:text-base font-semibold">
                     {selectedFleet.capacity} Passengers
                   </span>
                 </div>
                 <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                  <span className="text-gray-500 font-bold">Flight Range</span>
-                  <span className="font-semibold">{selectedFleet.range}</span>
+                  <span className="text-sm sm:text-base text-gray-500 font-bold">
+                    Flight Range
+                  </span>
+                  <span className="text-sm sm:text-base font-semibold">
+                    {selectedFleet.range}
+                  </span>
                 </div>
               </div>
               <button
                 onClick={() => setIsBookingModalOpen(true)}
-                className="w-full bg-primary-600 text-white py-4 rounded-xl font-medium hover:bg-primary-700 transition-colors duration-300"
+                className="w-full bg-primary-600 text-white py-3 sm:py-4 rounded-xl text-sm sm:text-base font-medium hover:bg-primary-700 transition-colors duration-300"
               >
                 Book Now
               </button>
               <div className="mt-6">
-                <h3 className="font-bold text-gray-600 mb-2">
+                <h3 className="text-sm sm:text-base font-bold text-gray-600 mb-2">
                   Need assistance?
                 </h3>
-                <p className="text-gray-600 text-sm">
+                <p className="text-sm text-gray-600">
                   Contact our team for personalized booking support and
                   additional information.
                 </p>
                 <div className="mt-4 space-y-2">
                   <a
                     href="tel:+255743060660"
-                    className="flex items-center space-x-4 font-bold text-primary-600 hover:underline hover:text-primary-700"
+                    className="flex items-center space-x-4 text-sm sm:text-base font-bold text-primary-600 hover:underline hover:text-primary-700"
                   >
                     <Phone className="h-4 w-4" />
                     <span>+255 743 060 660</span>
                   </a>
                   <a
                     href="mailto:info@shineluxuryprivatejets.com"
-                    className="flex items-center space-x-4 font-semibold text-primary-600 hover:underline hover:text-primary-700"
+                    className="flex items-center space-x-4 text-sm sm:text-base font-semibold text-primary-600 hover:underline hover:text-primary-700"
                   >
                     <Mail className="h-4 w-4" />
                     <span>info@shineluxuryprivatejets.com</span>

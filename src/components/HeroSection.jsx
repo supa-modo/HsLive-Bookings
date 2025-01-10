@@ -27,7 +27,7 @@ const HeroSection = ({ currentSlide, setCurrentSlide, heroImages }) => {
   }, [heroImages]);
 
   return (
-    <div className="relative h-[80vh] overflow-hidden bg-gray-50">
+    <div className="relative h-[50vh] sm:h-[80vh] overflow-hidden bg-gray-50">
       {/* Background layer with subtle pattern */}
       <div className="absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.05)_1px,transparent_0)] bg-[length:24px_24px]" />
 
@@ -93,22 +93,22 @@ const HeroSection = ({ currentSlide, setCurrentSlide, heroImages }) => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
           onClick={prevSlide}
-          className="p-3 rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 transition-colors duration-300 group"
+          className="p-2 sm:p-3 rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 transition-colors duration-300 group"
         >
-          <ChevronLeft className="h-8 w-8 text-white group-hover:text-white/90" />
+          <ChevronLeft className="h-6 w-6 sm:h-8 sm:w-8 text-white group-hover:text-white/90" />
         </motion.button>
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
           onClick={nextSlide}
-          className="p-3 rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 transition-colors duration-300 group"
+          className="p-2 sm:p-3 rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 transition-colors duration-300 group"
         >
-          <ChevronRight className="h-8 w-8 text-white group-hover:text-white/90" />
+          <ChevronRight className="h-6 w-6 sm:h-8 sm:w-8 text-white group-hover:text-white/90" />
         </motion.button>
       </div>
 
       {/* Progress indicators */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-4 z-10">
+      <div className="absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 sm:space-x-4 z-10">
         {heroImages.map((_, index) => (
           <motion.button
             key={index}
@@ -119,7 +119,7 @@ const HeroSection = ({ currentSlide, setCurrentSlide, heroImages }) => {
             <div
               className={`h-2 rounded-full transition-all duration-500 ${
                 currentSlide === index
-                  ? "w-12 bg-white"
+                  ? "w-8 sm:w-12 bg-white"
                   : "w-2 bg-white/50 group-hover:bg-white/70"
               }`}
             />
@@ -128,7 +128,7 @@ const HeroSection = ({ currentSlide, setCurrentSlide, heroImages }) => {
       </div>
 
       {/* Content */}
-      <div className="relative container mt-14 mx-auto px-6 h-full flex items-center z-20">
+      <div className="relative max-w-screen-2xl mx-auto px-3 sm:px-6 h-full flex items-center z-20">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
@@ -150,10 +150,10 @@ const HeroSection = ({ currentSlide, setCurrentSlide, heroImages }) => {
                 ease: [0.22, 1, 0.36, 1],
               },
             }}
-            className="max-w-[52rem]"
+            className="max-w-[54rem]"
           >
             <motion.h1
-              className="text-6xl md:text-8xl font-extrabold font-open-sans text-primary-600/70 mb-6"
+              className="text-4xl sm:text-6xl md:text-8xl mt-4 font-extrabold font-open-sans text-primary-600/70 mb-4 sm:mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{
                 opacity: 1,
@@ -166,12 +166,12 @@ const HeroSection = ({ currentSlide, setCurrentSlide, heroImages }) => {
               }}
             >
               {heroImages[currentSlide].title}
-              <span className="block text-red-500/80  pt-3">
+              <span className="block text-red-500/80 pt-1 sm:pt-2">
                 {heroImages[currentSlide].subtitle}
               </span>
             </motion.h1>
             <motion.p
-              className="text-gray-600 font-nunito-sans font-bold text-xl mb-8 leading-relaxed"
+              className="rounded-xl backdrop-blur-sm text-base md:text-lg text-gray-700 font-nunito-sans font-bold mb-4 sm:mb-6 leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               animate={{
                 opacity: 1,
@@ -186,7 +186,7 @@ const HeroSection = ({ currentSlide, setCurrentSlide, heroImages }) => {
               {heroImages[currentSlide].description}
             </motion.p>
             <motion.div
-              className="flex flex-wrap gap-6"
+              className="flex flex-wrap gap-4 sm:gap-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{
                 opacity: 1,
@@ -202,16 +202,16 @@ const HeroSection = ({ currentSlide, setCurrentSlide, heroImages }) => {
                 onClick={() => setIsBookingModalOpen(true)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-primary-500 text-white px-10 py-4 rounded-full text-lg font-medium hover:bg-primary-600 transition-colors duration-300 flex items-center space-x-2 shadow-lg shadow-primary-500/20"
+                className="bg-primary-500 text-white px-6 sm:px-10 py-3 sm:py-4 rounded-full text-sm sm:text-lg font-medium hover:bg-primary-600 transition-colors duration-300 flex items-center space-x-2 shadow-lg shadow-primary-500/20"
               >
                 <span>Book Your Flight</span>
-                <ChevronRight className="h-5 w-5" />
+                <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5" />
               </motion.button>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => navigate("/fleet")}
-                className="bg-white/40 backdrop-blur-md text-gray-500 border-2 border-gray-300 px-10 py-4 rounded-full text-lg font-bold font-nunito-sans hover:bg-white/20 transition-colors duration-300"
+                className="bg-white/40 backdrop-blur-md text-gray-600 border-2 border-gray-200 px-6 sm:px-10 py-3 sm:py-4 rounded-full text-sm sm:text-lg font-bold font-nunito-sans hover:bg-white/20 transition-colors duration-300"
               >
                 Explore Services
               </motion.button>

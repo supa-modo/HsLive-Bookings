@@ -16,7 +16,7 @@
       "statusCode": 200
     },
     {
-      "route": "/fleet/:id",
+      "route": "/service/:id",
       "serve": "/index.html",
       "statusCode": 200
     },

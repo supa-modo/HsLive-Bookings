@@ -4,7 +4,7 @@ import Navigation from "./components/Navigation";
 import HeroSection from "./components/HeroSection";
 import ServicesSection from "./components/ServicesSection";
 import DestinationsSection from "./components/DestinationsSection";
-import FleetSection from "./components/FleetSection";
+import ServicePackages from "./components/ServicePackages";
 import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
 
@@ -120,7 +120,7 @@ const LuxuryJetLanding = () => {
         heroImages={heroImages}
       />
       <ServicesSection />
-      <FleetSection />
+      <ServicePackages />
       <DestinationsSection />
       <ContactSection />
     </div>
