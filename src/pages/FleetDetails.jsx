@@ -18,6 +18,10 @@ import {
   Map,
   Mail,
   SquareArrowOutUpRight,
+  Diamond,
+  Heart,
+  Crown,
+  Lock,
 } from "lucide-react";
 import Navigation from "../components/Navigation";
 
@@ -38,7 +42,7 @@ const serviceData = [
     id: 1,
     name: "Executive Business Escape",
     category: "Business Travel",
-    images: [jet9, jet3, jet7],
+    images: [jet3, jet6, jet7],
     aircraft: "Embraer Praetor 600",
     capacity: "Up to 12",
     range: "4,000 nautical miles",
@@ -97,158 +101,120 @@ const serviceData = [
   },
   {
     id: 2,
-    name: "Super Midsize Jet",
-    category: "Standard Package",
+    name: "The Elite Leisure Escape",
+    category: "Luxury Leisure package",
     images: [jet6, jet4, jet7],
-    capacity: "7-8",
-    range: "Up to 5 hours flight time",
+    aircraft: "Gulfstream G650ER",
+    capacity: "Up to 18",
+    range: "7,500 nautical miles",
     description:
-      "Perfect for shorter trips and small groups, our Midsize Jet offers exceptional comfort and efficiency. Ideal for business executives and small groups seeking a premium travel experience.",
-    amenities: [
-      "Wi-Fi Connectivity",
-      "Refreshment Center",
-      "Comfortable Seating",
-      "Entertainment System",
-      "Workspace",
-      "Climate Control",
-      "Restroom",
-      "Baggage Space",
+      "Designed for high-net-worth individuals and families, this package ensures a luxurious and personalized travel experience for your leisure trips.",
+    highlights: [
+      "Fly directly to exotic destinations",
+      "Gourmet in-flight dining",
+      "Customized entertainment options",
+      "Concierge services for villas and yachts",
+      "Celebratory surprises for special occasions",
     ],
-    specifications: {
-      "Cabin Height": "5.8 ft",
-      "Cabin Width": "5.5 ft",
-      "Cabin Length": "17.5 ft",
-      "Maximum Speed": "534 mph",
-      "Maximum Range": "2,000 nm",
-      "Maximum Altitude": "45,000 ft",
-    },
     features: [
       {
-        icon: Users,
-        title: "Passenger Capacity",
-        description: "Comfortably seats 7-8 passengers",
+        icon: Plane,
+        title: "Direct Access",
+        description: "Travel directly to your desired destination",
       },
       {
-        icon: Clock,
-        title: "Flight Range",
-        description: "Up to 5 hours non-stop flight",
+        icon: Diamond,
+        title: "Luxury Experience",
+        description: "Unmatched comfort and style during travel",
       },
       {
-        icon: Shield,
-        title: "Safety Features",
-        description: "Advanced safety systems and experienced crew",
+        icon: Heart,
+        title: "Personalized Service",
+        description: "Tailored in-flight amenities and concierge options",
       },
       {
         icon: Star,
-        title: "Luxury Experience",
-        description: "Premium comfort and personalized service",
+        title: "Exclusive Perks",
+        description: "Access to premium services and packages",
       },
     ],
+    amenities: [
+      "Fully reclining seats",
+      "Gourmet catering",
+      "Panoramic windows",
+      "Private sleeping quarters",
+      "Entertainment system",
+      "On-demand concierge",
+    ],
+    specifications: {
+      "Aircraft Type": "Gulfstream G650ER",
+      "Passenger Capacity": "Up to 18",
+      Range: "7,500 nautical miles",
+      "Cruise Speed": "516 knots",
+      "Cabin Height": "6.5 feet",
+      "Cabin Width": "8.5 feet",
+      "Baggage Capacity": "195 cubic feet",
+    },
     price: "Starting from $4,500/hour",
   },
   {
     id: 3,
-    name: "Heavy Jet",
-    category: "Standard Package",
+    name: "Dignitary Prestige Transfer",
+    category: "VIP Transfers",
     images: [jet6, jet4, jet7],
-    capacity: "7-8",
-    range: "Up to 5 hours flight time",
+    aircraft: "Bombardier Global 7500",
+    capacity: "Up to 19",
+    range: "7,700 nautical miles",
     description:
-      "Perfect for shorter trips and small groups, our Midsize Jet offers exceptional comfort and efficiency. Ideal for business executives and small groups seeking a premium travel experience.",
-    amenities: [
-      "Wi-Fi Connectivity",
-      "Refreshment Center",
-      "Comfortable Seating",
-      "Entertainment System",
-      "Workspace",
-      "Climate Control",
-      "Restroom",
-      "Baggage Space",
+      "Perfect for international dignitaries, celebrities, and government officials seeking unparalleled privacy, security, and luxury for their travel needs.",
+    highlights: [
+      "Seamless and secure transfers",
+      "Red-carpet welcome services",
+      "Tailored in-flight settings",
+      "Enhanced security measures",
+      "VIP lounge access",
     ],
-    specifications: {
-      "Cabin Height": "5.8 ft",
-      "Cabin Width": "5.5 ft",
-      "Cabin Length": "17.5 ft",
-      "Maximum Speed": "534 mph",
-      "Maximum Range": "2,000 nm",
-      "Maximum Altitude": "45,000 ft",
-    },
     features: [
       {
-        icon: Users,
-        title: "Passenger Capacity",
-        description: "Comfortably seats 7-8 passengers",
-      },
-      {
-        icon: Clock,
-        title: "Flight Range",
-        description: "Up to 5 hours non-stop flight",
-      },
-      {
         icon: Shield,
-        title: "Safety Features",
-        description: "Advanced safety systems and experienced crew",
+        title: "Enhanced Security",
+        description: "Unmatched privacy and protection during travel",
       },
       {
-        icon: Star,
-        title: "Luxury Experience",
-        description: "Premium comfort and personalized service",
+        icon: Crown,
+        title: "Red-Carpet Treatment",
+        description: "Exclusive services for VIP travelers",
+      },
+      {
+        icon: Lock,
+        title: "Confidential Travel",
+        description: "Secure environment for high-profile clients",
+      },
+      {
+        icon: Map,
+        title: "Global Reach",
+        description: "Travel to key diplomatic and high-profile locations",
       },
     ],
-    price: "Starting from $4,500/hour",
-  },
-  {
-    id: 4,
-    name: "Light Jet",
-    category: "Standard Package",
-    images: [jet2, jet8, jet5],
-    capacity: "7-8",
-    range: "Up to 5 hours flight time",
-    description:
-      "Perfect for shorter trips and small groups, our Midsize Jet offers exceptional comfort and efficiency. Ideal for business executives and small groups seeking a premium travel experience.",
     amenities: [
-      "Wi-Fi Connectivity",
-      "Refreshment Center",
-      "Comfortable Seating",
-      "Entertainment System",
-      "Workspace",
-      "Climate Control",
-      "Restroom",
-      "Baggage Space",
+      "Private suites",
+      "Conference rooms",
+      "Luxury dining options",
+      "Advanced entertainment systems",
+      "Customized cabin settings",
+      "Dedicated staff",
     ],
     specifications: {
-      "Cabin Height": "5.8 ft",
-      "Cabin Width": "5.5 ft",
-      "Cabin Length": "17.5 ft",
-      "Maximum Speed": "534 mph",
-      "Maximum Range": "2,000 nm",
-      "Maximum Altitude": "45,000 ft",
+      "Aircraft Type": "Bombardier Global 7500",
+      "Passenger Capacity": "Up to 19",
+      Range: "7,700 nautical miles",
+      "Cruise Speed": "516 knots",
+      "Cabin Height": "6.3 feet",
+      "Cabin Width": "8.2 feet",
+      "Baggage Capacity": "195 cubic feet",
     },
-    features: [
-      {
-        icon: Users,
-        title: "Passenger Capacity",
-        description: "Comfortably seats 7-8 passengers",
-      },
-      {
-        icon: Clock,
-        title: "Flight Range",
-        description: "Up to 5 hours non-stop flight",
-      },
-      {
-        icon: Shield,
-        title: "Safety Features",
-        description: "Advanced safety systems and experienced crew",
-      },
-      {
-        icon: Star,
-        title: "Luxury Experience",
-        description: "Premium comfort and personalized service",
-      },
-    ],
     price: "Starting from $4,500/hour",
   },
-  // ... (other fleet data)
 ];
 
 const FleetDetails = () => {
@@ -278,7 +244,7 @@ const FleetDetails = () => {
         <div className="flex-grow flex items-center justify-center">
           <div className="text-center">
             <h2 className="text-2xl font-extrabold text-red-600 mb-6">
-              Selected Fleet Not Found!!
+              Selected Package Not Found!!
             </h2>
             <Link
               to="/fleet"
@@ -427,7 +393,7 @@ const FleetDetails = () => {
           {/* Specifications */}
           <div className="bg-white rounded-xl shadow-lg p-8">
             <h2 className=" p-2 text-xl sm:text-2xl font-extrabold mb-2 md:mb-4 bg-gradient-to-r from-gray-600 via-primary-500 to-gray-600 bg-clip-text text-transparent">
-              Technical Specifications
+              Aircraft Technical Specifications
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               {Object.entries(selectedFleet.specifications).map(
@@ -443,6 +409,28 @@ const FleetDetails = () => {
                   </div>
                 )
               )}
+            </div>
+          </div>
+
+          {/* Package Highlights */}
+          <div className="mt-8">
+            <div className="bg-white rounded-xl shadow-lg p-8">
+              <h2 className=" p-2 text-xl sm:text-2xl font-extrabold mb-2 md:mb-4 bg-gradient-to-r from-gray-600 via-primary-500 to-gray-600 bg-clip-text text-transparent">
+                Package Highlights
+              </h2>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                {selectedFleet.highlights.map((highlight, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg"
+                  >
+                    <Check className="h-5 w-5 text-primary-600 flex-shrink-0" />
+                    <span className="text-gray-600 font-semibold">
+                      {highlight}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -474,7 +462,7 @@ const FleetDetails = () => {
               </h2>
               <div className="space-y-4 mb-6">
                 <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                  <span className="text-gray-500 font-extrabold">
+                  <span className="text-gray-500 font-bold">
                     Starting Price
                   </span>
                   <span className="font-bold text-red-600">
@@ -482,15 +470,13 @@ const FleetDetails = () => {
                   </span>
                 </div>
                 <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                  <span className="text-gray-500 font-extrabold">Capacity</span>
+                  <span className="text-gray-500 font-bold">Capacity</span>
                   <span className="font-semibold">
                     {selectedFleet.capacity} Passengers
                   </span>
                 </div>
                 <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                  <span className="text-gray-500 font-extrabold">
-                    Flight Range
-                  </span>
+                  <span className="text-gray-500 font-bold">Flight Range</span>
                   <span className="font-semibold">{selectedFleet.range}</span>
                 </div>
               </div>

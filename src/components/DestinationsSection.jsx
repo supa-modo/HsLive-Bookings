@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import dubai from "../assets/images/dubai.jpeg";
-import maldives from "../assets/images/maldives.jpeg";
+import arusha from "../assets/images/arusha.jpg";
 import capetown from "../assets/images/capetown.jpeg";
-import paris from "../assets/images/paris.jpeg";
-import singapore from "../assets/images/singapore.jpeg";
+import ngorongoro from "../assets/images/ngorongoro.jpg";
+import kilimanjaro from "../assets/images/kilimanjaro.jpg";
 import zanzibar from "../assets/images/zanzibar.jpeg";
 import nairobi from "../assets/images/nairobi.jpeg";
 
@@ -20,17 +20,17 @@ const destinations = [
   },
   {
     id: 2,
-    name: "Maldives",
-    image: maldives,
+    name: "Arusha, Tanzania",
+    image: arusha,
     price: "$1,050",
     featured: true,
     gridArea: "span 1 / span 1",
   },
   {
     id: 3,
-    name: "Singapore",
+    name: "Cape Town, SA",
     featured: true,
-    image: singapore,
+    image: capetown,
     price: "$1,800",
   },
   {
@@ -50,21 +50,12 @@ const destinations = [
     featured: true,
     gridArea: "span 1 / span 1",
   },
-  // {
-  //   id: 5,
-  //   name: "Paris, France",
-  //   image: paris,
-
-  //   price: "$1,050",
-  //   featured: true,
-  //   gridArea: "span 1 / span 1",
-  // },
   {
-    id: 6,
-    name: "Cape Town, South Africa",
-    image: capetown,
-    price: "$1,100",
+    id: 3,
+    name: "Kilimanjaro, Tanzania",
     featured: true,
+    image: kilimanjaro,
+    price: "$1,800",
     gridArea: "span 1 / span 2",
   },
   // Additional destinations for expanded view

@@ -63,6 +63,7 @@ const fleetData = [
     ],
   },
   {
+    id: 3,
     name: "Dignitary Prestige Transfer",
     category: "VIP Transport",
     image: jet6,
@@ -185,7 +186,7 @@ const FleetSection = () => {
             viewport={{ once: true }}
           >
             <h2 className=" p-2 text-3xl sm:text-4xl font-extrabold mb-4 bg-gradient-to-r from-gray-700 via-primary-600 to-gray-600 bg-clip-text text-transparent">
-              Private Jet Charter Services
+              Jet Charter Packages
             </h2>
 
             <p className="text-base sm:text-lg text-gray-500 leading-relaxed font-semibold">
@@ -221,7 +222,7 @@ const FleetSection = () => {
               }}
               className="inline-flex items-center justify-center px-8 py-4 bg-white text-primary-600 border-2 border-primary-600 rounded-xl font-medium hover:bg-primary-50 transition-all duration-300"
             >
-              Contact Us
+              Contact Us Today
             </button>
           </div>
         </motion.div>

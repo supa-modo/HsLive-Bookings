@@ -5,7 +5,7 @@ import FleetDetails from "./pages/FleetDetails";
 import Fleet from "./pages/Fleet";
 import LuxuryJetLanding from "./LandingPage";
 import Footer from "./components/Footer";
-import ServiceDetails from "./pages/ServiceDetailsPage";
+import ServicesPage from "./pages/Fleet";
 
 function App() {
   return (
@@ -13,9 +13,8 @@ function App() {
       <Routes>
         <Route path="/" element={<LuxuryJetLanding />} />
         <Route path="/home" element={<LuxuryJetLanding />} />
-        <Route path="/fleet" element={<Fleet />} />
+        <Route path="/fleet" element={<ServicesPage />} />
         <Route path="/fleet/:id" element={<FleetDetails />} />
-        <Route path="/service/:id" element={<ServiceDetails />} />
       </Routes>{" "}
       <Footer />
     </Router>
