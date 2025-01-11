@@ -16,7 +16,7 @@ import {
 import formatDateShort from "../utils/dateTimeFunctions";
 
 const StepIndicator = ({ currentStep, totalSteps }) => (
-  <div className="flex items-center justify-center space-x-2 mb-8">
+  <div className="flex items-center justify-center space-x-2 mb-4">
     {[...Array(totalSteps)].map((_, index) => (
       <div
         key={index}
@@ -118,7 +118,7 @@ const BookingModal = ({ isOpen, onClose }) => {
               <X className="h-7 w-7" />
             </button>
 
-            <div className="p-6 md:p-10">
+            <div className="p-4 md:p-10">
               {/* Header */}
               <div className="text-center mb-5">
                 <h2 className="text-2xl sm:text-2xl md:text-3xl font-extrabold bg-gradient-to-r from-gray-900 via-primary-800 to-gray-700 bg-clip-text text-transparent mb-2">
@@ -133,7 +133,7 @@ const BookingModal = ({ isOpen, onClose }) => {
               <StepIndicator currentStep={step} totalSteps={3} />
 
               {/* Form Steps */}
-              <div className="mt-8">
+              <div className="mt-4">
                 {step === 1 && (
                   <motion.div
                     initial={{ opacity: 0, x: 20 }}
