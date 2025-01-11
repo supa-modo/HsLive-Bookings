@@ -256,10 +256,10 @@ const BookingModal = ({ isOpen, onClose }) => {
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
-                    className="space-y-6"
+                    className="space-y-3 sm:space-y-6"
                   >
                     {/* Date Selection */}
-                    <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
+                    <div className="flex flex-col md:flex-row items-center space-y-2 sm:space-y-4 md:space-y-0 md:space-x-4">
                       <div className="w-full">
                         <label className="block text-sm  font-medium text-gray-700 mb-2">
                           Departure Date
@@ -295,11 +295,11 @@ const BookingModal = ({ isOpen, onClose }) => {
                     </div>
 
                     {/* Package Selection */}
-                    <div className="space-y-4">
+                    <div className="space-y-2 sm:space-y-4">
                       <h3 className="text-base font-bold text-amber-700">
                         Select Your Experience
                       </h3>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-4">
                         {options.map((option, index) => (
                           <div
                             key={index}
@@ -335,7 +335,7 @@ const BookingModal = ({ isOpen, onClose }) => {
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
-                    className="space-y-8"
+                    className="sm:space-y-8 space-y-4"
                   >
                     {/* Booking Summary  */}
                     <div className="relative bg-gradient-to-br from-gray-100 to-gray-50 shadow-lg rounded-2xl overflow-hidden border border-gray-300">

@@ -388,7 +388,7 @@ const ServicesSection = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl sm:text-4xl md:text-5xl font-extrabold pt-8 mb-4 bg-gradient-to-r from-gray-700 via-primary-700 to-gray-600 bg-clip-text text-transparent"
+            className="text-2xl sm:text-3xl md:text-5xl font-extrabold pt-8 mb-4 bg-gradient-to-r from-gray-700 via-primary-700 to-gray-600 bg-clip-text text-transparent"
           >
             Our Premium Aviation Services
           </motion.h2>
@@ -397,7 +397,7 @@ const ServicesSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-lg sm:text-xl text-gray-600 font-semibold leading-relaxed"
+            className="text-base md:text-xl text-gray-600 font-semibold leading-relaxed"
           >
             Experience the epitome of luxury travel with our comprehensive suite
             of private aviation services
@@ -407,7 +407,7 @@ const ServicesSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-lg sm:text-xl text-gray-600 font-semibold leading-relaxed"
+            className="text-base md:text-xl text-gray-600 font-semibold leading-relaxed"
           >
             Click on any of the service cards below to view more details about
             the service.
