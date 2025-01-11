@@ -6,17 +6,14 @@ import {
   Users,
   Calendar,
   MapPin,
-  Clock,
-  Globe,
-  Shield,
-  CheckCircle,
-  ArrowRight,
   Phone,
+  ArrowRight,
+  Map,
+  CheckCircle,
   PhoneCall,
   TicketsPlane,
 } from "lucide-react";
 import formatDateShort from "../utils/dateTimeFunctions";
-import { JetSelection } from "./JetSelection";
 
 const StepIndicator = ({ currentStep, totalSteps }) => (
   <div className="flex items-center justify-center space-x-2 mb-8">
@@ -35,6 +32,41 @@ const StepIndicator = ({ currentStep, totalSteps }) => (
   </div>
 );
 
+const options = [
+  {
+    icon: Plane,
+    title: "Executive Business Escape",
+    description: "For corporate teams and professionals.",
+    features: [
+      "In-flight Wi-Fi",
+      "Private meeting areas",
+      "Concierge services",
+    ],
+  },
+  {
+    icon: Plane,
+    title: "Elite Escape: Luxury Leisure",
+    description: "For high-net-worth individuals and families.",
+    features: ["Gourmet dining", "Premium champagne", "Exclusive experiences"],
+  },
+  {
+    icon: Plane,
+    title: "Dignitary Prestige Transfer",
+    description: "For dignitaries, celebrities, and officials.",
+    features: ["Enhanced security", "Custom comfort", "Seamless transfers"],
+  },
+  {
+    icon: Map,
+    title: "Private Aircraft Safaris",
+    description: "Explore Tanzania's national parks from above.",
+    features: [
+      "Aerial wildlife viewing",
+      "Luxury lodges",
+      "Private game drives",
+    ],
+  },
+];
+
 const BookingModal = ({ isOpen, onClose }) => {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
@@ -45,8 +77,7 @@ const BookingModal = ({ isOpen, onClose }) => {
     arrivalLocation: "",
     departureDate: "",
     returnDate: "",
-    fleetType: "",
-    selectedJet: null,
+    selectedOption: null,
   });
 
   const handleInputChange = (e) => {
@@ -56,6 +87,10 @@ const BookingModal = ({ isOpen, onClose }) => {
 
   const nextStep = () => setStep((prev) => Math.min(prev + 1, 3));
   const prevStep = () => setStep((prev) => Math.max(prev - 1, 1));
+
+  const handleOptionSelect = (option) => {
+    setFormData((prev) => ({ ...prev, selectedOption: option }));
+  };
 
   return (
     <AnimatePresence>
@@ -83,13 +118,13 @@ const BookingModal = ({ isOpen, onClose }) => {
               <X className="h-7 w-7" />
             </button>
 
-            <div className="p-8 md:p-12">
+            <div className="p-6 md:p-10">
               {/* Header */}
-              <div className="text-center mb-8">
-                <h2 className="text-3xl font-extrabold bg-gradient-to-r from-gray-900 via-primary-800 to-gray-700 bg-clip-text text-transparent mb-2">
+              <div className="text-center mb-5">
+                <h2 className="text-2xl sm:text-2xl md:text-3xl font-extrabold bg-gradient-to-r from-gray-900 via-primary-800 to-gray-700 bg-clip-text text-transparent mb-2">
                   Book Your Private Jet
                 </h2>
-                <p className="text-gray-500 font-semibold">
+                <p className="text-sm sm:text-base  text-gray-500 font-semibold">
                   Experience luxury travel at its finest
                 </p>
               </div>
@@ -120,8 +155,8 @@ const BookingModal = ({ isOpen, onClose }) => {
                           })
                         }
                       >
-                        <Plane className="h-8 w-8 mx-auto mb-2" />
-                        <span className="">One Way</span>
+                        <Plane className="h-8 w-8 mx-auto sm:mb-2" />
+                        <span className="text-sm sm:text-base">One Way</span>
                       </button>
                       <button
                         className={`p-4 font-semibold  rounded-xl border-2 transition-all duration-300 ${
@@ -135,17 +170,17 @@ const BookingModal = ({ isOpen, onClose }) => {
                           })
                         }
                       >
-                        <div className="flex justify-center mb-3 space-x-2">
-                          <Plane className="h-8 w-8 mb-2" />
-                          <Plane className="h-8 w-8 rotate-180 mb-2" />
+                        <div className="flex justify-center mb-2 space-x-2">
+                          <Plane className="h-8 w-8 sm:mb-2" />
+                          <Plane className="h-8 w-8 rotate-180 sm:mb-2" />
                         </div>
-                        <span className="">Round Trip</span>
+                        <span className="text-sm sm:text-base">Round Trip</span>
                       </button>
                     </div>
 
                     {/* Passenger Count */}
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-[13px] sm:text-sm font-medium text-gray-700 mb-2">
                         Number of Passengers
                       </label>
                       <div className="relative">
@@ -157,7 +192,7 @@ const BookingModal = ({ isOpen, onClose }) => {
                           onChange={handleInputChange}
                           min="1"
                           max="19"
-                          className="w-full pl-14 pr-4 py-3 font-semibold text-gray-600 rounded-lg border border-gray-300  focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
+                          className="w-full text-sm md:text-[15px] pl-14 pr-4 py-3 font-semibold text-gray-600 rounded-lg border border-gray-300  focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
                         />
                       </div>
                     </div>
@@ -165,7 +200,7 @@ const BookingModal = ({ isOpen, onClose }) => {
                     {/* Locations */}
                     <div className="space-y-4">
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <label className="block text-[13px] sm:text-sm font-medium text-gray-700 mb-2">
                           Departure Location
                         </label>
                         <div className="relative">
@@ -176,12 +211,12 @@ const BookingModal = ({ isOpen, onClose }) => {
                             value={formData.departureLocation}
                             onChange={handleInputChange}
                             placeholder="City or Airport"
-                            className="w-full pl-14 pr-4 py-3 font-semibold text-gray-600 rounded-lg border  border-gray-300  focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
+                            className="w-full text-sm md:text-[15px] pl-14 pr-4 py-3 font-semibold text-gray-600 rounded-lg border  border-gray-300  focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
                           />
                         </div>
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <label className="block text-[13px] sm:text-sm font-medium text-gray-700 mb-2">
                           Arrival Location
                         </label>
                         <div className="relative">
@@ -192,12 +227,12 @@ const BookingModal = ({ isOpen, onClose }) => {
                             value={formData.arrivalLocation}
                             onChange={handleInputChange}
                             placeholder="City or Airport"
-                            className="w-full pl-14 pr-4 py-3 font-semibold text-gray-600 rounded-lg border  border-gray-300  focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
+                            className="w-full text-sm md:text-[15px] pl-14 pr-4 py-3 font-semibold text-gray-600 rounded-lg border  border-gray-300  focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
                           />
                         </div>
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <label className="block text-[13px] sm:text-sm font-medium text-gray-700 mb-2">
                           Your Contact Information
                         </label>
                         <div className="relative">
@@ -208,7 +243,7 @@ const BookingModal = ({ isOpen, onClose }) => {
                             value={formData.contactInfo}
                             onChange={handleInputChange}
                             placeholder="Email Adddress or Phone Number"
-                            className="w-full pl-14 pr-4 py-3 font-semibold text-gray-600 rounded-lg border  border-gray-300  focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
+                            className="w-full text-sm md:text-[15px] pl-14 pr-4 py-3 font-semibold text-gray-600 rounded-lg border  border-gray-300  focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
                           />
                         </div>
                       </div>
@@ -224,9 +259,9 @@ const BookingModal = ({ isOpen, onClose }) => {
                     className="space-y-6"
                   >
                     {/* Date Selection */}
-                    <div className=" flex items-center space-x-4">
+                    <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
                       <div className="w-full">
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <label className="block text-sm  font-medium text-gray-700 mb-2">
                           Departure Date
                         </label>
                         <div className="relative">
@@ -236,13 +271,13 @@ const BookingModal = ({ isOpen, onClose }) => {
                             name="departureDate"
                             value={formData.departureDate}
                             onChange={handleInputChange}
-                            className="w-full pl-12 pr-4 py-3 rounded-lg font-semibold text-gray-600 border  border-gray-300  focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
+                            className="w-full pl-12 text-sm pr-4 py-3 rounded-lg font-semibold text-gray-600 border  border-gray-300  focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
                           />
                         </div>
                       </div>
                       {formData.tripType === "roundTrip" && (
                         <div className="w-full">
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                          <label className="block text-sm  font-medium text-gray-700 mb-2">
                             Return Date
                           </label>
                           <div className="relative">
@@ -252,18 +287,46 @@ const BookingModal = ({ isOpen, onClose }) => {
                               name="returnDate"
                               value={formData.returnDate}
                               onChange={handleInputChange}
-                              className="w-full pl-12 pr-4 py-3 rounded-lg font-semibold text-gray-600 border  border-gray-300  focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
+                              className="w-full pl-12 pr-4 text-sm py-3 rounded-lg font-semibold text-gray-600 border  border-gray-300  focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
                             />
                           </div>
                         </div>
                       )}
                     </div>
 
-                    {/* Jet Selection */}
-                    <JetSelection
-                      formData={formData}
-                      handleInputChange={handleInputChange}
-                    />
+                    {/* Package Selection */}
+                    <div className="space-y-4">
+                      <h3 className="text-base font-bold text-amber-700">
+                        Select Your Experience
+                      </h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {options.map((option, index) => (
+                          <div
+                            key={index}
+                            className={`px-6 py-5 rounded-xl border-2 transition-all duration-300 cursor-pointer ${
+                              formData.selectedOption?.title === option.title
+                                ? "border-primary-600 bg-primary-50"
+                                : "border-gray-300 hover:border-primary-200"
+                            }`}
+                            onClick={() => handleOptionSelect(option)}
+                          >
+                            <div className="flex items-center space-x-4">
+                              <div className="p-3 bg-primary-100 rounded-lg">
+                                <option.icon className="h-6 w-6 text-primary-600" />
+                              </div>
+                              <div>
+                                <h4 className="text-sm sm:text-base font-bold text-primary-600">
+                                  {option.title}
+                                </h4>
+                                <p className="text-[13px] sm:text-sm text-gray-500">
+                                  {option.description}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   </motion.div>
                 )}
 
@@ -278,36 +341,38 @@ const BookingModal = ({ isOpen, onClose }) => {
                     <div className="relative bg-gradient-to-br from-gray-100 to-gray-50 shadow-lg rounded-2xl overflow-hidden border border-gray-300">
                       <div className="flex justify-between items-center py-4 px-6 bg-primary-600 text-white">
                         <div>
-                          <h3 className="text-lg font-bold">
+                          <h3 className="text-base sm:text-lg font-bold">
                             Your Booking Summary
                           </h3>
-                          <p className="text-sm">{formData.contactInfo}</p>
+                          <p className="text-[13px] font-semibold text-amber-400">
+                            {formData.contactInfo}
+                          </p>
                         </div>
 
                         <Plane className="h-6 w-6" />
                       </div>
                       <div className="px-6 py-4">
-                        <div className="flex flex-wrap items-center justify-between border-b border-gray-300 pb-4">
+                        <div className="flex flex-wrap items-center justify-between border-b-2 border-dashed border-gray-300 pb-4">
                           <div className="w-1/2 md:w-auto text-left">
-                            <p className="text-gray-500 text-sm font-semibold">
+                            <p className="text-gray-500 text-sm font-bold">
                               From
                             </p>
-                            <p className="text-lg font-bold text-gray-700">
+                            <p className="text-base sm:text-lg font-nunito-sans md:font-sans font-bold text-primary-700">
                               {formData.departureLocation}
                             </p>
                           </div>
                           <div className="w-1/2 md:w-auto text-right">
-                            <p className="text-gray-500 text-sm font-semibold">
+                            <p className="text-gray-500 text-sm  font-bold">
                               To
                             </p>
-                            <p className="text-lg font-bold text-gray-700">
+                            <p className="text-base sm:text-lg font-nunito-sans md:font-sans font-bold text-green-700">
                               {formData.arrivalLocation}
                             </p>
                           </div>
                         </div>
-                        <div className="grid grid-cols-2 gap-4 mt-4 text-sm">
+                        <div className="grid grid-cols-2 sm:grid-cols-2 gap-3 sm:gap-4 mt-4 text-sm">
                           <div>
-                            <p className="text-gray-500 font-semibold">
+                            <p className="text-gray-500 font-bold">
                               Departure Date
                             </p>
                             <p className="font-bold text-gray-700">
@@ -316,7 +381,7 @@ const BookingModal = ({ isOpen, onClose }) => {
                           </div>
                           {formData.tripType === "roundTrip" && (
                             <div>
-                              <p className="text-gray-500 font-semibold">
+                              <p className="text-gray-500 font-bold">
                                 Return Date
                               </p>
                               <p className="font-bold text-gray-700">
@@ -325,7 +390,7 @@ const BookingModal = ({ isOpen, onClose }) => {
                             </div>
                           )}
                           <div>
-                            <p className="text-gray-500 font-semibold">
+                            <p className="text-gray-500 font-bold">
                               Passengers
                             </p>
                             <p className="font-bold text-gray-700">
@@ -333,31 +398,17 @@ const BookingModal = ({ isOpen, onClose }) => {
                             </p>
                           </div>
                           <div>
-                            {formData.selectedAircraft && (
+                            {formData.selectedOption && (
                               <div className="">
-                                <p className="text-gray-500 font-semibold mb-2">
-                                  Selected Jet:{" "}
+                                <p className="text-sm text-gray-500 font-bold mb-2">
+                                  Selected Option:{" "}
                                   <span className="text-red-500 font-extrabold">
-                                    {formData.fleetType}
+                                    {formData.selectedOption.title}
                                   </span>
                                 </p>
-                                <div className="flex items-center space-x-4">
-                                  <div className="w-20 h-12 rounded-lg overflow-hidden">
-                                    <img
-                                      src={formData.selectedAircraft.image}
-                                      alt={formData.selectedAircraft.name}
-                                      className="w-full h-full object-cover"
-                                    />
-                                  </div>
-                                  <div>
-                                    <p className="font-bold text-gray-700">
-                                      {formData.selectedAircraft.name}
-                                    </p>
-                                    <p className="text-sm text-gray-500">
-                                      {formData.selectedAircraft.capacity}
-                                    </p>
-                                  </div>
-                                </div>
+                                <p className="text-xs md:text-sm text-gray-500">
+                                  {formData.selectedOption.description}
+                                </p>
                               </div>
                             )}
                           </div>
@@ -366,29 +417,27 @@ const BookingModal = ({ isOpen, onClose }) => {
                     </div>
 
                     {/* What's Next Section */}
-                    <div className="bg-white shadow-lg rounded-xl border border-gray-300 p-6">
-                      <h3 className="text-lg font-bold text-gray-700 mb-4">
+                    <div className="bg-white font-nunito-sans shadow-lg rounded-xl border border-gray-300 p-6">
+                      <h3 className="text-base sm:text-lg font-bold text-gray-700 mb-4">
                         What's Next?
                       </h3>
-                      <div className="space-y-4 font-semibold">
+                      <div className="space-y-4 font-semibold ">
                         <div className="flex items-center space-x-4">
                           <CheckCircle className="text-green-500 h-6 w-6" />
-                          <p className="text-sm text-gray-500">
+                          <p className="text-sm sm:text-base text-gray-500">
                             Our team will review your booking request details.
                           </p>
                         </div>
                         <div className="flex items-center space-x-4">
                           <PhoneCall className="text-blue-500 h-6 w-6" />
-                          <p className="text-sm text-gray-500">
-                            We'll contact you within 2 hours with a quote based
-                            on your preferences.
+                          <p className="text-sm sm:text-base text-gray-500">
+                            We'll contact you within 2 hours with a quote matching your preferences.
                           </p>
                         </div>
                         <div className="flex items-center space-x-4">
                           <TicketsPlane className="text-purple-500 h-6 w-6" />
-                          <p className="text-sm text-gray-500">
-                            Finalize your booking and payment with our customer
-                            service representative.
+                          <p className="text-sm sm:text-base text-gray-500">
+                            Finalize your booking and payment with our team.
                           </p>
                         </div>
                       </div>
@@ -401,7 +450,7 @@ const BookingModal = ({ isOpen, onClose }) => {
                   {step > 1 && (
                     <button
                       onClick={prevStep}
-                      className="px-10 py-2 text-gray-500 bg-gray-200 rounded-lg hover:bg-gray-300 font-semibold transition-colors duration-300"
+                      className="px-6 sm:px-10 py-3 text-gray-500 bg-gray-200 rounded-lg hover:bg-gray-300 font-semibold transition-colors duration-300"
                     >
                       Back
                     </button>
@@ -417,17 +466,16 @@ const BookingModal = ({ isOpen, onClose }) => {
                           arrival: formData.arrivalLocation,
                           departureDate: formData.departureDate,
                           returnDate: formData.returnDate,
-                          fleetType: formData.fleetType,
-                          aircraft: formData.selectedAircraft,
+                          selectedOption: formData.selectedOption,
                         });
                         onClose();
                       } else {
                         nextStep();
                       }
                     }}
-                    className="ml-auto flex items-center space-x-2 px-10 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors duration-300"
+                    className="ml-auto flex items-center space-x-2 px-6 sm:px-10 py-2 sm:py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors duration-300"
                   >
-                    <span className="font-semibold">
+                    <span className="font-semibold text-sm sm:text-base">
                       {step === 3 ? "Submit Request" : "Continue"}
                     </span>
                     <ArrowRight className="h-5 w-5" />

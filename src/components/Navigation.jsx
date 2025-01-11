@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Plane, X, Menu } from "lucide-react";
+import { Plane, X, Menu, MousePointerClick } from "lucide-react";
 import BookingModal from "./BookingModal";
 import { Link } from "react-router-dom";
+import { TbHandFinger } from "react-icons/tb";
 
 const NavLink = ({ href, children }) => (
   <a
@@ -91,7 +92,6 @@ const Navigation = ({ scrolled, isMenuOpen, setIsMenuOpen }) => {
               className="md:hidden bg-white/95 backdrop-blur-md border-t border-gray-200"
             >
               <div className="flex flex-col container mx-auto px-6 sm:px-8 py-6 space-y-4">
-                
                 <NavLink href="/">Home</NavLink>
                 <NavLink href="/#services">Services</NavLink>
                 <NavLink href="/#destinations">Destinations</NavLink>
@@ -101,9 +101,11 @@ const Navigation = ({ scrolled, isMenuOpen, setIsMenuOpen }) => {
                     setIsBookingModalOpen(true);
                     setIsMenuOpen(false);
                   }}
-                  className="w-full bg-primary-600 text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-primary-700 transform hover:scale-105 transition-all duration-300"
+                  className="w-full flex items-center space-x-3 bg-primary-600 text-white px-6 py-3 rounded-full text-[15px] font-medium hover:bg-primary-700 transform hover:scale-105 transition-all duration-300"
                 >
-                  Book Now
+                  {/* <TbHandFinger size={18} /> */}
+                  <MousePointerClick />
+                  <span>Book Now</span>
                 </button>
               </div>
             </motion.div>
