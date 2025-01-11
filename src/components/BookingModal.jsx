@@ -354,7 +354,7 @@ const BookingModal = ({ isOpen, onClose }) => {
                       <div className="px-6 py-4">
                         <div className="flex flex-wrap items-center justify-between border-b-2 border-dashed border-gray-300 pb-4">
                           <div className="w-1/2 md:w-auto text-left">
-                            <p className="text-gray-500 text-sm font-bold">
+                            <p className="text-gray-500 text-[13px] sm:text-sm sm:font-bold  font-semibold">
                               From
                             </p>
                             <p className="text-base sm:text-lg font-nunito-sans md:font-sans font-bold text-primary-700">
@@ -362,7 +362,7 @@ const BookingModal = ({ isOpen, onClose }) => {
                             </p>
                           </div>
                           <div className="w-1/2 md:w-auto text-right">
-                            <p className="text-gray-500 text-sm  font-bold">
+                            <p className="text-gray-500 text-[13px] sm:text-sm sm:font-bold  font-semibold">
                               To
                             </p>
                             <p className="text-base sm:text-lg font-nunito-sans md:font-sans font-bold text-green-700">
@@ -372,28 +372,28 @@ const BookingModal = ({ isOpen, onClose }) => {
                         </div>
                         <div className="grid grid-cols-2 sm:grid-cols-2 gap-3 sm:gap-4 mt-4 text-sm">
                           <div>
-                            <p className="text-gray-500 font-bold">
+                            <p className="text-gray-500 text-[13px] sm:text-sm sm:font-bold  font-semibold">
                               Departure Date
                             </p>
-                            <p className="font-bold text-gray-700">
+                            <p className="sm:font-bold font-semibold text-gray-700">
                               {formatDateShort(formData.departureDate)}
                             </p>
                           </div>
                           {formData.tripType === "roundTrip" && (
                             <div>
-                              <p className="text-gray-500 font-bold">
+                              <p className="text-gray-500 text-[13px] sm:text-sm sm:font-bold  font-semibold">
                                 Return Date
                               </p>
-                              <p className="font-bold text-gray-700">
+                              <p className="sm:font-bold font-semibold text-gray-700">
                                 {formatDateShort(formData.returnDate)}
                               </p>
                             </div>
                           )}
                           <div>
-                            <p className="text-gray-500 font-bold">
+                            <p className="text-gray-500 text-[13px] sm:text-sm sm:font-bold  font-semibold">
                               Passengers
                             </p>
-                            <p className="font-bold text-gray-700">
+                            <p className="sm:font-bold font-semibold text-gray-700">
                               {formData.passengers}
                             </p>
                           </div>
@@ -450,7 +450,7 @@ const BookingModal = ({ isOpen, onClose }) => {
                   {step > 1 && (
                     <button
                       onClick={prevStep}
-                      className="px-6 sm:px-10 py-3 text-gray-500 bg-gray-200 rounded-lg hover:bg-gray-300 font-semibold transition-colors duration-300"
+                      className="text-[13px] px-10 py-3 text-gray-500 bg-gray-200 rounded-lg hover:bg-gray-300 font-semibold transition-colors duration-300"
                     >
                       Back
                     </button>
@@ -473,9 +473,9 @@ const BookingModal = ({ isOpen, onClose }) => {
                         nextStep();
                       }
                     }}
-                    className="ml-auto flex items-center space-x-2 px-6 sm:px-10 py-2 sm:py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors duration-300"
+                    className="ml-auto  flex items-center space-x-2 px-6 sm:px-10 py-2 sm:py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors duration-300"
                   >
-                    <span className="font-semibold text-sm sm:text-base">
+                    <span className="font-semibold text-[13px] sm:text-base">
                       {step === 3 ? "Submit Request" : "Continue"}
                     </span>
                     <ArrowRight className="h-5 w-5" />

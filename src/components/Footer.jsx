@@ -17,31 +17,32 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="font-nunito-sans font-medium bg-gradient-to-br from-primary-900 to-primary-700 text-gray-600 pt-16 pb-8 relative overflow-hidden">
+    <footer className="font-nunito-sans font-medium bg-gradient-to-br from-primary-900 to-primary-700 text-gray-600 pt-12 sm:pt-16 pb-6 sm:pb-8 relative overflow-hidden">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 bg-[url('/api/placeholder/400/400')] opacity-3 bg-repeat"></div>
 
-      <div className="container mx-auto px-6 relative">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+      <div className="container mx-auto px-4 sm:px-6 relative">
+        {/* Grid Layout */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12">
           {/* Company Info Section */}
           <div className="relative">
             <div className="flex items-center space-x-3">
               <img
                 src="/logo.png"
                 alt="Luxury Private Jet"
-                className="h-16 w-16 transition-transform duration-500 hover:scale-105"
+                className="h-12 sm:h-16 w-12 sm:w-16 transition-transform duration-500 hover:scale-105"
               />
-              <span className="text-[22px] font-extrabold bg-gradient-to-r from-gray-100 to-gray-300 text-transparent bg-clip-text">
+              <span className="text-lg sm:text-[22px] font-extrabold bg-gradient-to-r from-gray-100 to-gray-300 text-transparent bg-clip-text">
                 Shine Luxury Private Jets
               </span>
             </div>
-            <p className="text-gray-400 font-medium mb-8 leading-relaxed">
+            <p className="text-sm sm:text-base text-gray-400 font-medium mt-4 mb-6 sm:mb-8 leading-relaxed">
               Your trusted partner in luxury private aviation, delivering
               exceptional travel experiences worldwide.
             </p>
 
             <div>
-              <p className="text-gray-400 mb-3 leading-relaxed">
+              <p className="text-sm sm:text-base text-gray-400 mb-3 leading-relaxed">
                 Find us on our social media accounts.
               </p>
               <div className="flex space-x-4">
@@ -72,7 +73,10 @@ const Footer = () => {
                     href="#"
                     className={`${social.bg} ${social.color} px-[5px] py-1 rounded-lg transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1`}
                   >
-                    <FontAwesomeIcon icon={social.icon} className="w-5 h-[14px]" />
+                    <FontAwesomeIcon
+                      icon={social.icon}
+                      className="w-5 h-[14px]"
+                    />
                   </a>
                 ))}
               </div>
@@ -81,22 +85,22 @@ const Footer = () => {
 
           {/* Quick Links Section */}
           <div>
-            <h4 className="text-lg font-bold mb-6 text-gray-100">
+            <h4 className="text-base sm:text-lg font-bold mb-4 sm:mb-6 text-gray-100">
               Quick Links
             </h4>
-            <ul className="space-y-3">
+            <ul className="space-y-2 sm:space-y-3">
               {[
                 ["Home", "/"],
                 ["About Us", "#about"],
                 ["Services", "#services"],
-                ["Fleet", "/fleet"],
+                // ["Fleet", "/fleet"],
                 ["Destinations", "#destinations"],
-                ["Contact", "#contact"],
+                ["Contact Us", "#contact"],
               ].map(([label, href]) => (
                 <li key={label}>
                   <a
                     href={href}
-                    className="text-gray-400 hover:text-primary-400 transition-colors duration-300 flex items-center space-x-2 group"
+                    className="text-sm sm:text-base text-gray-400 hover:text-primary-400 transition-colors duration-300 flex items-center space-x-2 group"
                   >
                     <div className="h-1 w-1 rounded-full bg-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <span>{label}</span>
@@ -108,22 +112,22 @@ const Footer = () => {
 
           {/* Services Section */}
           <div>
-            <h4 className="text-lg font-bold mb-6 text-gray-100">
+            <h4 className="text-base sm:text-lg font-bold mb-4 sm:mb-6 text-gray-100">
               Our Services
             </h4>
-            <ul className="space-y-3">
+            <ul className="space-y-2 sm:space-y-3">
               {[
                 "Private Jet Charter",
-                "Group Charter",
-                "Empty Leg Flights",
+                "Private Aircraft Safaris",
+                "Ground Handling and Support",
                 "Aircraft Management",
-                "Jet Card Program",
+                "Logistical Flight Support",
                 "Concierge Services",
               ].map((service) => (
                 <li key={service}>
                   <a
                     href="#"
-                    className="text-gray-400 hover:text-primary-400 transition-colors duration-300 flex items-center space-x-2 group"
+                    className="text-sm sm:text-base text-gray-400 hover:text-primary-400 transition-colors duration-300 flex items-center space-x-2 group"
                   >
                     <div className="h-1 w-1 rounded-full bg-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <span>{service}</span>
@@ -135,14 +139,14 @@ const Footer = () => {
 
           {/* Contact Info Section */}
           <div>
-            <h4 className="text-lg font-bold mb-6 text-gray-100">
+            <h4 className="text-base sm:text-lg font-bold mb-4 sm:mb-6 text-gray-100">
               Contact Info
             </h4>
-            <ul className="space-y-4">
+            <ul className="space-y-1 sm:space-y-4">
               {[
                 {
                   icon: faMapMarkerAlt,
-                  text: ["Bondeni Street, Arusha,", "Tanzania"],
+                  text: [`Bondeni Street, Arusha\, Tanzania`],
                   link: "https://maps.google.com/?q=Bondeni+Street+Arusha+Tanzania",
                   target: "_blank",
                   iconColor: "text-red-600",
@@ -165,11 +169,11 @@ const Footer = () => {
                   iconColor: "text-orange-600",
                 },
               ].map((item, index) => (
-                <li key={index} className="flex items-start space-x-3 group">
-                  <div className={`p-2 rounded-lg transition-all duration-300`}>
+                <li key={index} className="flex items-center space-x-3 group">
+                  <div className={`p-1 rounded-lg transition-all duration-300`}>
                     <FontAwesomeIcon
                       icon={item.icon}
-                      className={`${item.iconColor} h-5 w-5`}
+                      className={`${item.iconColor} h-5  w-5 `}
                     />
                   </div>
                   <div className="text-gray-500">
@@ -179,14 +183,14 @@ const Footer = () => {
                           key={i}
                           href={item.link}
                           target={item.target}
-                          className="text-gray-400 hover:text-primary-400 transition-colors duration-300 block"
+                          className="text-sm sm:text-base text-gray-400 hover:text-primary-400 transition-colors duration-300 block"
                         >
                           {line}
                         </a>
                       ) : (
                         <p
                           key={i}
-                          className="text-gray-400 hover:text-primary-400 transition-colors duration-300"
+                          className="text-sm sm:text-base text-gray-400 hover:text-primary-400 transition-colors duration-300"
                         >
                           {line}
                         </p>
@@ -200,19 +204,19 @@ const Footer = () => {
         </div>
 
         {/* Footer Bottom */}
-        <div className="border-t border-gray-300/30 mt-12 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-gray-400 text-sm">
-              <span className="text-[16px] mr-1">©</span> {new Date().getFullYear()} HS Live Limited. All
-              rights reserved.
+        <div className="border-t border-gray-300/30 mt-8 sm:mt-12 pt-6 sm:pt-8">
+          <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
+            <p className="text-xs sm:text-sm text-gray-400">
+              <span className="text-sm sm:text-[16px] mr-1">©</span>{" "}
+              {new Date().getFullYear()} HS Live Limited. All rights reserved.
             </p>
-            <div className="flex space-x-8">
+            <div className="flex space-x-4 sm:space-x-8">
               {["Privacy Policy", "Terms of Service", "Cookie Policy"].map(
                 (item) => (
                   <a
                     key={item}
                     href="#"
-                    className="text-gray-400 hover:text-primary-400 text-sm transition-colors duration-300"
+                    className="text-xs sm:text-sm text-gray-400 hover:text-primary-400 transition-colors duration-300"
                   >
                     {item}
                   </a>
