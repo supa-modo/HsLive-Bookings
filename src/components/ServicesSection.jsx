@@ -104,7 +104,7 @@ const ServiceDetailsCard = ({ service }) => {
       className="mt-6 sm:mt-10 bg-white max-w-screen-2xl mx-auto rounded-3xl shadow-xl border border-gray-50 overflow-hidden"
     >
       <div className="p-6 sm:p-8">
-        <h3 className="text-2xl sm:text-3xl font-extrabold bg-gradient-to-r from-primary-800 to-gray-600 bg-clip-text text-transparent mb-4 sm:mb-6">
+        <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold bg-gradient-to-r from-primary-800 to-gray-600 bg-clip-text text-transparent mb-4 sm:mb-6">
           {service.title}
         </h3>
         <p className="text-sm sm:text-lg text-gray-500 font-semibold font-nunito-sans leading-relaxed mb-6 sm:mb-8">
@@ -119,10 +119,10 @@ const ServiceDetailsCard = ({ service }) => {
             >
               <div className="flex justify-between items-start">
                 <div>
-                  <h4 className="text-lg sm:text-xl font-semibold text-amber-700 mb-2">
+                  <h4 className="text-base sm:text-lg md:text-xl font-semibold text-amber-700 mb-2">
                     {pkg.title}
                   </h4>
-                  <p className="text-sm sm:text-base text-gray-600">
+                  <p className="text-[13px] sm:text-base text-gray-600">
                     {pkg.targetClients}
                   </p>
                 </div>
