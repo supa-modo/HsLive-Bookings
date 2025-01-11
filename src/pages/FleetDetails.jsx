@@ -217,7 +217,7 @@ const serviceData = [
   },
 ];
 
-const FleetDetails = () => {
+const ServiceDetails = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -538,4 +538,4 @@ const FleetDetails = () => {
   );
 };
 
-export default FleetDetails;
+export default ServiceDetails;

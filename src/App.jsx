@@ -1,11 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // import LandingPage from "./Landing001";
-import FleetDetails from "./pages/FleetDetails";
-import Fleet from "./pages/Fleet";
+// import Fleet from "./pages/Fleet";
 import LuxuryJetLanding from "./LandingPage";
 import Footer from "./components/Footer";
-import ServicesPage from "./pages/Fleet";
+// import ServicesPage from "./pages/Fleet";
+import ServiceDetails from "./pages/FleetDetails";
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
         <Route path="/" element={<LuxuryJetLanding />} />
         <Route path="/home" element={<LuxuryJetLanding />} />
         {/* <Route path="/fleet" element={<ServicesPage />} /> */}
-        <Route path="/service/:id" element={<FleetDetails />} />
+        <Route path="/service/:id" element={<ServiceDetails />} />
       </Routes>{" "}
       <Footer />
     </Router>

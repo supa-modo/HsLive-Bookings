@@ -35,7 +35,7 @@ const destinations = [
   },
   {
     id: 4,
-    name: "Zanzibar, Tanzania",
+    name: "Zanzibar, URT",
     image: zanzibar,
     price: "$650",
     featured: true,

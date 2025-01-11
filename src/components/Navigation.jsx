@@ -7,16 +7,17 @@ import { Link } from "react-router-dom";
 const NavLink = ({ href, children }) => (
   <a
     href={href}
-    className="text-gray-700 hover:text-primary-600 transition-colors duration-300 text-[17px] font-semibold relative group font-poppins"
+    className="text-gray-700 pl-4 hover:text-primary-600 transition-colors duration-300 text-base sm:text-lg font-semibold relative group font-poppins"
   >
     {children}
     <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full" />
   </a>
 );
+
 const PageLink = ({ to, children }) => (
   <Link
     to={to}
-    className="text-gray-700 hover:text-primary-600 transition-colors duration-300 text-[16px] font-semibold relative group font-open-sans"
+    className="text-gray-700 hover:text-primary-600 transition-colors duration-300 text-base sm:text-lg font-semibold relative group font-open-sans"
   >
     {children}
     <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full" />
@@ -35,62 +36,66 @@ const Navigation = ({ scrolled, isMenuOpen, setIsMenuOpen }) => {
             : "bg-transparent py-4"
         }`}
       >
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
+            {/* Logo and Branding */}
+            <div className="flex items-center space-x-2 sm:space-x-3">
               <img
                 src="/logo.png"
                 alt="Luxury Private Jet"
-                className="text-primary-600 h-24 w-24"
+                className="h-16 w-16 sm:h-20 sm:w-20"
               />
-              <span className="bg-gradient-to-r from-primary-900 via-primary-700 to-primary-900 bg-clip-text text-transparent text-2xl font-bold">
+              <span className="bg-gradient-to-r from-primary-900 via-primary-700 to-primary-900 bg-clip-text text-transparent text-xl sm:text-2xl font-bold">
                 Shine Luxury Private Jets
               </span>
             </div>
 
-            <div className="hidden md:flex items-center space-x-10">
+            {/* Desktop Navigation Links */}
+            <div className="hidden md:flex items-center space-x-6 lg:space-x-10">
               <NavLink href="/">Home</NavLink>
               <NavLink href="/#services">Services</NavLink>
               <NavLink href="/#destinations">Destinations</NavLink>
-              {/* <PageLink to={"/fleet"}>Jet Fleet</PageLink> */}
               <NavLink href="/#contact">Contact Us</NavLink>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setIsBookingModalOpen(true)}
-                className="bg-primary-600 text-white px-8 py-2.5 rounded-full text-base font-medium hover:bg-primary-600 transition-colors duration-300 shadow-lg hover:shadow-primary-500/20 transform "
+                className="bg-primary-600 text-white px-6 sm:px-8 py-2 sm:py-2.5 rounded-full text-sm sm:text-base font-medium hover:bg-primary-700 transition-colors duration-300 shadow-lg hover:shadow-primary-500/20"
               >
                 Book Now
               </motion.button>
             </div>
 
+            {/* Mobile Menu Button */}
             <button
-              className="md:hidden text-gray-900"
+              className="md:hidden text-gray-900 p-2"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              {isMenuOpen ? <X /> : <Menu />}
+              {isMenuOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
             </button>
           </div>
         </div>
 
+        {/* Mobile Menu Overlay */}
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-white/95 backdrop-blur-md border-t border-gray-200 mt-4"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+              className="md:hidden bg-white/95 backdrop-blur-md border-t border-gray-200"
             >
-              <div className="container mx-auto px-6 py-6 space-y-6">
+              <div className="flex flex-col container mx-auto px-6 sm:px-8 py-6 space-y-4">
+                
+                <NavLink href="/">Home</NavLink>
                 <NavLink href="/#services">Services</NavLink>
                 <NavLink href="/#destinations">Destinations</NavLink>
-                <Link
-                  to="/fleet"
-                  className="text-gray-700 hover:text-primary-600 transition-colors duration-300"
-                >
-                  Fleet
-                </Link>
-                <NavLink href="/#contact">Contact</NavLink>
+                <NavLink href="/#contact">Contact Us</NavLink>
                 <button
                   onClick={() => {
                     setIsBookingModalOpen(true);
@@ -106,6 +111,7 @@ const Navigation = ({ scrolled, isMenuOpen, setIsMenuOpen }) => {
         </AnimatePresence>
       </nav>
 
+      {/* Booking Modal */}
       <BookingModal
         isOpen={isBookingModalOpen}
         onClose={() => setIsBookingModalOpen(false)}
