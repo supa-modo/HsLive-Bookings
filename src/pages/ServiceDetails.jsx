@@ -467,7 +467,7 @@ const ServiceDetails = () => {
           <div className="sticky top-8">
             <div className="bg-white rounded-xl shadow-lg p-6 sm:p-8">
               <h2 className="text-xl sm:text-2xl font-extrabold mb-4 bg-gradient-to-r from-gray-600 via-primary-500 to-gray-600 bg-clip-text text-transparent">
-                Book This Aircraft
+                Book This Package
               </h2>
               <div className="space-y-4 mb-6">
                 <div className="flex justify-between items-center py-2 border-b border-gray-100">

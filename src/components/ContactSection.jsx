@@ -1,12 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Clock, Send, ChevronRight } from "lucide-react";
-import bg from "../assets/images/jet9.jpg";
 
 const ContactCard = ({ icon: Icon, title, content }) => (
   <motion.div
     whileHover={{ scale: 1.02 }}
-    className="group flex items-center space-x-4 p-6 bg-white/80 backdrop-blur-sm rounded-2xl border border-gray-200 hover:border-primary-500 transition-all duration-500 hover:shadow-xl hover:shadow-primary-500/10"
+    className="group flex items-center space-x-4 p-6 bg-white/90 backdrop-blur-sm rounded-2xl border border-gray-200 hover:border-primary-500 transition-all duration-500 hover:shadow-xl hover:shadow-primary-500/10"
   >
     <div className="bg-gradient-to-br from-primary-50 to-primary-100/50 p-4 rounded-xl group-hover:scale-110 transition-transform duration-500">
       <Icon className="h-6 w-6 text-primary-600" />
@@ -22,22 +21,25 @@ const ContactCard = ({ icon: Icon, title, content }) => (
 
 const ContactSection = () => {
   return (
-    <section id="contact" className="py-24 bg-gray-50">
-      <div className="container mx-auto px-4">
-        <div className="text-center mx-auto mb-10">
+    <section
+      id="contact"
+      className="py-16 sm:py-24 bg-gradient-to-br from-gray-50 to-white"
+    >
+      <div className="container mx-auto px-4 sm:px-6">
+        {/* Header */}
+        <div className="text-center mx-auto mb-12 sm:mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className=" p-2 text-2xl sm:text-5xl font-extrabold mb-2 md:mb-4 bg-gradient-to-r from-gray-900 via-primary-800 to-gray-700 bg-clip-text text-transparent">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-r from-gray-900 via-primary-800 to-gray-700 bg-clip-text text-transparent">
               Get in Touch
-              <span className="block text-primary-600 font-nunito-sans text-2xl mt-3">
+              <span className="block text-primary-600 font-nunito-sans text-xl sm:text-2xl mt-3">
                 We're Here to Serve You
               </span>
             </h2>
-
-            <p className="text-base sm:text-lg text-gray-500 leading-relaxed font-semibold">
+            <p className="text-base sm:text-lg text-gray-600 leading-relaxed font-medium max-w-2xl mx-auto">
               Experience luxury private jet travel with HS Live. Our dedicated
               team is available 24/7 to assist you with your premium aviation
               needs.
@@ -45,29 +47,29 @@ const ContactSection = () => {
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
+        {/* Contact Form and Info */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 mb-16 sm:mb-20">
+          {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="bg-white p-10 rounded-2xl shadow-2xl relative overflow-hidden"
+            className="bg-white/90 backdrop-blur-sm p-6 sm:p-8 md:p-10 rounded-2xl shadow-2xl relative overflow-hidden"
           >
             <div className="absolute top-0 right-0 w-40 h-40 bg-primary-50 rounded-full filter blur-2xl opacity-50 -translate-x-1/2 -translate-y-1/2"></div>
-
-            <h3 className="text-2xl font-extrabold mb-2 md:mb-4 bg-gradient-to-r from-gray-600 via-primary-600 to-gray-700 bg-clip-text text-transparent flex items-center space-x-3">
+            <h3 className="text-2xl font-extrabold mb-4 bg-gradient-to-r from-gray-600 via-primary-700 to-gray-700 bg-clip-text text-transparent flex items-center space-x-3">
               <Send className="h-6 w-6 text-primary-600" />
               <span>Send us a Message or Inquiry</span>
             </h3>
-
-            <form className="space-y-6 relative">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <form className="space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="block text-gray-700 text-sm font-medium">
                     First Name
                   </label>
                   <input
                     type="text"
-                    className="w-full px-4 py-3 font-semibold text-gray-600 rounded-lg border  border-gray-300  focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
+                    className="w-full px-4 py-3 font-medium text-gray-600 rounded-lg border border-gray-300 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
                     placeholder="John"
                   />
                 </div>
@@ -77,34 +79,31 @@ const ContactSection = () => {
                   </label>
                   <input
                     type="text"
-                    className="w-full px-4 py-3 font-semibold text-gray-600 rounded-lg border  border-gray-300  focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
+                    className="w-full px-4 py-3 font-medium text-gray-600 rounded-lg border border-gray-300 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
                     placeholder="Doe"
                   />
                 </div>
               </div>
-
               <div className="space-y-2">
                 <label className="block text-gray-700 text-sm font-medium">
                   Email Address
                 </label>
                 <input
                   type="email"
-                  className="w-full px-4 py-3 font-semibold text-gray-600 rounded-lg border  border-gray-300  focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
+                  className="w-full px-4 py-3 font-medium text-gray-600 rounded-lg border border-gray-300 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
                   placeholder="john@example.com"
                 />
               </div>
-
               <div className="space-y-2">
                 <label className="block text-gray-700 text-sm font-medium">
                   Message
                 </label>
                 <textarea
                   rows="4"
-                  className="w-full px-4 py-3 font-semibold text-gray-600 rounded-lg border  border-gray-300  focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
+                  className="w-full px-4 py-3 font-medium text-gray-600 rounded-lg border border-gray-300 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
                   placeholder="How can we help you?"
                 ></textarea>
               </div>
-
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -117,13 +116,14 @@ const ContactSection = () => {
             </form>
           </motion.div>
 
+          {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             className="space-y-6"
           >
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <ContactCard
                 icon={Phone}
                 title="Phone"
@@ -135,42 +135,39 @@ const ContactSection = () => {
                 content="info@shineluxuryprivatejets.com"
               />
             </div>
-
             <ContactCard
               icon={MapPin}
               title="Address"
               content="Bondeni Street, Arusha, Tanzania"
             />
-
             <motion.div
               whileHover={{ scale: 1.02 }}
-              className="bg-gradient-to-br from-primary-800 to-gray-500 p-8 rounded-2xl shadow-xl text-white relative overflow-hidden group"
+              className="bg-gradient-to-br from-primary-800 to-gray-500 p-6 sm:p-8 rounded-2xl shadow-xl text-white relative overflow-hidden group"
             >
-              <div className="}relative">
-                <h3 className="text-xl font-bold mb-6 flex items-center space-x-3">
-                  <Clock className="h-6 w-6 text-primary-400" />
-                  <span>Operating Hours</span>
-                </h3>
-                <div className="space-y-4">
-                  <div className="flex items-center space-x-3 bg-white/20 p-4 rounded-xl backdrop-blur-sm">
-                    <span className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></span>
-                    <span className="text-gray-200">
-                      24/7 Flight Support Available
-                    </span>
-                  </div>
-                  <div className="bg-white/15 p-4 rounded-xl backdrop-blur-sm">
-                    <p className="text-primary-400 font-medium mb-2">
-                      Office Hours:
-                    </p>
-                    <p className="text-gray-300">Monday - Friday</p>
-                    <p className="text-gray-300">8:00 AM - 6:00 PM EAT</p>
-                  </div>
+              <h3 className="text-xl font-bold mb-6 flex items-center space-x-3">
+                <Clock className="h-6 w-6 text-primary-400" />
+                <span>Operating Hours</span>
+              </h3>
+              <div className="space-y-4">
+                <div className="flex items-center space-x-3 bg-white/20 p-4 rounded-xl backdrop-blur-sm">
+                  <span className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></span>
+                  <span className="text-gray-200 font-semibold text-[15px] sm:text-base">
+                    24/7 Flight Support Available
+                  </span>
+                </div>
+                <div className="bg-white/15 p-4 rounded-xl backdrop-blur-sm">
+                  <p className="text-primary-400 font-bold mb-2">
+                    Office Hours:
+                  </p>
+                  <p className="text-gray-300 font-semibold">Monday - Friday</p>
+                  <p className="text-gray-300 font-semibold">8:00 AM - 6:00 PM EAT</p>
                 </div>
               </div>
             </motion.div>
           </motion.div>
         </div>
 
+        {/* Map and Directions */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -189,12 +186,11 @@ const ContactSection = () => {
               className="rounded-lg"
             />
           </div>
-
           <motion.div
             whileHover={{ scale: 1.02 }}
-            className="bg-gradient-to-br from-primary-50 to-white p-8 rounded-2xl shadow-xl"
+            className="bg-gradient-to-br from-primary-50 to-white p-6 sm:p-8 rounded-2xl shadow-xl"
           >
-            <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center space-x-3">
+            <h3 className="text-xl font-nunito-sans font-extrabold text-primary-800 mb-6 flex items-center space-x-3">
               <MapPin className="h-6 w-6 text-primary-600" />
               <span>Visit Our Office</span>
             </h3>
@@ -221,7 +217,6 @@ const ContactSection = () => {
             </div>
           </motion.div>
         </motion.div>
-        {/* </motion.div> */}
       </div>
     </section>
   );

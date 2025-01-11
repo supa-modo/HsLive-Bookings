@@ -23,67 +23,67 @@ const heroImages = [
   {
     url: jet3,
     title: "Experience Luxury",
-    subtitle: "Private Aviation",
+    subtitle: "Beyond Boundaries",
     description:
-      "Discover unparalleled comfort and convenience with our premium private jet charter services.",
+      "Elevate your travel with our bespoke private jet services, designed for the discerning traveler.",
   },
   {
     url: jet2,
     title: "Ultimate Comfort",
-    subtitle: "In The Skies",
+    subtitle: "Redefined in the Skies",
     description:
-      "Travel in style with our world-class fleet of private aircraft and exceptional service.",
+      "Indulge in unparalleled luxury and comfort aboard our state-of-the-art private jets.",
   },
   {
     url: jet5,
     title: "Your Journey",
-    subtitle: "Your Schedule",
+    subtitle: "Tailored to Perfection",
     description:
-      "Flexible departure times and personalized flight experiences tailored to your needs.",
+      "Customize every detail of your flight for a seamless and personalized travel experience.",
   },
   {
     url: jet4,
-    title: "Your Journey",
-    subtitle: "Your Schedule",
+    title: "Fly Exclusively",
+    subtitle: "On Your Terms & Schedule",
     description:
-      "Flexible departure times and personalized flight experiences tailored to your needs.",
+      "Enjoy the freedom of flexible schedules and private terminals for a stress-free journey.",
   },
   {
     url: jet1,
-    title: "Your Journey",
-    subtitle: "Your Schedule",
+    title: "Unmatched Elegance",
+    subtitle: "In Every Detail",
     description:
-      "Flexible departure times and personalized flight experiences tailored to your needs.",
+      "From gourmet dining to plush interiors, experience the epitome of luxury in the skies.",
   },
   {
     url: jet6,
-    title: "Ultimate Comfort",
-    subtitle: "In The Skies",
+    title: "Seamless Travel",
+    subtitle: "From Takeoff to Landing",
     description:
-      "Travel in style with our world-class fleet of private aircraft and exceptional service.",
+      "Our dedicated team ensures a smooth and luxurious journey from start to finish.",
   },
   {
     url: jet7,
-    title: "Your Journey",
-    subtitle: "Your Schedule",
+    title: "Global Reach",
+    subtitle: "Unlimited Destinations",
     description:
-      "Flexible departure times and personalized flight experiences tailored to your needs.",
+      "Access over 5,000 airports worldwide with our extensive private jet network.",
   },
   {
     url: jet8,
-    title: "Your Journey",
-    subtitle: "Your Schedule",
+    title: "Privacy Redefined",
+    subtitle: "Your Personal Sanctuary",
     description:
-      "Flexible departure times and personalized flight experiences tailored to your needs.",
+      "Travel in complete privacy and comfort, away from the crowds and hassles of commercial flights.",
   },
   {
     url: jet9,
-    title: "Your Journey",
-    subtitle: "Your Schedule",
+    title: "Luxury Awaits",
+    subtitle: "Your Skyward Escape",
     description:
-      "Flexible departure times and personalized flight experiences tailored to your needs.",
+      "Step into a world of opulence and convenience with our premium private aviation services.",
   },
-];
+];  
 
 const LuxuryJetLanding = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

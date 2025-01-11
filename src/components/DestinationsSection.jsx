@@ -119,11 +119,11 @@ const DestinationCard = ({ destination, className = "" }) => {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 p-6 font-nunito-sans font-bold">
-          <h3 className="text-white sm:text-2xl font-extrabold sm:mb-1">
+          <h3 className="text-white sm:text-xl font-bold sm:mb-1">
             {destination.name}
           </h3>
-          <p className="text-white/90">
-            from <span className="font-extrabold">{destination.price}</span>
+          <p className="text-white/90 text-sm sm:text-base">
+            from <span className="">{destination.price}</span>
           </p>
         </div>
       </div>
@@ -162,7 +162,7 @@ const DestinationsSection = () => {
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 px-6 auto-rows-[230px] md:auto-rows-[350px]">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 sm:px-6 auto-rows-[230px] md:auto-rows-[350px]">
           {hasEnoughDestinations ? (
             <>
               <DestinationCard

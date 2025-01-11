@@ -153,7 +153,7 @@ const HeroSection = ({ currentSlide, setCurrentSlide, heroImages }) => {
             className="max-w-[54rem]"
           >
             <motion.h1
-              className="text-4xl sm:text-6xl md:text-8xl mt-4 font-extrabold font-open-sans text-primary-600/70 mb-4 sm:mb-6"
+              className="text-4xl sm:text-6xl md:text-[4.8rem] mt-4 font-extrabold font-open-sans text-primary-600/90 mb-4 sm:mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{
                 opacity: 1,

@@ -89,7 +89,7 @@ const Navigation = ({ scrolled, isMenuOpen, setIsMenuOpen }) => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
-              className="md:hidden bg-white/95 backdrop-blur-md border-t border-gray-200"
+              className="md:hidden bg-white/95 backdrop-blur-md rounded-b-2xl border-t border-gray-200"
             >
               <div className="flex flex-col container mx-auto px-6 sm:px-8 py-6 space-y-4">
                 <NavLink href="/">Home</NavLink>

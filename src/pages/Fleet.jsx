@@ -197,148 +197,136 @@
 // };
 
 // export default Fleet;
-
 import React, { useState } from "react";
-import { motion } from "framer-motion";
 import {
   Plane,
   Shield,
   Map,
-  Users,
-  Clock,
-  Star,
-  Coffee,
-  Wifi,
   Check,
   ChevronDown,
   ChevronUp,
+  ArrowRight,
+  Users,
 } from "lucide-react";
+import Navigation from "../components/Navigation";
+
+const ServiceBox = ({ service, isActive, onClick }) => {
+  return (
+    <button
+      onClick={onClick}
+      className={`flex flex-col items-center justify-center p-4 sm:p-6 rounded-2xl border transition-all duration-500 ${
+        isActive
+          ? "bg-gradient-to-r from-primary-600 to-primary-700 text-white border-transparent shadow-xl"
+          : "bg-white text-gray-900 border-gray-100 hover:border-primary-100 hover:shadow-lg"
+      }`}
+    >
+      <div className={`p-2 sm:p-3 rounded-xl ${isActive ? 'bg-white/10' : 'bg-primary-50'}`}>
+        <service.icon
+          className={`w-6 h-6 sm:w-8 sm:h-8 ${isActive ? "text-white" : "text-primary-600"}`}
+        />
+      </div>
+      <h2 className="text-lg sm:text-xl font-semibold mt-3 sm:mt-4">{service.title}</h2>
+    </button>
+  );
+};
 
 const PackageCard = ({ pkg, isExpanded, onToggle }) => {
   return (
-    <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-      <div className="p-6">
+    <div className="bg-white/80 backdrop-blur-lg rounded-2xl shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-500">
+      <div className="p-6 sm:p-8">
         <div className="flex justify-between items-start">
-          <div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">
+          <div className="flex-1">
+            <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-2 sm:mb-3">
               {pkg.title}
             </h3>
-            <p className="text-gray-600 mb-4">{pkg.targetClients}</p>
+            <p className="text-base sm:text-lg text-gray-600 font-light">{pkg.targetClients}</p>
           </div>
           <button
             onClick={onToggle}
-            className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+            className="ml-4 p-2 sm:p-3 hover:bg-gray-50 rounded-full transition-colors"
           >
             {isExpanded ? (
-              <ChevronUp className="w-6 h-6 text-gray-600" />
+              <ChevronUp className="w-5 h-5 sm:w-6 sm:h-6 text-gray-400" />
             ) : (
-              <ChevronDown className="w-6 h-6 text-gray-600" />
+              <ChevronDown className="w-5 h-5 sm:w-6 sm:h-6 text-gray-400" />
             )}
           </button>
         </div>
 
-        {isExpanded && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <div className="mt-4 space-y-4">
-              <div>
-                <h4 className="font-semibold text-gray-900 mb-2">
-                  Key Features:
-                </h4>
-                <ul className="space-y-2">
-                  {pkg.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start space-x-3">
-                      <Check className="w-5 h-5 text-primary-600 flex-shrink-0 mt-0.5" />
-                      <span className="text-gray-600">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {pkg.aircraft && (
-                <div>
-                  <h4 className="font-semibold text-gray-900 mb-2">
-                    Recommended Aircraft:
-                  </h4>
-                  <div className="space-y-3">
-                    {pkg.aircraft.map((aircraft, idx) => (
-                      <div key={idx} className="bg-gray-50 p-4 rounded-lg">
-                        <h5 className="font-semibold text-gray-900">
-                          {aircraft.name}
-                        </h5>
-                        <p className="text-gray-600 text-sm">
-                          Capacity: {aircraft.capacity}
-                        </p>
-                        <p className="text-gray-600 text-sm">
-                          Range: {aircraft.range}
-                        </p>
-                      </div>
-                    ))}
+        <div className={`mt-4 sm:mt-6 space-y-4 sm:space-y-6 ${isExpanded ? 'block' : 'hidden'}`}>
+          <div>
+            <h4 className="text-lg sm:text-xl font-medium text-gray-900 mb-3 sm:mb-4">
+              Signature Features
+            </h4>
+            <ul className="space-y-2 sm:space-y-3">
+              {pkg.features.map((feature, idx) => (
+                <li key={idx} className="flex items-center space-x-3 sm:space-x-4">
+                  <div className="bg-primary-50 rounded-full p-1">
+                    <Check className="w-4 h-4 text-primary-600" />
                   </div>
-                </div>
-              )}
+                  <span className="text-sm sm:text-base text-gray-700">{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {pkg.aircraft && (
+            <div>
+              <h4 className="text-lg sm:text-xl font-medium text-gray-900 mb-3 sm:mb-4">
+                Premium Fleet Selection
+              </h4>
+              <div className="grid gap-3 sm:gap-4 sm:grid-cols-2">
+                {pkg.aircraft.map((aircraft, idx) => (
+                  <div key={idx} className="bg-gray-50 p-4 sm:p-6 rounded-xl">
+                    <h5 className="font-medium text-gray-900 mb-2 sm:mb-3">
+                      {aircraft.name}
+                    </h5>
+                    <div className="space-y-1 sm:space-y-2 text-sm text-gray-600">
+                      <p className="flex items-center space-x-2">
+                        <Users className="w-4 h-4" />
+                        <span>{aircraft.capacity}</span>
+                      </p>
+                      <p className="flex items-center space-x-2">
+                        <Map className="w-4 h-4" />
+                        <span>{aircraft.range}</span>
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-          </motion.div>
-        )}
-      </div>
-    </div>
-  );
-};
-
-const ServiceSection = ({ service, isActive, onClick }) => {
-  const [expandedPackage, setExpandedPackage] = useState(null);
-
-  return (
-    <div className="mb-8">
-      <button
-        onClick={onClick}
-        className={`w-full flex items-center justify-between p-6 rounded-xl ${
-          isActive ? "bg-primary-600 text-white" : "bg-white text-gray-900"
-        } transition-all duration-300`}
-      >
-        <div className="flex items-center space-x-4">
-          <service.icon
-            className={`w-6 h-6 ${isActive ? "text-white" : "text-primary-600"}`}
-          />
-          <h2 className="text-2xl font-bold">{service.title}</h2>
+          )}
         </div>
-        {isActive ? (
-          <ChevronUp className="w-6 h-6" />
-        ) : (
-          <ChevronDown className="w-6 h-6" />
-        )}
-      </button>
-
-      {isActive && (
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          exit={{ opacity: 0, height: 0 }}
-          transition={{ duration: 0.3 }}
-          className="mt-6 grid gap-6"
-        >
-          {service.packages.map((pkg, index) => (
-            <PackageCard
-              key={index}
-              pkg={pkg}
-              isExpanded={expandedPackage === index}
-              onToggle={() =>
-                setExpandedPackage(expandedPackage === index ? null : index)
-              }
-            />
-          ))}
-        </motion.div>
-      )}
+      </div>
     </div>
   );
 };
 
 const ServicesPage = () => {
   const [activeService, setActiveService] = useState(0);
+  const [expandedPackages, setExpandedPackages] = useState({});
+  const [scrolled, setScrolled] = useState(false); 
+  const [isMenuOpen, setIsMenuOpen] = useState(false); 
+
+  // Scroll event handler
+  React.useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const togglePackage = (serviceIndex, packageIndex) => {
+    setExpandedPackages((prev) => ({
+      ...prev,
+      [`${serviceIndex}-${packageIndex}`]: !prev[`${serviceIndex}-${packageIndex}`],
+    }));
+  };
 
   const services = [
     {
@@ -488,44 +476,59 @@ const ServicesPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 py-24">
-      <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto text-center mb-16">
-          <h1 className="text-4xl sm:text-5xl font-extrabold mb-6 bg-gradient-to-r from-gray-900 via-primary-800 to-gray-700 bg-clip-text text-transparent">
-            Our Premium Services
-          </h1>
-          <p className="text-xl text-gray-600 leading-relaxed">
-            Discover our comprehensive suite of luxury aviation services
-            tailored to exceed your expectations
-          </p>
-        </div>
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+      {/* Navigation Component */}
+      <Navigation scrolled={scrolled} isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
 
-        <div className="max-w-4xl mx-auto space-y-6">
-          {services.map((service, index) => (
-            <ServiceSection
-              key={index}
-              service={service}
-              isActive={activeService === index}
-              onClick={() =>
-                setActiveService(activeService === index ? null : index)
-              }
-            />
-          ))}
-        </div>
-
-        {/* Call to Action */}
-        <div className="max-w-4xl mx-auto mt-16">
-          <div className="bg-white rounded-xl shadow-lg p-8 text-center">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">
-              Ready to Experience Luxury Aviation?
-            </h3>
-            <p className="text-gray-600 mb-8">
-              Contact our team to discuss your travel needs and discover how we
-              can elevate your journey
+      {/* Services Content */}
+      <div className="pt-24 pb-16 sm:pb-32">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="max-w-4xl mx-auto text-center mb-12 sm:mb-20">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 sm:mb-8 bg-gradient-to-r from-primary-600 via-primary-800 to-gray-900 bg-clip-text text-transparent">
+              Elevate Your Journey
+            </h1>
+            <p className="text-lg sm:text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto">
+              Experience unparalleled luxury and sophistication with our bespoke aviation services
             </p>
-            <button className="bg-primary-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-primary-700 transition-colors duration-300">
-              Contact Us Today
-            </button>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8">
+            {services.map((service, index) => (
+              <ServiceBox
+                key={index}
+                service={service}
+                isActive={activeService === index}
+                onClick={() => setActiveService(index)}
+              />
+            ))}
+          </div>
+
+          <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8">
+            <div className="space-y-6">
+              {services[activeService].packages.map((pkg, index) => (
+                <PackageCard
+                  key={index}
+                  pkg={pkg}
+                  isExpanded={expandedPackages[`${activeService}-${index}`]}
+                  onToggle={() => togglePackage(activeService, index)}
+                />
+              ))}
+            </div>
+          </div>
+
+          <div className="max-w-4xl mx-auto mt-16 sm:mt-20">
+            <div className="bg-gradient-to-br from-primary-600 via-primary-700 to-gray-600 rounded-2xl shadow-2xl p-8 sm:p-12 text-center text-white">
+              <h3 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">
+                Begin Your Premium Journey
+              </h3>
+              <p className="text-sm sm:text-base font-semibold text-gray-300 mb-8 sm:mb-10 max-w-2xl mx-auto">
+                Connect with our dedicated concierge team to curate your perfect aviation experience
+              </p>
+              <button className="group bg-white text-sm sm:text-base text-gray-900 px-8 sm:px-10 py-3 sm:py-4 rounded-xl font-semibold hover:bg-gray-50 transition-all duration-300 flex items-center space-x-2 mx-auto">
+                <span >Schedule a Consultation</span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
           </div>
         </div>
       </div>

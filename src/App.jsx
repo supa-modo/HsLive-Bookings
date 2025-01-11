@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // import Fleet from "./pages/Fleet";
 import LuxuryJetLanding from "./LandingPage";
 import Footer from "./components/Footer";
-// import ServicesPage from "./pages/Fleet";
-import ServiceDetails from "./pages/FleetDetails";
+import ServicesPage from "./pages/Fleet";
+import ServiceDetails from "./pages/ServiceDetails";
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LuxuryJetLanding />} />
         <Route path="/home" element={<LuxuryJetLanding />} />
-        {/* <Route path="/fleet" element={<ServicesPage />} /> */}
+        <Route path="/fleet" element={<ServicesPage />} />
         <Route path="/service/:id" element={<ServiceDetails />} />
       </Routes>{" "}
       <Footer />
