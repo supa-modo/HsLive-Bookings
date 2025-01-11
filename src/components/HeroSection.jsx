@@ -128,7 +128,7 @@ const HeroSection = ({ currentSlide, setCurrentSlide, heroImages }) => {
       </div>
 
       {/* Content */}
-      <div className="relative max-w-screen-2xl mx-auto px-3 sm:px-6 h-full flex items-center z-20">
+      <div className="relative max-w-screen-2xl mx-auto px-3 pt-20 sm:px-6 h-full flex items-center z-20">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
@@ -171,7 +171,7 @@ const HeroSection = ({ currentSlide, setCurrentSlide, heroImages }) => {
               </span>
             </motion.h1>
             <motion.p
-              className="rounded-xl backdrop-blur-sm text-base md:text-lg text-gray-700 font-nunito-sans font-bold mb-4 sm:mb-6 leading-relaxed"
+              className="rounded-xl backdrop-blur-sm px-1 text-sm md:text-xl text-gray-700 font-sans font-semibold mb-4 sm:mb-6 leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               animate={{
                 opacity: 1,
@@ -202,16 +202,16 @@ const HeroSection = ({ currentSlide, setCurrentSlide, heroImages }) => {
                 onClick={() => setIsBookingModalOpen(true)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-primary-500 text-white px-6 sm:px-10 py-3 sm:py-4 rounded-full text-sm sm:text-lg font-medium hover:bg-primary-600 transition-colors duration-300 flex items-center space-x-2 shadow-lg shadow-primary-500/20"
+                className="bg-primary-500 text-white px-6 sm:px-10 py-3 sm:py-4 rounded-full text-[13px] sm:text-lg font-medium hover:bg-primary-600 transition-colors duration-300 flex items-center space-x-2 shadow-lg shadow-primary-500/20"
               >
-                <span>Book Your Flight</span>
+                <span>Book Your Jet Today</span>
                 <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5" />
               </motion.button>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => navigate("/fleet")}
-                className="bg-white/40 backdrop-blur-md text-gray-600 border-2 border-gray-200 px-6 sm:px-10 py-3 sm:py-4 rounded-full text-sm sm:text-lg font-bold font-nunito-sans hover:bg-white/20 transition-colors duration-300"
+                className="bg-white/40 backdrop-blur-md text-gray-600 border-2 border-gray-200 px-6 sm:px-10 py-3 sm:py-4 rounded-full text-[13px] sm:text-lg font-bold font-nunito-sans hover:bg-white/20 transition-colors duration-300"
               >
                 Explore Services
               </motion.button>

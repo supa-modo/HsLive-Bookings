@@ -101,7 +101,7 @@ const Navigation = ({ scrolled, isMenuOpen, setIsMenuOpen }) => {
                     setIsBookingModalOpen(true);
                     setIsMenuOpen(false);
                   }}
-                  className="w-full flex items-center space-x-3 bg-primary-600 text-white px-6 py-3 rounded-full text-[15px] font-medium hover:bg-primary-700 transform hover:scale-105 transition-all duration-300"
+                  className="w-full flex items-center space-x-3 bg-primary-600 text-white px-6 py-3 rounded-xl text-[15px] font-medium hover:bg-primary-700 transform hover:scale-105 transition-all duration-300"
                 >
                   {/* <TbHandFinger size={18} /> */}
                   <MousePointerClick />
