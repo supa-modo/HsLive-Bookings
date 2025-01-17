@@ -98,11 +98,11 @@ const Landing2 = () => {
             />
           </motion.div>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-2 sm:mb-3 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-900">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold mb-2 sm:mb-3 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-900">
             Shine Luxury Private Jets
           </h1>
           <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-blue-700 tracking-wide">
-            Private Jet Consultancy
+            Private Jet Charter Consultancy
           </h2>
 
           <motion.div
@@ -125,7 +125,7 @@ const Landing2 = () => {
 
           <div className="mt-6 sm:mt-8 text-gray-600 space-y-2">
             <p className="text-xs sm:text-sm font-medium">
-              Coming Soon: Luxury Private Jet Charters
+              Available Soon: Luxury Private Jet Charters
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-4 text-xs sm:text-sm">
               <a
