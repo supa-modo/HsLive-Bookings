@@ -12,9 +12,11 @@ import {
   CheckCircle,
   PhoneCall,
   TicketsPlane,
+  Loader2,
 } from "lucide-react";
 import formatDateShort from "../utils/dateTimeFunctions";
 import emailjs from "@emailjs/browser";
+import NotificationModal from "./NotificationModal";
 
 const StepIndicator = ({ currentStep, totalSteps }) => (
   <div className="flex items-center justify-center space-x-2 mb-4">
@@ -69,64 +71,134 @@ const options = [
 ];
 
 const BookingModal = ({ isOpen, onClose }) => {
-  const [step, setStep] = useState(1);
-  const [formData, setFormData] = useState({
-    tripType: "oneWay",
-    passengers: 1,
-    contactInfo: "",
+  const initialFormState = {
+    tripType: "",
+    passengers: "",
     departureLocation: "",
     arrivalLocation: "",
+    contactInfo: "",
     departureDate: "",
     returnDate: "",
     selectedOption: null,
-  });
+  };
+
+  const [formData, setFormData] = useState(initialFormState);
+  const [step, setStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null);
+  const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error'
+  const [errors, setErrors] = useState({});
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    // Reset the error for the field being changed
+    setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
-  const nextStep = () => setStep((prev) => Math.min(prev + 1, 3));
+  const validateStep1 = () => {
+    const newErrors = {};
+    if (!formData.tripType) newErrors.tripType = "Please select a trip type";
+    if (!formData.passengers || formData.passengers < 1)
+      newErrors.passengers = "Please enter number of passengers";
+    if (!formData.departureLocation)
+      newErrors.departureLocation = "Please enter departure location";
+    if (!formData.arrivalLocation)
+      newErrors.arrivalLocation = "Please enter arrival location";
+    if (!formData.contactInfo)
+      newErrors.contactInfo = "Please enter contact information";
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const validateStep2 = () => {
+    const newErrors = {};
+    if (!formData.departureDate)
+      newErrors.departureDate = "Please select departure date";
+    if (formData.tripType === "roundTrip" && !formData.returnDate) {
+      newErrors.returnDate = "Please select return date";
+    }
+    if (!formData.selectedOption)
+      newErrors.selectedOption = "Please select a package";
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const nextStep = () => {
+    if (step === 1 && !validateStep1()) return;
+    if (step === 2 && !validateStep2()) return;
+    setStep((prev) => Math.min(prev + 1, 3));
+  };
+
   const prevStep = () => setStep((prev) => Math.max(prev - 1, 1));
 
   const handleOptionSelect = (option) => {
     setFormData((prev) => ({ ...prev, selectedOption: option }));
+    // Reset the error for package selection
+    setErrors((prev) => ({ ...prev, selectedOption: "" }));
   };
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
 
     try {
+      const formatDate = (dateString) => {
+        if (!dateString) return "";
+        const date = new Date(dateString);
+        return date.toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        });
+      };
+
+      const templateParams = {
+        trip_type: formData.tripType || "One Way",
+        passengers: String(formData.passengers || 0),
+        contact_info: formData.contactInfo || "Not provided",
+        departure: formData.departureLocation || "Not specified",
+        arrival: formData.arrivalLocation || "Not specified",
+        departure_date: formatDate(formData.departureDate) || "Not specified",
+        return_date:
+          formData.tripType === "roundTrip"
+            ? formatDate(formData.returnDate)
+            : "N/A",
+        selected_package: formData.selectedOption?.title || "Not selected",
+        package_description:
+          formData.selectedOption?.description || "No description",
+      };
+
+      console.log("Sending email with parameters:", templateParams);
+
       await emailjs.send(
-        process.env.REACT_APP_EMAILJS_SERVICE_ID,
-        process.env.REACT_APP_EMAILJS_TEMPLATE_ID_BOOKING,
-        {
-          trip_type: formData.tripType,
-          passengers: formData.passengers,
-          contact_info: formData.contactInfo,
-          departure: formData.departureLocation,
-          arrival: formData.arrivalLocation,
-          departure_date: formData.departureDate,
-          return_date: formData.returnDate,
-          selected_package: formData.selectedOption?.title,
-          package_description: formData.selectedOption?.description,
-        },
-        process.env.REACT_APP_EMAILJS_PUBLIC_KEY
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID_BOOKING,
+        templateParams,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       );
 
       setSubmitStatus("success");
-      setTimeout(() => {
-        onClose();
-        setSubmitStatus(null);
-      }, 2000);
     } catch (error) {
       console.error("Email error:", error);
+      console.error("Error details:", error.text);
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const resetForm = () => {
+    setFormData(initialFormState);
+    setStep(1);
+    setIsSubmitting(false);
+    setSubmitStatus(null);
+    setErrors({});
+  };
+
+  const handleNotificationClose = () => {
+    resetForm();
+    onClose();
   };
 
   return (
@@ -214,6 +286,11 @@ const BookingModal = ({ isOpen, onClose }) => {
                         <span className="text-sm sm:text-base">Round Trip</span>
                       </button>
                     </div>
+                    {errors.tripType && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors.tripType}
+                      </p>
+                    )}
 
                     {/* Passenger Count */}
                     <div>
@@ -231,6 +308,11 @@ const BookingModal = ({ isOpen, onClose }) => {
                           max="19"
                           className="w-full text-sm md:text-[15px] pl-14 pr-4 py-3 font-semibold text-gray-600 rounded-lg border border-gray-300  focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
                         />
+                        {errors.passengers && (
+                          <p className="text-red-500 text-xs mt-1">
+                            {errors.passengers}
+                          </p>
+                        )}
                       </div>
                     </div>
 
@@ -250,6 +332,11 @@ const BookingModal = ({ isOpen, onClose }) => {
                             placeholder="City or Airport"
                             className="w-full text-sm md:text-[15px] pl-14 pr-4 py-3 font-semibold text-gray-600 rounded-lg border  border-gray-300  focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
                           />
+                          {errors.departureLocation && (
+                            <p className="text-red-500 text-xs mt-1">
+                              {errors.departureLocation}
+                            </p>
+                          )}
                         </div>
                       </div>
                       <div>
@@ -266,6 +353,11 @@ const BookingModal = ({ isOpen, onClose }) => {
                             placeholder="City or Airport"
                             className="w-full text-sm md:text-[15px] pl-14 pr-4 py-3 font-semibold text-gray-600 rounded-lg border  border-gray-300  focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
                           />
+                          {errors.arrivalLocation && (
+                            <p className="text-red-500 text-xs mt-1">
+                              {errors.arrivalLocation}
+                            </p>
+                          )}
                         </div>
                       </div>
                       <div>
@@ -282,6 +374,11 @@ const BookingModal = ({ isOpen, onClose }) => {
                             placeholder="Email Adddress or Phone Number"
                             className="w-full text-sm md:text-[15px] pl-14 pr-4 py-3 font-semibold text-gray-600 rounded-lg border  border-gray-300  focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
                           />
+                          {errors.contactInfo && (
+                            <p className="text-red-500 text-xs mt-1">
+                              {errors.contactInfo}
+                            </p>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -310,6 +407,11 @@ const BookingModal = ({ isOpen, onClose }) => {
                             onChange={handleInputChange}
                             className="w-full pl-12 text-sm pr-4 py-3 rounded-lg font-semibold text-gray-600 border  border-gray-300  focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
                           />
+                          {errors.departureDate && (
+                            <p className="text-red-500 text-xs mt-1">
+                              {errors.departureDate}
+                            </p>
+                          )}
                         </div>
                       </div>
                       {formData.tripType === "roundTrip" && (
@@ -326,6 +428,11 @@ const BookingModal = ({ isOpen, onClose }) => {
                               onChange={handleInputChange}
                               className="w-full pl-12 pr-4 text-sm py-3 rounded-lg font-semibold text-gray-600 border  border-gray-300  focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
                             />
+                            {errors.returnDate && (
+                              <p className="text-red-500 text-xs mt-1">
+                                {errors.returnDate}
+                              </p>
+                            )}
                           </div>
                         </div>
                       )}
@@ -339,7 +446,7 @@ const BookingModal = ({ isOpen, onClose }) => {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-4">
                         {options.map((option, index) => (
                           <div
-                            key={index}
+                            key={option.title || index}
                             className={`px-6 py-5 rounded-xl border-2 transition-all duration-300 cursor-pointer ${
                               formData.selectedOption?.title === option.title
                                 ? "border-primary-600 bg-primary-50"
@@ -363,6 +470,11 @@ const BookingModal = ({ isOpen, onClose }) => {
                           </div>
                         ))}
                       </div>
+                      {errors.selectedOption && (
+                        <p className="text-red-500 text-xs mt-1">
+                          {errors.selectedOption}
+                        </p>
+                      )}
                     </div>
                   </motion.div>
                 )}
@@ -504,14 +616,21 @@ const BookingModal = ({ isOpen, onClose }) => {
                     disabled={isSubmitting}
                     className="ml-auto flex items-center space-x-2 px-6 sm:px-10 py-2 sm:py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors duration-300 disabled:opacity-70"
                   >
-                    <span className="font-semibold text-[13px] sm:text-base">
-                      {isSubmitting
-                        ? "Submitting..."
-                        : step === 3
-                          ? "Submit Request"
-                          : "Continue"}
-                    </span>
-                    <ArrowRight className="h-5 w-5" />
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="h-5 w-5 animate-spin" />
+                        <span className="font-semibold text-[13px] sm:text-base">
+                          Submitting...
+                        </span>
+                      </>
+                    ) : (
+                      <>
+                        <span className="font-semibold text-[13px] sm:text-base">
+                          {step === 3 ? "Submit Request" : "Continue"}
+                        </span>
+                        <ArrowRight className="h-5 w-5" />
+                      </>
+                    )}
                   </button>
                 </div>
               </div>
@@ -520,15 +639,23 @@ const BookingModal = ({ isOpen, onClose }) => {
         </div>
       )}
 
-      {submitStatus && (
-        <div
-          className={`text-sm font-medium mt-4 ${submitStatus === "success" ? "text-green-600" : "text-red-600"}`}
-        >
-          {submitStatus === "success"
-            ? "Booking request sent successfully!"
-            : "Failed to send booking request. Please try again."}
-        </div>
-      )}
+      {/* Notification Modal */}
+      <NotificationModal
+        isOpen={submitStatus !== null}
+        onClose={() => setSubmitStatus(null)}
+        onOkClick={handleNotificationClose}
+        title={
+          submitStatus === "success"
+            ? "Booking Request Sent!"
+            : "Something went wrong"
+        }
+        message={
+          submitStatus === "success"
+            ? "We have received your booking request and will get back to you shortly."
+            : "There was an error sending your booking request. Please try again."
+        }
+        type={submitStatus === "success" ? "success" : "error"}
+      />
     </AnimatePresence>
   );
 };
