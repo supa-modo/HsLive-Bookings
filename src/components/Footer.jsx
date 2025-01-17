@@ -43,7 +43,7 @@ const Footer = () => {
 
             <div>
               <p className="text-sm sm:text-base text-gray-400 mb-3 leading-relaxed">
-                Find us on our social media accounts.
+                Connect with us on social media.
               </p>
               <div className="flex space-x-4">
                 {[
