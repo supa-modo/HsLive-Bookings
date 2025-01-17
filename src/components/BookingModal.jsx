@@ -14,6 +14,7 @@ import {
   TicketsPlane,
 } from "lucide-react";
 import formatDateShort from "../utils/dateTimeFunctions";
+import emailjs from "@emailjs/browser";
 
 const StepIndicator = ({ currentStep, totalSteps }) => (
   <div className="flex items-center justify-center space-x-2 mb-4">
@@ -79,6 +80,8 @@ const BookingModal = ({ isOpen, onClose }) => {
     returnDate: "",
     selectedOption: null,
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -90,6 +93,40 @@ const BookingModal = ({ isOpen, onClose }) => {
 
   const handleOptionSelect = (option) => {
     setFormData((prev) => ({ ...prev, selectedOption: option }));
+  };
+
+  const handleSubmit = async () => {
+    setIsSubmitting(true);
+
+    try {
+      await emailjs.send(
+        process.env.REACT_APP_EMAILJS_SERVICE_ID,
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID_BOOKING,
+        {
+          trip_type: formData.tripType,
+          passengers: formData.passengers,
+          contact_info: formData.contactInfo,
+          departure: formData.departureLocation,
+          arrival: formData.arrivalLocation,
+          departure_date: formData.departureDate,
+          return_date: formData.returnDate,
+          selected_package: formData.selectedOption?.title,
+          package_description: formData.selectedOption?.description,
+        },
+        process.env.REACT_APP_EMAILJS_PUBLIC_KEY
+      );
+
+      setSubmitStatus("success");
+      setTimeout(() => {
+        onClose();
+        setSubmitStatus(null);
+      }, 2000);
+    } catch (error) {
+      console.error("Email error:", error);
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -431,7 +468,8 @@ const BookingModal = ({ isOpen, onClose }) => {
                         <div className="flex items-center space-x-4">
                           <PhoneCall className="text-blue-500 h-6 w-6" />
                           <p className="text-sm sm:text-base text-gray-500">
-                            We'll contact you within 2 hours with a quote matching your preferences.
+                            We'll contact you within 2 hours with a quote
+                            matching your preferences.
                           </p>
                         </div>
                         <div className="flex items-center space-x-4">
@@ -458,25 +496,20 @@ const BookingModal = ({ isOpen, onClose }) => {
                   <button
                     onClick={() => {
                       if (step === 3) {
-                        console.log("Booking Details:", {
-                          tripType: formData.tripType,
-                          passengers: formData.passengers,
-                          contactInfo: formData.contactInfo,
-                          departure: formData.departureLocation,
-                          arrival: formData.arrivalLocation,
-                          departureDate: formData.departureDate,
-                          returnDate: formData.returnDate,
-                          selectedOption: formData.selectedOption,
-                        });
-                        onClose();
+                        handleSubmit();
                       } else {
                         nextStep();
                       }
                     }}
-                    className="ml-auto  flex items-center space-x-2 px-6 sm:px-10 py-2 sm:py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors duration-300"
+                    disabled={isSubmitting}
+                    className="ml-auto flex items-center space-x-2 px-6 sm:px-10 py-2 sm:py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors duration-300 disabled:opacity-70"
                   >
                     <span className="font-semibold text-[13px] sm:text-base">
-                      {step === 3 ? "Submit Request" : "Continue"}
+                      {isSubmitting
+                        ? "Submitting..."
+                        : step === 3
+                          ? "Submit Request"
+                          : "Continue"}
                     </span>
                     <ArrowRight className="h-5 w-5" />
                   </button>
@@ -484,6 +517,16 @@ const BookingModal = ({ isOpen, onClose }) => {
               </div>
             </div>
           </motion.div>
+        </div>
+      )}
+
+      {submitStatus && (
+        <div
+          className={`text-sm font-medium mt-4 ${submitStatus === "success" ? "text-green-600" : "text-red-600"}`}
+        >
+          {submitStatus === "success"
+            ? "Booking request sent successfully!"
+            : "Failed to send booking request. Please try again."}
         </div>
       )}
     </AnimatePresence>

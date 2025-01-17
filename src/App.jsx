@@ -6,6 +6,9 @@ import LuxuryJetLanding from "./LandingPage";
 import Footer from "./components/Footer";
 import ServicesPage from "./pages/Fleet";
 import ServiceDetails from "./pages/ServiceDetails";
+import emailjs from "@emailjs/browser";
+
+emailjs.init(process.env.REACT_APP_EMAILJS_PUBLIC_KEY);
 
 function App() {
   return (

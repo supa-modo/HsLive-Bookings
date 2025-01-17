@@ -64,20 +64,6 @@ const ServiceCard = ({ service, isSelected, onClick, showDetailsBelow }) => {
                     </span>
                   </div>
                 ))}
-
-              {/* Show "+X more" tag if there are extra packages */}
-              {/* {extraPackagesCount > 0 && (
-                <div className="flex items-center space-x-3">
-                  <div className="w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center bg-blue-100 rounded-full">
-                    <span className="text-xs sm:text-sm font-semibold text-blue-600">
-                      +{extraPackagesCount}
-                    </span>
-                  </div>
-                  <span className="text-sm sm:text-base font-semibold text-blue-600">
-                    more
-                  </span>
-                </div>
-              )} */}
             </div>
           </div>
         </div>
@@ -105,7 +91,7 @@ const ServiceDetailsCard = ({ service }) => {
     >
       <div className="p-6 sm:p-8">
         <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold bg-gradient-to-r from-primary-800 to-gray-600 bg-clip-text text-transparent mb-4 sm:mb-6">
-          {service.title}
+          {service.title} Service
         </h3>
         <p className="text-sm sm:text-lg text-gray-500 font-semibold font-nunito-sans leading-relaxed mb-6 sm:mb-8">
           {service.detailedDescription}

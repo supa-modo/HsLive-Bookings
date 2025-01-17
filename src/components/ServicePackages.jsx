@@ -35,7 +35,7 @@ const fleetData = [
       "Tailored for executives and corporate teams, offering seamless business travel with in-flight productivity features and maximum privacy.",
     amenities:
       "In-flight Wi-Fi, Concierge services, Private meeting areas, Catered Meals & Refreshments,",
-    price: "Starting from $3,500/hour",
+    price: "Starting from $ ----/hour",
     additionalInfo: [
       "High levels of privacy for confidential discussions or strategic planning sessions.",
       "Spacious cabin with standing room",
@@ -54,7 +54,7 @@ const fleetData = [
       "Ultimate luxury travel experience for high-net-worth individuals and families, featuring personalized service and premium amenities.",
     amenities:
       "Gourmet dining, Premium entertainment, Customizable itineraries, Luxury concierge services",
-    price: "Starting from $4,500/hour",
+    price: "Starting from $ ----/hour",
     additionalInfo: [
       "Suitable for transcontinental flights",
       "Stand-up cabin with enhanced comfort",
@@ -74,7 +74,7 @@ const fleetData = [
       "Exclusive transportation solution for dignitaries and VIPs, ensuring privacy, security, and world-class comfort.",
     amenities:
       "Enhanced security measures, Diplomatic handling, Private suites, 24/7 dedicated support, Gourmet kitchen, Advanced entertainment systems, Luxurious seats",
-    price: "Starting from $7,500/hour",
+    price: "Starting from $ ----/hour",
     additionalInfo: [
       "Intercontinental flight capability",
       "Multiple cabin zones",
